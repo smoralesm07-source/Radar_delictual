@@ -1,0 +1,206 @@
+region_name,commune_name,year,victims,rate_100k,population
+Arica y Parinacota,Arica,2024,26,10.1,257163
+Tarapacá,Alto Hospicio,2024,11,7.7,143294
+Tarapacá,Colchane,2024,1,64.2,1558
+Tarapacá,Iquique,2024,17,7.3,231962
+Tarapacá,Pozo Almonte,2024,3,16.0,18713
+Antofagasta,Antofagasta,2024,37,8.3,444276
+Antofagasta,Calama,2024,10,5.1,196152
+Antofagasta,Mejillones,2024,1,6.3,15877
+Antofagasta,Tocopilla,2024,2,7.1,28354
+Atacama,Caldera,2024,1,5.0,19964
+Atacama,Chañaral,2024,3,23.0,13017
+Atacama,Copiapó,2024,16,9.1,176100
+Atacama,Huasco,2024,2,17.3,11590
+Atacama,Tierra Amarilla,2024,3,20.8,14431
+Atacama,Vallenar,2024,1,1.7,57360
+Coquimbo,Combarbalá,2024,1,7.2,13855
+Coquimbo,Coquimbo,2024,10,3.6,275644
+Coquimbo,Illapel,2024,2,6.1,33021
+Coquimbo,La Serena,2024,16,6.0,267400
+Coquimbo,Los Vilos,2024,5,20.5,24408
+Coquimbo,Monte Patria,2024,1,3.1,32672
+Coquimbo,Ovalle,2024,8,6.4,124401
+Coquimbo,Río Hurtado,2024,2,46.4,4308
+Coquimbo,Salamanca,2024,2,6.7,29916
+Valparaíso,Calera,2024,4,7.4,53902
+Valparaíso,Cartagena,2024,7,25.9,27065
+Valparaíso,Casablanca,2024,1,3.3,30543
+Valparaíso,Catemu,2024,1,6.4,15714
+Valparaíso,Concón,2024,1,2.1,48171
+Valparaíso,El Quisco,2024,3,15.9,18840
+Valparaíso,La Ligua,2024,1,2.6,38387
+Valparaíso,Limache,2024,5,9.7,51697
+Valparaíso,Llaillay,2024,1,3.7,27286
+Valparaíso,Los Andes,2024,2,2.9,68939
+Valparaíso,Olmué,2024,1,4.9,20247
+Valparaíso,Puchuncaví,2024,1,4.7,21221
+Valparaíso,Putaendo,2024,1,5.5,18023
+Valparaíso,Quillota,2024,8,7.9,100972
+Valparaíso,Quilpué,2024,8,4.6,173591
+Valparaíso,San Antonio,2024,5,5.1,98579
+Valparaíso,San Felipe,2024,8,9.2,86838
+Valparaíso,Santa María,2024,1,5.9,16962
+Valparaíso,Valparaíso,2024,37,11.5,320816
+Valparaíso,Villa Alemana,2024,4,2.7,147418
+Valparaíso,Viña del Mar,2024,34,9.2,371490
+Metropolitana,Alhué,2024,2,25.5,7856
+Metropolitana,Buin,2024,5,4.2,117982
+Metropolitana,Cerrillos,2024,16,17.7,90182
+Metropolitana,Cerro Navia,2024,13,9.3,139632
+Metropolitana,Colina,2024,27,13.7,197370
+Metropolitana,Conchalí,2024,7,5.1,136674
+Metropolitana,Curacaví,2024,3,7.8,38367
+Metropolitana,El Bosque,2024,12,7.1,169855
+Metropolitana,El Monte,2024,4,9.5,42233
+Metropolitana,Estación Central,2024,24,10.8,221901
+Metropolitana,Huechuraba,2024,8,6.8,118327
+Metropolitana,Independencia,2024,18,11.7,153624
+Metropolitana,La Cisterna,2024,10,9.9,101401
+Metropolitana,La Florida,2024,12,2.9,407297
+Metropolitana,La Granja,2024,4,3.4,119321
+Metropolitana,La Pintana,2024,35,18.5,188980
+Metropolitana,Lampa,2024,14,9.8,143032
+Metropolitana,Las Condes,2024,2,0.6,343632
+Metropolitana,Lo Espejo,2024,9,8.9,100694
+Metropolitana,Lo Prado,2024,9,8.8,102078
+Metropolitana,Macul,2024,8,5.8,138361
+Metropolitana,Maipú,2024,23,3.9,586812
+Metropolitana,María Pinto,2024,1,6.4,15669
+Metropolitana,Melipilla,2024,11,7.4,148899
+Metropolitana,Padre Hurtado,2024,1,1.2,81743
+Metropolitana,Paine,2024,5,5.7,88317
+Metropolitana,Pedro Aguirre Cerda,2024,11,10.5,104462
+Metropolitana,Peñaflor,2024,4,3.7,106840
+Metropolitana,Peñalolén,2024,6,2.2,272913
+Metropolitana,Pirque,2024,1,3.0,33021
+Metropolitana,Providencia,2024,3,1.8,164009
+Metropolitana,Pudahuel,2024,14,5.4,261596
+Metropolitana,Puente Alto,2024,49,7.3,667904
+Metropolitana,Quilicura,2024,13,4.7,275744
+Metropolitana,Quinta Normal,2024,10,7.1,141823
+Metropolitana,Recoleta,2024,35,17.8,196856
+Metropolitana,Renca,2024,12,7.4,163102
+Metropolitana,San Bernardo,2024,25,7.2,348640
+Metropolitana,San Joaquín,2024,10,9.7,103118
+Metropolitana,San José de Maipo,2024,1,5.1,19519
+Metropolitana,San Miguel,2024,7,4.8,145424
+Metropolitana,San Ramón,2024,9,10.8,83695
+Metropolitana,Santiago,2024,46,8.4,544388
+Metropolitana,Talagante,2024,9,10.5,85514
+Metropolitana,Tiltil,2024,1,4.4,22482
+Metropolitana,Vitacura,2024,1,1.0,97049
+Metropolitana,Ñuñoa,2024,2,0.7,266906
+O'Higgins,Chépica,2024,1,6.2,16148
+O'Higgins,Coinco,2024,1,12.5,8024
+O'Higgins,Graneros,2024,2,5.2,38185
+O'Higgins,La Estrella,2024,1,32.3,3098
+O'Higgins,Las Cabras,2024,2,7.2,27749
+O'Higgins,Machalí,2024,2,3.1,64751
+O'Higgins,Malloa,2024,3,21.0,14300
+O'Higgins,Mostazal,2024,3,10.5,28552
+O'Higgins,Nancagua,2024,1,5.1,19725
+O'Higgins,Navidad,2024,1,14.0,7135
+O'Higgins,Peumo,2024,1,6.7,15028
+O'Higgins,Pichidegua,2024,1,4.7,21074
+O'Higgins,Pichilemu,2024,2,10.6,18804
+O'Higgins,Rancagua,2024,24,8.7,274407
+O'Higgins,Rengo,2024,3,4.6,65786
+O'Higgins,Requínoa,2024,1,3.2,31724
+O'Higgins,San Fernando,2024,6,7.4,81117
+O'Higgins,San Vicente,2024,1,1.9,52289
+Maule,Cauquenes,2024,1,2.2,44446
+Maule,Colbún,2024,1,4.3,23479
+Maule,Constitución,2024,2,3.9,50646
+Maule,Curicó,2024,6,3.5,171589
+Maule,Empedrado,2024,1,23.9,4176
+Maule,Licantén,2024,1,14.3,6986
+Maule,Linares,2024,5,4.8,103958
+Maule,Longaví,2024,2,5.9,33666
+Maule,Maule,2024,1,1.4,68975
+Maule,Molina,2024,4,7.7,52088
+Maule,Parral,2024,1,2.2,45583
+Maule,Río Claro,2024,1,6.6,15129
+Maule,San Clemente,2024,2,4.2,47999
+Maule,San Javier,2024,2,3.9,51469
+Maule,Talca,2024,10,4.1,242344
+Maule,Teno,2024,1,3.1,31885
+Ñuble,Bulnes,2024,1,4.4,22754
+Ñuble,Chillán,2024,6,2.9,204091
+Ñuble,Chillán Viejo,2024,1,2.8,35580
+Ñuble,Coelemu,2024,1,5.9,16901
+Ñuble,Coihueco,2024,1,3.4,29067
+Ñuble,Quirihue,2024,2,16.3,12241
+Ñuble,San Carlos,2024,4,7.0,57061
+Ñuble,San Ignacio,2024,1,6.0,16600
+Ñuble,San Nicolás,2024,1,8.0,12487
+Ñuble,Yungay,2024,2,10.6,18835
+Biobío,Alto Biobío,2024,2,29.4,6804
+Biobío,Arauco,2024,3,7.7,38941
+Biobío,Cañete,2024,6,16.0,37443
+Biobío,Chiguayante,2024,5,5.4,91963
+Biobío,Concepción,2024,12,5.0,239776
+Biobío,Coronel,2024,16,12.4,128941
+Biobío,Curanilahue,2024,2,5.9,33942
+Biobío,Florida,2024,2,16.8,11873
+Biobío,Hualpén,2024,3,3.1,98055
+Biobío,Laja,2024,1,4.2,23921
+Biobío,Lebu,2024,3,11.0,27152
+Biobío,Los Alamos,2024,1,4.4,22953
+Biobío,Los Angeles,2024,17,7.6,223751
+Biobío,Lota,2024,10,22.0,45407
+Biobío,Mulchén,2024,2,6.4,31122
+Biobío,Nacimiento,2024,1,3.6,28028
+Biobío,Penco,2024,2,4.0,50189
+Biobío,Quilaco,2024,1,23.9,4186
+Biobío,Quilleco,2024,2,20.0,9986
+Biobío,San Pedro de la Paz,2024,7,4.6,153516
+Biobío,Santa Bárbara,2024,1,6.8,14671
+Biobío,Santa Juana,2024,2,13.4,14890
+Biobío,Talcahuano,2024,5,3.2,158167
+Biobío,Tirúa,2024,1,9.0,11105
+Biobío,Tomé,2024,5,8.5,59150
+La Araucanía,Angol,2024,3,5.3,56797
+La Araucanía,Cholchol,2024,1,7.9,12647
+La Araucanía,Collipulli,2024,2,7.5,26558
+La Araucanía,Freire,2024,3,11.8,25488
+La Araucanía,Galvarino,2024,1,8.0,12568
+La Araucanía,Gorbea,2024,1,6.6,15076
+La Araucanía,Lautaro,2024,1,2.4,41884
+La Araucanía,Padre Las Casas,2024,2,2.3,85373
+La Araucanía,Pitrufquén,2024,1,3.8,26617
+La Araucanía,Pucón,2024,3,9.8,30712
+La Araucanía,Purén,2024,1,8.3,12103
+La Araucanía,Saavedra,2024,2,15.8,12660
+La Araucanía,Temuco,2024,10,3.2,309696
+La Araucanía,Teodoro Schmidt,2024,2,12.7,15744
+La Araucanía,Traiguén,2024,1,5.2,19260
+La Araucanía,Victoria,2024,4,11.3,35554
+La Araucanía,Vilcún,2024,1,3.1,32742
+La Araucanía,Villarrica,2024,5,8.2,60675
+Los Ríos,La Unión,2024,1,2.5,39705
+Los Ríos,Lago Ranco,2024,1,9.7,10272
+Los Ríos,Los Lagos,2024,3,14.6,20520
+Los Ríos,Máfil,2024,1,13.6,7375
+Los Ríos,Panguipulli,2024,2,5.5,36220
+Los Ríos,Río Bueno,2024,6,18.2,32998
+Los Ríos,Valdivia,2024,10,5.5,182086
+Los Lagos,Ancud,2024,1,2.4,42524
+Los Lagos,Calbuco,2024,2,5.3,37626
+Los Lagos,Dalcahue,2024,1,6.5,15456
+Los Lagos,Fresia,2024,1,8.0,12571
+Los Lagos,Frutillar,2024,1,4.8,20817
+Los Lagos,Osorno,2024,4,2.3,176304
+Los Lagos,Puerto Montt,2024,8,2.8,280955
+Los Lagos,Puerto Varas,2024,1,1.9,51316
+Los Lagos,Purranque,2024,3,14.3,20968
+Los Lagos,Queilén,2024,1,18.0,5542
+Los Lagos,Quellón,2024,2,6.6,30136
+Los Lagos,Quinchao,2024,2,24.4,8186
+Los Lagos,San Juan de la Costa,2024,1,13.5,7424
+Aysén,Aysén,2024,3,11.9,25218
+Aysén,Chile Chico,2024,2,38.7,5163
+Aysén,Coyhaique,2024,5,8.1,62046
+Magallanes,Natales,2024,1,4.1,24631
+Magallanes,Porvenir,2024,1,13.1,7637
+Magallanes,Punta Arenas,2024,3,2.1,145713

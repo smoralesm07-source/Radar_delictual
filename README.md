@@ -1,97 +1,71 @@
-# Radar Delictual Chile · OSINT + AML
+# Radar Delictual Chile · OSINT + AML · v0.2
 
-Radar OSINT para estructurar antecedentes policiales y delictuales de Chile desde 2020, con foco en su futura utilización como capa de riesgo territorial y sectorial LA/FT.
+Radar OSINT que estructura antecedentes delictuales y policiales de Chile desde 2020 para producir señales territoriales trazables que puedan incorporarse posteriormente a modelos de riesgo sectorial LA/FT.
 
-## Objetivo
+> El radar no determina culpabilidad, no imputa delitos a territorios, personas o sectores y no calcula probabilidad de lavado de activos. Los scores son señales analíticas para priorizar revisión de evidencia pública.
 
-Convertir publicaciones y estadísticas abiertas de CEAD, Ministerio Público, Carabineros, PDI y otras fuentes oficiales en señales trazables que puedan cruzarse posteriormente con Radar UAF, Radar SII, Radar CGR y otros módulos.
+## Novedades v0.2
 
-El radar **no califica personas ni entidades como vinculadas a delitos o LA/FT**. Sus scores son indicadores analíticos territoriales construidos sobre datos agregados y proxies explícitos.
+- **Capa comunal oficial:** 205 comunas con víctimas de homicidio consumado en 2024, con frecuencia, tasa por 100.000 habitantes y población publicada.
+- **Actualidad 2025:** señal regional y comunal del primer semestre de 2025, preservada separadamente del dato anual.
+- **Unidad correcta de homicidio:** se usa la víctima validada interinstitucionalmente, no el caso policial CEAD ni el delito ingresado a SAF.
+- **Score territorial v0.2:** combina el proxy AML del Ministerio Público con presión de homicidios anual y reciente, manteniendo los componentes auditables.
+- **Score comunal estabilizado:** reduce la volatilidad de tasas en comunas pequeñas mediante shrinkage poblacional y combina tasa, volumen y señal reciente.
+- **Mapeo jurídico por código:** reglas versionadas contra el artículo 27 de la Ley 19.913 y el Catálogo de Delitos del Ministerio Público a diciembre de 2025.
+- **Clases jurídicas separadas:** `laundering_offense`, `predicate_direct`, `predicate_candidate`, `organized_crime_signal`, `historical_nonvigent`, `unmapped`.
+- **Contrato de integración:** salida normalizada para cruces posteriores por `territory_id`, `region_code` y `commune_code` con Radar SII/UAF.
+- **Descubrimiento oficial:** catálogo automático de publicaciones desde la Plataforma de Traspaso del Gobierno como fallback de CEAD.
+- **Evidencia reforzada:** los CSV auditados de referencia y los archivos fuente descargables se registran con SHA-256.
 
-## Principios de diseño
+## Fuentes principales
 
-1. **Fuente antes que score**: todo registro conserva `source_id`, URL, período y evidencia.
-2. **No mezclar unidades**: casos policiales CEAD, delitos ingresados a Fiscalía, víctimas de homicidio y procedimientos policiales son métricas distintas.
-3. **AML por capas**: `base_19913`, `proxy_19913`, `crimen_organizado_proxy` y `contexto_general`.
-4. **0 != sin dato**: la ausencia se representa como `null`/`no_disponible`, nunca como cero inventado.
-5. **Geografía interoperable**: códigos y nombres normalizados de región/comuna preparados para cruces con SII/UAF/CGR.
-6. **Histórico reproducible**: período objetivo 2020 a la fecha.
+1. Ministerio Público: boletines estadísticos SAF 2020-2025 y Estadística Interactiva para información vigente.
+2. Centro para la Prevención de Homicidios y Delitos Violentos / Observatorio de Homicidios: informe 2024 e informe primer semestre 2025.
+3. CEAD / Ministerio de Seguridad Pública: casos policiales, denuncias, detenciones y tasas; actualmente protegido por WAF frente a GitHub Actions.
+4. Plataforma de Traspaso del Gobierno: catálogo oficial alternativo de publicaciones de la Subsecretaría de Prevención del Delito.
+5. Fiscalía Nacional: Catálogo de Delitos y publicaciones de crimen organizado.
+6. BCN LeyChile: Ley 19.913 vigente para versionar el mapeo jurídico.
+7. SUBDERE CUT 2018: normalización de códigos territoriales cuando el archivo es accesible.
+8. Carabineros, PDI, Aduanas y SENDA: fuentes catalogadas para expansión de procedimientos, incautaciones y mercados ilícitos.
 
-## Fuentes iniciales
-
-- CEAD / Ministerio de Seguridad Pública: casos policiales, denuncias, detenciones, aprehendidos, frecuencia y tasa por 100.000 habitantes, región/comuna.
-- Ministerio Público: boletines estadísticos SAF y Estadística Interactiva; backbone anual 2020-2025.
-- Fiscalía Nacional / UCOD: informes de crimen organizado, drogas, armas, secuestros, extorsiones, trata y lavado de activos.
-- Centro para la Prevención de Homicidios y Delitos Violentos: cifra oficial de víctimas de homicidio consumado.
-- Carabineros de Chile y PDI: cuentas públicas, balances, procedimientos e incautaciones publicadas.
-- SENDA: contexto de mercados de drogas y consumo.
-- Servicio Nacional de Aduanas: contrabando, decomisos y fiscalización.
-- BCN LeyChile: versión vigente de Ley 19.913 para versionar el mapeo de delitos base.
-
-Ver `config/sources.json` y `docs/data_model.md`.
-
-## Arquitectura
-
-```text
-.github/workflows/     actualización, tests y GitHub Pages
-config/                fuentes y taxonomía AML
-data/raw/               copias de trabajo (no se versionan archivos pesados)
-data/processed/         métricas normalizadas generadas
-data/evidence/          evidencia y trazabilidad
-radar_delictual/        colectores, normalización, AML, riesgo, dashboard
-schemas/                contratos de datos
-tests/                  pruebas unitarias
-public/                 sitio estático generado
-run.py                  ejecución integral
-```
-
-## Ejecución local
-
-```bash
-python -m pip install -r requirements.txt
-python run.py
-pytest -q
-```
-
-Para ejecutar sin red y regenerar el dashboard con el último dato disponible:
-
-```bash
-python run.py --offline
-```
-
-## Salidas principales
+## Salidas v0.2
 
 - `data/processed/territorial_metrics.jsonl`
-- `data/processed/risk_signals.json`
+- `data/processed/territorial_priority_v2.json`
+- `data/processed/commune_homicide_pressure.json`
+- `data/processed/legal_mapping_summary.json`
+- `data/processed/integration_ready.json`
 - `data/processed/osint_events.jsonl`
-- `data/evidence/source_evidence.jsonl`
+- `data/processed/official_publications.jsonl`
 - `data/processed/source_status.json`
+- `data/evidence/source_evidence.jsonl`
 - `public/index.html`
 - `public/data.json`
 
-## Score v0.1
+## Modelo regional v0.2
 
-El índice principal se denomina **Presión delictual AML (proxy)**, no “riesgo LA/FT”. Se calcula separando:
+`territorial_priority_score` = 60% presión delictual AML proxy del Ministerio Público + 20% percentil de tasa regional de homicidio 2024 + 15% percentil de tasa regional H1 2025 + 5% variación H1 2025 vs H1 2024.
 
-- presión de delitos base/proxy Ley 19.913;
-- presión de mercados de crimen organizado;
-- tendencia reciente;
-- diversificación de señales.
+El resultado es **prioridad territorial AML/OSINT**: no una probabilidad de LA/FT.
 
-Mientras no exista una tasa territorial comparable para una fuente, el motor evita presentar el resultado como tasa de criminalidad o probabilidad de lavado.
+## Modelo comunal
 
-## Automatización
+La tasa de homicidios 2024 se estabiliza hacia 6,0 por 100.000 mediante un factor dependiente de población y luego se combina con volumen 2024 y víctimas H1 2025. Así una comuna pequeña no domina el ranking por una sola víctima. Este score es contexto territorial, no AML.
 
-GitHub Actions ejecuta el radar diariamente alrededor de las 07:10 hora de Santiago, además de cada `push` y ejecución manual. El dashboard se publica mediante GitHub Pages y la última salida generada se conserva en la rama técnica `radar-data`, evitando conflictos con `main`.
+## Mapeo Ley 19.913
 
-## Próximas capas previstas
+`config/legal_code_rules.json` enlaza códigos del Catálogo de Delitos del Ministerio Público con el artículo 27 de la Ley 19.913. Las reglas directas se aplican solo cuando el código permite asociar el ilícito a una norma expresamente comprendida. Categorías agrupadas permanecen como `predicate_candidate`. Extorsión, asociaciones criminales, receptación y mercados de vehículos se mantienen como `organized_crime_signal` y no se convierten automáticamente en delito base.
 
-- Ingesta automatizada completa de CEAD a nivel comunal y tasas por 100.000.
-- Catálogo de delitos del Ministerio Público a nivel de código para mapear artículo 27 de Ley 19.913 sin depender de categorías amplias.
-- Incautaciones/procedimientos de drogas, armas, contrabando y vehículos.
-- Matriz `territorio × actividad SII × sujeto obligado UAF × señal delictual`.
-- Cruce con proveedores/organismos de Radar CGR y personas jurídicas de Radar SII mediante identificadores estables, sin inferir culpabilidad.
+## Interoperabilidad
 
-## Advertencia metodológica
+`integration_ready.json` entrega `territory_id`, nivel geográfico, período, familia de señal, score, relevancia AML y llaves `region_code`/`commune_code`, permitiendo cruces futuros con presencia de actividades económicas SII y sujetos obligados UAF sin inferir conducta ilícita.
 
-Este repositorio es una herramienta OSINT de apoyo analítico. Los scores son señales para priorizar análisis y deben ser corroborados con la fuente original y con contexto territorial, demográfico, económico y temporal. No sustituyen una investigación penal, un ROS, una evaluación formal de riesgo ni una conclusión sobre una persona natural o jurídica.
+## Ejecución
+
+```bash
+python -m pip install -r requirements.txt
+pytest -q
+python run.py
+```
+
+Una falla 403, timeout o ausencia de extracción nunca se transforma en valor cero. La herramienta apoya análisis OSINT y priorización basada en riesgo; no sustituye investigación penal, ROS ni evaluación formal de riesgo LA/FT.

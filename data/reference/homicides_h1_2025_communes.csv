@@ -1,0 +1,130 @@
+region_name,commune_name,period,victims
+Arica y Parinacota,Arica,2025-H1,15
+Tarapacá,Alto Hospicio,2025-H1,2
+Tarapacá,Colchane,2025-H1,1
+Tarapacá,Iquique,2025-H1,5
+Antofagasta,Antofagasta,2025-H1,13
+Antofagasta,Calama,2025-H1,8
+Atacama,Copiapó,2025-H1,7
+Atacama,Vallenar,2025-H1,4
+Coquimbo,Coquimbo,2025-H1,4
+Coquimbo,La Serena,2025-H1,8
+Coquimbo,Ovalle,2025-H1,5
+Valparaíso,Algarrobo,2025-H1,1
+Valparaíso,Cabildo,2025-H1,1
+Valparaíso,Cartagena,2025-H1,3
+Valparaíso,Casablanca,2025-H1,1
+Valparaíso,Catemu,2025-H1,1
+Valparaíso,Limache,2025-H1,4
+Valparaíso,Los Andes,2025-H1,1
+Valparaíso,Olmué,2025-H1,1
+Valparaíso,Quillota,2025-H1,3
+Valparaíso,Quilpué,2025-H1,5
+Valparaíso,Quintero,2025-H1,2
+Valparaíso,San Antonio,2025-H1,6
+Valparaíso,San Felipe,2025-H1,4
+Valparaíso,Valparaíso,2025-H1,11
+Valparaíso,Villa Alemana,2025-H1,2
+Valparaíso,Viña del Mar,2025-H1,9
+Metropolitana,Buin,2025-H1,4
+Metropolitana,Cerrillos,2025-H1,6
+Metropolitana,Cerro Navia,2025-H1,5
+Metropolitana,Colina,2025-H1,6
+Metropolitana,Conchalí,2025-H1,4
+Metropolitana,El Bosque,2025-H1,4
+Metropolitana,El Monte,2025-H1,3
+Metropolitana,Estación Central,2025-H1,14
+Metropolitana,Independencia,2025-H1,6
+Metropolitana,Isla de Maipo,2025-H1,3
+Metropolitana,La Cisterna,2025-H1,5
+Metropolitana,La Florida,2025-H1,8
+Metropolitana,La Granja,2025-H1,6
+Metropolitana,La Pintana,2025-H1,19
+Metropolitana,La Reina,2025-H1,1
+Metropolitana,Lampa,2025-H1,7
+Metropolitana,Lo Espejo,2025-H1,6
+Metropolitana,Lo Prado,2025-H1,2
+Metropolitana,Macul,2025-H1,4
+Metropolitana,Maipú,2025-H1,4
+Metropolitana,Melipilla,2025-H1,4
+Metropolitana,Paine,2025-H1,3
+Metropolitana,Pedro Aguirre Cerda,2025-H1,5
+Metropolitana,Peñaflor,2025-H1,4
+Metropolitana,Peñalolén,2025-H1,4
+Metropolitana,Pudahuel,2025-H1,6
+Metropolitana,Puente Alto,2025-H1,19
+Metropolitana,Quilicura,2025-H1,5
+Metropolitana,Quinta Normal,2025-H1,1
+Metropolitana,Recoleta,2025-H1,9
+Metropolitana,Renca,2025-H1,8
+Metropolitana,San Bernardo,2025-H1,14
+Metropolitana,San Joaquín,2025-H1,2
+Metropolitana,San Ramón,2025-H1,6
+Metropolitana,Santiago,2025-H1,21
+Metropolitana,Talagante,2025-H1,3
+Metropolitana,Tiltil,2025-H1,1
+Metropolitana,Vitacura,2025-H1,2
+Metropolitana,Ñuñoa,2025-H1,4
+O'Higgins,Coltauco,2025-H1,2
+O'Higgins,Graneros,2025-H1,2
+O'Higgins,Lolol,2025-H1,1
+O'Higgins,Malloa,2025-H1,1
+O'Higgins,Mostazal,2025-H1,1
+O'Higgins,Olivar,2025-H1,1
+O'Higgins,Palmilla,2025-H1,1
+O'Higgins,Paredones,2025-H1,1
+O'Higgins,Rancagua,2025-H1,5
+O'Higgins,Requínoa,2025-H1,1
+O'Higgins,San Fernando,2025-H1,2
+O'Higgins,San Vicente,2025-H1,1
+Maule,Constitución,2025-H1,2
+Maule,Curicó,2025-H1,4
+Maule,Linares,2025-H1,3
+Maule,Longaví,2025-H1,1
+Maule,Molina,2025-H1,3
+Maule,Parral,2025-H1,1
+Maule,San Clemente,2025-H1,2
+Maule,Talca,2025-H1,5
+Maule,Teno,2025-H1,1
+Ñuble,Chillán,2025-H1,2
+Ñuble,Pinto,2025-H1,1
+Ñuble,San Carlos,2025-H1,1
+Ñuble,Yungay,2025-H1,1
+Biobío,Chiguayante,2025-H1,2
+Biobío,Concepción,2025-H1,13
+Biobío,Hualpén,2025-H1,2
+Biobío,Los Ángeles,2025-H1,5
+Biobío,Lota,2025-H1,2
+Biobío,Mulchén,2025-H1,2
+Biobío,Nacimiento,2025-H1,1
+Biobío,San Pedro de la Paz,2025-H1,4
+Biobío,Talcahuano,2025-H1,8
+Biobío,Tomé,2025-H1,1
+La Araucanía,Cholchol,2025-H1,1
+La Araucanía,Curarrehue,2025-H1,1
+La Araucanía,Lautaro,2025-H1,1
+La Araucanía,Loncoche,2025-H1,1
+La Araucanía,Nueva Imperial,2025-H1,2
+La Araucanía,Padre Las Casas,2025-H1,2
+La Araucanía,Saavedra,2025-H1,1
+La Araucanía,Temuco,2025-H1,6
+La Araucanía,Teodoro Schmidt,2025-H1,1
+La Araucanía,Vilcún,2025-H1,2
+La Araucanía,Villarrica,2025-H1,3
+Los Ríos,Lago Ranco,2025-H1,2
+Los Ríos,Mariquina,2025-H1,1
+Los Ríos,Máfil,2025-H1,1
+Los Ríos,Panguipulli,2025-H1,3
+Los Ríos,Valdivia,2025-H1,4
+Los Lagos,Ancud,2025-H1,1
+Los Lagos,Calbuco,2025-H1,1
+Los Lagos,Castro,2025-H1,1
+Los Lagos,Dalcahue,2025-H1,1
+Los Lagos,Fresia,2025-H1,1
+Los Lagos,Osorno,2025-H1,5
+Los Lagos,Puerto Montt,2025-H1,7
+Los Lagos,Puyehue,2025-H1,1
+Los Lagos,Quellón,2025-H1,1
+Los Lagos,San Juan de la Costa,2025-H1,1
+Aysén,Coyhaique,2025-H1,5
+Magallanes,Punta Arenas,2025-H1,3

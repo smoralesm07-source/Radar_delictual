@@ -1,0 +1,12 @@
+{
+  "version":"0.2.0",
+  "disclaimer":"Hipótesis de exposición para futuros cruces con densidad económica SII y sujetos obligados UAF. No atribuyen conducta ilícita a un sector.",
+  "signals":{
+    "drug_market":{"sector_tags":["logistica_transporte","puertos_frontera","vehiculos","efectivo_intensivo"],"aml_relevance":"high"},
+    "customs_smuggling":{"sector_tags":["comercio_exterior","logistica_transporte","puertos_frontera","comercio_mayorista"],"aml_relevance":"high"},
+    "economic_tax_crime":{"sector_tags":["servicios_empresariales","sociedades","comercio","finanzas"],"aml_relevance":"high"},
+    "arms_market":{"sector_tags":["logistica_transporte","seguridad","frontera"],"aml_relevance":"medium"},
+    "vehicle_reception":{"sector_tags":["venta_vehiculos","repuestos","talleres","logistica"],"aml_relevance":"medium"},
+    "homicide_violence":{"sector_tags":[],"aml_relevance":"context","note":"Contexto territorial de violencia; no se asigna directamente a un sector económico."}
+  }
+}
