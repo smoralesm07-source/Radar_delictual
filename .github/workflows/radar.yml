@@ -2,7 +2,7 @@ name: Radar Delictual
 
 on:
   push:
-    branches: [main, v0.4-build]
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: '10 10 * * *'
@@ -15,11 +15,14 @@ permissions:
 
 concurrency:
   group: radar-delictual
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Determinar ventana horaria
         id: clock
@@ -31,16 +34,20 @@ jobs:
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
+
       - uses: actions/checkout@v4
         if: steps.clock.outputs.run == 'true'
+
       - uses: actions/setup-python@v5
         if: steps.clock.outputs.run == 'true'
         with:
           python-version: '3.12'
           cache: pip
+
       - name: Instalar dependencias
         if: steps.clock.outputs.run == 'true'
         run: pip install -r requirements.txt
+
       - name: Restaurar estado incremental CEAD
         if: steps.clock.outputs.run == 'true'
         shell: bash
@@ -54,14 +61,17 @@ jobs:
             cead_official_secondary_control.jsonl; do
               git show "origin/radar-data:data/processed/$f" > "data/processed/$f" 2>/dev/null || rm -f "data/processed/$f"
           done
+
       - name: Ejecutar pruebas v0.4
         if: steps.clock.outputs.run == 'true'
         run: pytest -q
+
       - name: Ejecutar Radar Delictual v0.4
         if: steps.clock.outputs.run == 'true'
         run: python run.py
+
       - name: Publicar snapshot en rama técnica radar-data
-        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
+        if: steps.clock.outputs.run == 'true'
         shell: bash
         run: |
           git config user.name "radar-bot"
@@ -82,13 +92,16 @@ jobs:
           git checkout -f main
           rm -rf public
           cp -R "$TMP/public" public
+
       - uses: actions/configure-pages@v5
-        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
+        if: steps.clock.outputs.run == 'true'
+
       - uses: actions/upload-pages-artifact@v4
-        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
+        if: steps.clock.outputs.run == 'true'
         with:
           path: public
+
       - name: Deploy GitHub Pages
         id: deployment
-        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
+        if: steps.clock.outputs.run == 'true'
         uses: actions/deploy-pages@v4
