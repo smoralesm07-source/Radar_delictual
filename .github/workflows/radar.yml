@@ -44,6 +44,9 @@ jobs:
       - name: Instalar dependencias
         if: steps.clock.outputs.run == 'true'
         run: pip install -r requirements.txt
+      - name: Probar endpoint POST directo CEAD
+        if: steps.clock.outputs.run == 'true'
+        run: python scripts/probe_cead_endpoint.py
       - name: Ejecutar pruebas v0.3
         if: steps.clock.outputs.run == 'true'
         run: pytest -q
