@@ -48,7 +48,7 @@ jobs:
         if: steps.clock.outputs.run == 'true'
         run: pip install -r requirements.txt
 
-      - name: Restaurar estado incremental CEAD
+      - name: Restaurar fallbacks del Radar
         if: steps.clock.outputs.run == 'true'
         shell: bash
         run: |
@@ -57,16 +57,16 @@ jobs:
           for f in \
             cead_update_manifest.json \
             cead_annual_master_v4.jsonl \
-            cead_direct_annual_cache.jsonl \
             cead_official_secondary_control.jsonl; do
               git show "origin/radar-data:data/processed/$f" > "data/processed/$f" 2>/dev/null || rm -f "data/processed/$f"
           done
+          rm -f data/processed/cead_direct_annual_cache.jsonl
 
-      - name: Ejecutar pruebas v0.4
+      - name: Ejecutar pruebas
         if: steps.clock.outputs.run == 'true'
         run: pytest -q
 
-      - name: Ejecutar Radar Delictual v0.4
+      - name: Ejecutar Radar Delictual
         if: steps.clock.outputs.run == 'true'
         run: python run.py
 
