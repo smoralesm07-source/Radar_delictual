@@ -2,7 +2,7 @@ name: Radar Delictual
 
 on:
   push:
-    branches: [main]
+    branches: [main, v0.4-build]
   workflow_dispatch:
   schedule:
     - cron: '10 10 * * *'
@@ -71,7 +71,7 @@ jobs:
         run: python run.py
 
       - name: Publicar snapshot en rama técnica radar-data
-        if: steps.clock.outputs.run == 'true'
+        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
         shell: bash
         run: |
           git config user.name "radar-bot"
@@ -94,14 +94,14 @@ jobs:
           cp -R "$TMP/public" public
 
       - uses: actions/configure-pages@v5
-        if: steps.clock.outputs.run == 'true'
+        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
 
       - uses: actions/upload-pages-artifact@v4
-        if: steps.clock.outputs.run == 'true'
+        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
         with:
           path: public
 
       - name: Deploy GitHub Pages
         id: deployment
-        if: steps.clock.outputs.run == 'true'
+        if: steps.clock.outputs.run == 'true' && github.ref == 'refs/heads/main'
         uses: actions/deploy-pages@v4
