@@ -1,3 +1,3 @@
-"""Radar Delictual Chile: OSINT territorial orientado a señales AML."""
+"""Radar Delictual Chile: OSINT territorial con backbone CEAD actualizable orientado a señales AML."""
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
