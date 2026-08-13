@@ -1,0 +1,12 @@
+{
+  "interop_version": "1.0",
+  "radar_id": "RADAR_DELICTUAL",
+  "repository": "smoralesm07-source/Radar_delictual",
+  "implementation_stage": "ADAPTER_PARTIAL",
+  "entity_hub": {"current_status": "NOT_PRIMARY_DIMENSION"},
+  "territory": {"current_status": "NATIVE_INTEROP_READY", "key_policy": "OFFICIAL_CODE"},
+  "sector": {"current_status": "REFERENCE_CONTRACT"},
+  "temporal_evidence": {"source_failure_is_zero": false, "preserve_last_known_good": true},
+  "scores": {"common_risk_score": false, "policy": "RADAR_SPECIFIC_ONLY"},
+  "exports": [{"path": "data/processed/", "branch": "radar-data"}]
+}
