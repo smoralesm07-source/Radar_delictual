@@ -70,6 +70,7 @@ jobs:
           git fetch origin radar-data || true
           git checkout --orphan radar-data-tmp
           git rm -rf . >/dev/null 2>&1 || true
+          rm -rf data public
           cp -R "$TMP"/* .
           git add data public
           git commit -m "radar: snapshot $(TZ=America/Santiago date +%F)" || true
@@ -81,7 +82,7 @@ jobs:
       - uses: actions/configure-pages@v5
         if: steps.clock.outputs.run == 'true'
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         if: steps.clock.outputs.run == 'true'
         with:
           path: public
