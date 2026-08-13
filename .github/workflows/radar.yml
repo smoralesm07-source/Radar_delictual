@@ -1,0 +1,92 @@
+name: Radar Delictual
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '10 10 * * *'
+    - cron: '10 11 * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: radar-delictual
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Determinar ventana horaria
+        id: clock
+        shell: bash
+        run: |
+          HOUR=$(TZ=America/Santiago date +%H)
+          if [ "${{ github.event_name }}" != "schedule" ] || [ "$HOUR" = "07" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.clock.outputs.run == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.clock.outputs.run == 'true'
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Instalar dependencias
+        if: steps.clock.outputs.run == 'true'
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar pruebas
+        if: steps.clock.outputs.run == 'true'
+        run: pytest -q
+
+      - name: Ejecutar radar 2020 a la fecha comparable
+        if: steps.clock.outputs.run == 'true'
+        run: python run.py
+
+      - name: Publicar snapshot en rama técnica radar-data
+        if: steps.clock.outputs.run == 'true'
+        shell: bash
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          TMP=$(mktemp -d)
+          mkdir -p "$TMP/data"
+          cp -R data/processed "$TMP/data/"
+          cp -R data/evidence "$TMP/data/"
+          cp -R public "$TMP/"
+          git fetch origin radar-data || true
+          git checkout --orphan radar-data-tmp
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -R "$TMP"/* .
+          git add data public
+          git commit -m "radar: snapshot $(TZ=America/Santiago date +%F)" || true
+          git push origin HEAD:radar-data --force
+          git checkout -f main
+          rm -rf public
+          cp -R "$TMP/public" public
+
+      - uses: actions/configure-pages@v5
+        if: steps.clock.outputs.run == 'true'
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.clock.outputs.run == 'true'
+        with:
+          path: public
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        if: steps.clock.outputs.run == 'true'
+        uses: actions/deploy-pages@v4

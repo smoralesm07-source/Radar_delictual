@@ -1,0 +1,10 @@
+{
+  "keywords":["lavado de activos","lavado de dinero","narcotráfico","tráfico de drogas","microtráfico","tráfico de armas","armas","secuestro","extorsión","trata de personas","tráfico ilícito de migrantes","crimen organizado","organización criminal","asociación criminal","contrabando","incautación","robo de vehículos","receptación","corrupción","delitos económicos","delitos tributarios","ciberdelito","criptoactivos","recuperación de activos"],
+  "feeds":[
+    {"source_id":"fiscalia_noticias_nacionales","url":"https://www.fiscaliadechile.cl/actualidad/noticias/nacionales"},
+    {"source_id":"fiscalia_noticias_regionales","url":"https://www.fiscaliadechile.cl/actualidad/noticias/regionales"},
+    {"source_id":"fiscalia_estudios","url":"https://www.fiscaliadechile.cl/taxonomy/term/74"},
+    {"source_id":"pdi_prensa","url":"https://www.pdichile.cl/centro-de-prensa"},
+    {"source_id":"cead_documentacion","url":"https://cead.spd.gov.cl/centro-de-documentacion/"}
+  ]
+}

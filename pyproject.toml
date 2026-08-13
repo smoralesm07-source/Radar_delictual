@@ -1,0 +1,9 @@
+[project]
+name = "radar-delictual"
+version = "0.1.0"
+description = "Radar OSINT delictual de Chile orientado a señales territoriales AML"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
