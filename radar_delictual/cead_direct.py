@@ -23,6 +23,11 @@ def _num(value: str) -> int | None:
     except ValueError: return None
 
 
+def _post_cut(commune_code:str)->str:
+    text=re.sub(r"\D","",str(commune_code or ""))
+    return str(int(text)) if text else ""
+
+
 def drug_payload(year:int, commune_code:str) -> list[tuple[str,str]]:
     """Formulario equivalente al usado por la interfaz pública CEAD para la familia drogas.
 
@@ -34,7 +39,7 @@ def drug_payload(year:int, commune_code:str) -> list[tuple[str,str]]:
     data += [("mes[]",str(m)) for m,_ in MONTHS]
     data += [("mes_nombres[]",name) for _,name in MONTHS]
     data += [
-        ("comuna[]",str(commune_code).zfill(5)),
+        ("comuna[]",_post_cut(commune_code)),
         ("familia[]","4"),("familia_nombres[]","Delitos asociados a drogas"),
         ("grupo[]","401"),("grupo_nombres[]","Crímenes y simples delitos ley de drogas"),
     ]
@@ -74,13 +79,13 @@ def parse_cead_html(html_text:str, year:int, commune_code:str) -> list[dict]:
         low=[c.lower() for c in row]
         if sum(1 for m in MONTH_LOOKUP if m in low)>=3:
             header_idx=i; headers=row; break
-    # CEAD históricamente ha usado una segunda fila como encabezado; fallback conservador.
     if header_idx is None and len(raw)>=2:
         headers=raw[1]; header_idx=1
     month_cols={i:MONTH_LOOKUP.get(str(h).strip().lower()) for i,h in enumerate(headers)}
     month_cols={i:m for i,m in month_cols.items() if m}
     if not month_cols: return []
     out=[]
+    code=str(commune_code).zfill(5)
     for row in raw[header_idx+1:]:
         if not row: continue
         label=row[0].strip()
@@ -89,62 +94,35 @@ def parse_cead_html(html_text:str, year:int, commune_code:str) -> list[dict]:
             if col>=len(row): continue
             value=_num(row[col])
             if value is None: continue
-            out.append({
-                "year":int(year),"month":int(month),"period":f"{int(year):04d}-{int(month):02d}",
-                "commune_code":str(commune_code).zfill(5),"offense":label,"cases_policiales":value,
-                "source_id":"cead_direct_post","source_tier":"primary_direct","quality_status":"usable"
-            })
+            out.append({"year":int(year),"month":int(month),"period":f"{int(year):04d}-{int(month):02d}","commune_code":code,"offense":label,"cases_policiales":value,"source_id":"cead_direct_post","source_tier":"primary_direct","quality_status":"usable"})
     return out
 
 
 def probe_cead_direct(year:int|None=None, commune_code:str="01101") -> dict:
-    year=year or datetime.now().year
-    started=datetime.now(timezone.utc).isoformat()
+    year=year or datetime.now().year; started=datetime.now(timezone.utc).isoformat()
     try:
-        r=post_cead(year,commune_code)
-        rows=parse_cead_html(r.text,year,commune_code) if r.ok else []
-        nonzero=[x for x in rows if (x.get("cases_policiales") or 0)>0]
-        periods=sorted({x["period"] for x in nonzero})
-        return {
-            "source_id":"cead_direct_post","endpoint":CURRENT_ENDPOINT,"retrieved_at":started,
-            "ok":bool(r.ok and rows),"http_status":r.status_code,"bytes":len(r.content),
-            "response_sha256":hashlib.sha256(r.content).hexdigest(),"parsed_rows":len(rows),
-            "latest_nonzero_period":periods[-1] if periods else None,
-            "blocking_message":re.sub(r"\s+"," ",r.text[:160]).strip() if not r.ok else None,
-            "note":"Sonda primaria sin bypass; si falla, se activa la ruta puente verificada."
-        }
+        r=post_cead(year,commune_code); rows=parse_cead_html(r.text,year,commune_code) if r.ok else []
+        nonzero=[x for x in rows if (x.get("cases_policiales") or 0)>0]; periods=sorted({x["period"] for x in nonzero})
+        return {"source_id":"cead_direct_post","endpoint":CURRENT_ENDPOINT,"retrieved_at":started,"ok":bool(r.ok and rows),"http_status":r.status_code,"bytes":len(r.content),"response_sha256":hashlib.sha256(r.content).hexdigest(),"parsed_rows":len(rows),"latest_nonzero_period":periods[-1] if periods else None,"blocking_message":re.sub(r"\s+"," ",r.text[:160]).strip() if not r.ok else None,"note":"Sonda primaria sin bypass; si falla, se activa la ruta puente verificada."}
     except Exception as exc:
         return {"source_id":"cead_direct_post","endpoint":CURRENT_ENDPOINT,"retrieved_at":started,"ok":False,"error":f"{type(exc).__name__}: {exc}"}
 
 
 def collect_direct_year(year:int, communes:Iterable[dict], min_pause:float=0.45) -> tuple[list[dict],list[dict]]:
-    """Actualización incremental y respetuosa: una petición por comuna para un año.
-
-    Solo se invoca cuando la sonda primaria funciona y el orquestador detecta un
-    período nuevo respecto del manifiesto persistido. El ritmo puede ajustarse con
-    CEAD_DIRECT_MIN_PAUSE; no se ejecuta para backfills masivos diarios.
-    """
-    pause=max(min_pause,float(os.getenv("CEAD_DIRECT_MIN_PAUSE",str(min_pause))))
-    records=[]; status=[]
+    """Actualización incremental: una petición por comuna, solo ante un período nuevo."""
+    pause=max(min_pause,float(os.getenv("CEAD_DIRECT_MIN_PAUSE",str(min_pause)))); records=[]; status=[]
     for c in communes:
         code=str(c.get("commune_code") or "").zfill(5)
         if len(code)!=5 or not code.isdigit(): continue
         t0=time.monotonic()
         try:
-            r=post_cead(year,code)
-            rows=parse_cead_html(r.text,year,code) if r.ok else []
-            for row in rows:
-                row.update({
-                    "commune_name":c.get("commune_name"),"region_code":c.get("region_code"),
-                    "region_name":c.get("region_name"),"territory_id":f"CL-{code}"
-                })
-            records.extend(rows)
-            status.append({"commune_code":code,"ok":bool(r.ok and rows),"http_status":r.status_code,"records":len(rows)})
+            r=post_cead(year,code); rows=parse_cead_html(r.text,year,code) if r.ok else []
+            for row in rows: row.update({"commune_name":c.get("commune_name"),"region_code":c.get("region_code"),"region_name":c.get("region_name"),"territory_id":f"CL-{code}"})
+            records.extend(rows); status.append({"commune_code":code,"ok":bool(r.ok and rows),"http_status":r.status_code,"records":len(rows)})
             if not r.ok and r.status_code in {403,429}: break
         except Exception as exc:
             status.append({"commune_code":code,"ok":False,"error":f"{type(exc).__name__}: {exc}"})
-        elapsed=time.monotonic()-t0
-        time.sleep(max(0.0,pause-elapsed))
+        time.sleep(max(0.0,pause-(time.monotonic()-t0)))
     return records,status
 
 
