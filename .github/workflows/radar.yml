@@ -34,25 +34,42 @@ jobs:
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
+
       - uses: actions/checkout@v4
         if: steps.clock.outputs.run == 'true'
+
       - uses: actions/setup-python@v5
         if: steps.clock.outputs.run == 'true'
         with:
           python-version: '3.12'
           cache: pip
+
       - name: Instalar dependencias
         if: steps.clock.outputs.run == 'true'
         run: pip install -r requirements.txt
-      - name: Probar endpoint POST directo CEAD
+
+      - name: Restaurar estado incremental CEAD
         if: steps.clock.outputs.run == 'true'
-        run: python scripts/probe_cead_endpoint.py
-      - name: Ejecutar pruebas v0.3
+        shell: bash
+        run: |
+          git fetch origin radar-data || true
+          mkdir -p data/processed data/evidence
+          for f in \
+            cead_update_manifest.json \
+            cead_annual_master_v4.jsonl \
+            cead_direct_annual_cache.jsonl \
+            cead_official_secondary_control.jsonl; do
+              git show "origin/radar-data:data/processed/$f" > "data/processed/$f" 2>/dev/null || rm -f "data/processed/$f"
+          done
+
+      - name: Ejecutar pruebas v0.4
         if: steps.clock.outputs.run == 'true'
         run: pytest -q
-      - name: Ejecutar Radar Delictual v0.3
+
+      - name: Ejecutar Radar Delictual v0.4
         if: steps.clock.outputs.run == 'true'
         run: python run.py
+
       - name: Publicar snapshot en rama técnica radar-data
         if: steps.clock.outputs.run == 'true'
         shell: bash
@@ -75,12 +92,15 @@ jobs:
           git checkout -f main
           rm -rf public
           cp -R "$TMP/public" public
+
       - uses: actions/configure-pages@v5
         if: steps.clock.outputs.run == 'true'
+
       - uses: actions/upload-pages-artifact@v4
         if: steps.clock.outputs.run == 'true'
         with:
           path: public
+
       - name: Deploy GitHub Pages
         id: deployment
         if: steps.clock.outputs.run == 'true'
