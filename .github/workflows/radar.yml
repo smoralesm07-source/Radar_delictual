@@ -34,28 +34,22 @@ jobs:
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
-
       - uses: actions/checkout@v4
         if: steps.clock.outputs.run == 'true'
-
       - uses: actions/setup-python@v5
         if: steps.clock.outputs.run == 'true'
         with:
           python-version: '3.12'
           cache: pip
-
       - name: Instalar dependencias
         if: steps.clock.outputs.run == 'true'
         run: pip install -r requirements.txt
-
-      - name: Ejecutar pruebas
+      - name: Ejecutar pruebas v0.3
         if: steps.clock.outputs.run == 'true'
         run: pytest -q
-
-      - name: Ejecutar radar 2020 a la fecha comparable
+      - name: Ejecutar Radar Delictual v0.3
         if: steps.clock.outputs.run == 'true'
         run: python run.py
-
       - name: Publicar snapshot en rama técnica radar-data
         if: steps.clock.outputs.run == 'true'
         shell: bash
@@ -78,15 +72,12 @@ jobs:
           git checkout -f main
           rm -rf public
           cp -R "$TMP/public" public
-
       - uses: actions/configure-pages@v5
         if: steps.clock.outputs.run == 'true'
-
       - uses: actions/upload-pages-artifact@v4
         if: steps.clock.outputs.run == 'true'
         with:
           path: public
-
       - name: Deploy GitHub Pages
         id: deployment
         if: steps.clock.outputs.run == 'true'

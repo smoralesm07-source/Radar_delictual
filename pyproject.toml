@@ -1,6 +1,6 @@
 [project]
 name = "radar-delictual"
-version = "0.2.0"
+version = "0.3.0"
 description = "Radar OSINT delictual de Chile orientado a señales territoriales AML"
 requires-python = ">=3.11"
 

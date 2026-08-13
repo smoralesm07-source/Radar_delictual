@@ -1,22 +1,22 @@
 {
-  "version":"0.1.0",
-  "legal_reference":"Ley 19.913, artículo 27; el mapeo debe validarse contra la versión vigente y el Catálogo de Delitos del Ministerio Público.",
+  "version":"0.3.0",
+  "legal_reference":"Ley 19.913, artículo 27; el mapeo exacto se valida contra la versión vigente y el Catálogo de Delitos del Ministerio Público.",
   "categories":{
-    "DELITOS LEY DE DROGAS":{"aml_class":"base_19913","weight":1.0,"confidence":"high","rationale":"Familia asociada a Ley 20.000; usar código de delito para validación final."},
+    "DELITOS LEY DE DROGAS":{"aml_class":"base_19913","weight":1.0,"confidence":"high","rationale":"Familia asociada a Ley 20.000, expresamente incorporada por el artículo 27."},
     "DELITOS FUNCIONARIOS":{"aml_class":"proxy_19913","weight":0.95,"confidence":"medium","rationale":"Categoría amplia; contiene delitos potencialmente comprendidos como delitos base, pero requiere código específico."},
     "DELITOS ECONÓMICOS Y TRIBUTARIOS":{"aml_class":"proxy_19913","weight":0.9,"confidence":"medium","rationale":"Categoría amplia con relevancia AML; no todos sus delitos son necesariamente base del artículo 27."},
     "DELITOS CONTRA LA FE PÚBLICA":{"aml_class":"proxy_19913","weight":0.72,"confidence":"medium","rationale":"Señal económica/documental; exige desagregación por código."},
-    "DELITOS CONTRA LEYES DE PROPIEDAD INTELECTUAL E INDUSTRIAL":{"aml_class":"proxy_19913","weight":0.7,"confidence":"medium","rationale":"Algunos ilícitos de propiedad intelectual están contemplados por la normativa LA; validar por tipo penal."},
+    "DELITOS CONTRA LEYES DE PROPIEDAD INTELECTUAL E INDUSTRIAL":{"aml_class":"proxy_19913","weight":0.7,"confidence":"medium","rationale":"Algunos ilícitos están contemplados por la normativa LA; validar por tipo penal."},
     "DELITOS DE LEYES ESPECIALES":{"aml_class":"proxy_19913","weight":0.6,"confidence":"low","rationale":"Categoría amplia que requiere desagregación por tipo penal."},
-    "HOMICIDIOS":{"aml_class":"crimen_organizado_proxy","weight":0.65,"confidence":"medium","rationale":"Indicador de violencia asociable a mercados criminales; no implica por sí solo delito base LA."},
-    "DELITOS CONTRA LA LIBERTAD E INTIMIDAD DE LAS PERSONAS":{"aml_class":"crimen_organizado_proxy","weight":0.62,"confidence":"low","rationale":"Puede contener secuestro/extorsión y otros delitos; requiere granularidad."},
-    "ROBOS":{"aml_class":"crimen_organizado_proxy","weight":0.4,"confidence":"low","rationale":"Contexto de mercados patrimoniales y receptación; no atribuir LA."},
-    "ROBOS NO VIOLENTOS":{"aml_class":"contexto_general","weight":0.25,"confidence":"low","rationale":"Contexto delictual general."},
-    "HURTOS":{"aml_class":"contexto_general","weight":0.15,"confidence":"low","rationale":"Contexto delictual general."},
-    "LESIONES":{"aml_class":"contexto_general","weight":0.18,"confidence":"low","rationale":"Contexto de violencia general."},
-    "DELITOS SEXUALES":{"aml_class":"contexto_general","weight":0.2,"confidence":"low","rationale":"No usar como proxy LA/FT sin tipo penal específico."},
-    "DELITOS LEY DE TRÁNSITO":{"aml_class":"contexto_general","weight":0.05,"confidence":"low","rationale":"Baja relevancia AML agregada."},
-    "CUASIDELITOS":{"aml_class":"contexto_general","weight":0.03,"confidence":"low","rationale":"Baja relevancia AML agregada."}
+    "HOMICIDIOS":{"aml_class":"contexto_general","weight":0.0,"confidence":"high","rationale":"Contexto de violencia. No se pondera como delito base ni indicio LA/FT."},
+    "DELITOS CONTRA LA LIBERTAD E INTIMIDAD DE LAS PERSONAS":{"aml_class":"proxy_19913","weight":0.35,"confidence":"low","rationale":"Puede contener secuestro, que sí está citado en artículo 27, pero la categoría agregada exige desagregación."},
+    "ROBOS":{"aml_class":"contexto_general","weight":0.0,"confidence":"high","rationale":"Contexto patrimonial; no se pondera automáticamente como AML."},
+    "ROBOS NO VIOLENTOS":{"aml_class":"contexto_general","weight":0.0,"confidence":"high","rationale":"Contexto delictual general."},
+    "HURTOS":{"aml_class":"contexto_general","weight":0.0,"confidence":"high","rationale":"Contexto delictual general."},
+    "LESIONES":{"aml_class":"contexto_general","weight":0.0,"confidence":"high","rationale":"Contexto de violencia general."},
+    "DELITOS SEXUALES":{"aml_class":"contexto_general","weight":0.0,"confidence":"medium","rationale":"La categoría agregada no debe usarse como proxy LA/FT; algunos tipos específicos sí requieren mapeo por código."},
+    "DELITOS LEY DE TRÁNSITO":{"aml_class":"contexto_general","weight":0.0,"confidence":"high","rationale":"Sin ponderación AML agregada."},
+    "CUASIDELITOS":{"aml_class":"contexto_general","weight":0.0,"confidence":"high","rationale":"Sin ponderación AML agregada."}
   },
-  "default":{"aml_class":"contexto_general","weight":0.1,"confidence":"low","rationale":"Sin mapeo AML específico en v0.1."}
+  "default":{"aml_class":"contexto_general","weight":0.0,"confidence":"low","rationale":"Sin mapeo AML específico."}
 }
