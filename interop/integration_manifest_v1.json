@@ -1,57 +1,13 @@
 {
-  "interop_version": "1.0",
-  "radar_id": "RADAR_DELICTUAL",
-  "repository": "smoralesm07-source/Radar_delictual",
-  "implementation_stage": "ADAPTER_PARTIAL",
-  "record_domains": ["TERRITORY_STATISTIC","SOURCE","EVIDENCE","MAPPING","FEATURE"],
-  "native_grain": ["COMMUNE_X_YEAR_X_CATEGORY"],
-  "entity_hub": {
-    "global_key": "ENT-RUT-{RUT_NORMALIZADO}",
-    "valid_rut_required": true,
-    "unresolved_policy": "ENTITY_ID_NULL_CANDIDATE_ONLY",
-    "role_is_identity_independent": true,
-    "current_status": "NOT_PRIMARY_DIMENSION",
-    "local_ids_preserved": true
-  },
-  "territory": {
-    "region_key": "CL-REG-{CODIGO_REGION}",
-    "commune_key": "CL-COM-{CODIGO_COMUNA}",
-    "name_is_not_key": true,
-    "current_status": "ADAPTER_READY",
-    "native_fields": ["territory_id","region_code","commune_code","commune_name"],
-    "adapter": "scripts/build_territory_interop.py",
-    "materialized_path": "data/processed/territory_interop_v1.jsonl",
-    "status_path": "data/processed/territory_interop_status_v1.json",
-    "materialized_branch": "radar-data",
-    "mapping_method": "CODE_EXACT"
-  },
-  "sector": {
-    "mapping_statuses": ["VALIDATED_EXACT","VALIDATED_RULE","EMPIRICAL_CANDIDATE","AMBIGUOUS","NO_EQUIVALENCE"],
-    "current_status": "REFERENCE_CONTRACT",
-    "strong_membership_allowed": ["VALIDATED_EXACT","VALIDATED_RULE"]
-  },
-  "temporal_evidence": {
-    "time_fields": ["observed_from","observed_to","source_published_at","retrieved_at","last_seen_at","last_successful_refresh_at"],
-    "evidence_fields": ["evidence_id","source_id","source_url","ultimate_source_id","source_tier","capture_method","source_run_id","content_sha256","quality_status","schema_version"],
-    "freshness_states": ["CURRENT","DUE","STALE","UNKNOWN"],
-    "source_failure_is_zero": false,
-    "preserve_last_known_good": true,
-    "native_source_tier_model": true,
-    "current_status": "NATIVE_PARTIAL"
-  },
-  "scores": {
-    "common_risk_score": false,
-    "policy": "RADAR_SPECIFIC_ONLY",
-    "required_metadata": ["score_name","score_value","score_version","score_scope"],
-    "native_scope": ["TERRITORY_X_YEAR_X_CATEGORY"]
-  },
-  "exports": [
-    {"path":"data/processed/territory_interop_v1.jsonl","branch":"radar-data","purpose":"canonical territorial interoperability view"},
-    {"path":"data/processed/territory_interop_status_v1.json","branch":"radar-data","purpose":"territorial interoperability status"},
-    {"path":"data/processed/","branch":"radar-data","purpose":"territorial processed outputs"}
-  ],
-  "consumer_contract": {
-    "manifest_path": "interop/integration_manifest_v1.json",
-    "schema_path": "interop/interop_contract_v1.schema.json"
-  }
+  "interop_version":"1.0",
+  "radar_id":"RADAR_DELICTUAL",
+  "repository":"smoralesm07-source/Radar_delictual",
+  "implementation_stage":"FUSION_EXPORT_READY_TERRITORY_CONTEXT",
+  "native_grain":["COMMUNE_X_YEAR_X_CATEGORY"],
+  "entity_hub":{"current_status":"NOT_PRIMARY_DIMENSION"},
+  "territory":{"commune_key":"CL-COM-{CODIGO_COMUNA}","name_is_not_key":true,"current_status":"ADAPTER_READY","materialized_path":"data/processed/territory_interop_v1.jsonl","materialized_branch":"radar-data","mapping_method":"CODE_EXACT"},
+  "temporal_evidence":{"source_failure_is_zero":false,"preserve_last_known_good":true,"current_status":"FUSION_EXPORT_READY","event_path":"data/processed/territory_events_fusion_v1.jsonl","evidence_path":"data/processed/evidence_fusion_v1.jsonl","materialized_branch":"radar-data"},
+  "scores":{"common_risk_score":false,"policy":"RADAR_SPECIFIC_ONLY","fusion_policy":"TERRITORIAL_CONTEXT_NOT_ENTITY_ATTRIBUTION"},
+  "exports":[{"path":"data/processed/territory_interop_v1.jsonl","branch":"radar-data"},{"path":"data/processed/territory_events_fusion_v1.jsonl","branch":"radar-data"},{"path":"data/processed/evidence_fusion_v1.jsonl","branch":"radar-data"},{"path":"data/processed/fusion_interop_status_v1.json","branch":"radar-data"}],
+  "consumer_contract":{"canonical_consumer":"smoralesm07-source/Intelligence_Fusion_Layer","schema_path":"interop/interop_contract_v1.schema.json"}
 }
