@@ -13,12 +13,24 @@ def _norm(value: str) -> str:
     return re.sub(r"[^a-z0-9']+", " ", value).strip()
 
 
-def attach_cut_codes(records: list[dict], cut_map: dict[str, dict] | None = None) -> tuple[list[dict], dict]:
-    """Añade CUT comunal a registros territoriales sin convertir fallas de join en ceros.
+def canonical_commune_code(value: object) -> str | None:
+    text = re.sub(r"\D", "", str(value or ""))
+    if not text or len(text) > 5:
+        return None
+    code = text.zfill(5)
+    return code if len(code) == 5 and code.isdigit() else None
 
-    Si `cut_map` no se entrega, reutiliza el CUT ya descargado por el colector
-    interinstitucional. Se valida que los dos primeros dígitos del código comunal
-    coincidan con la región del registro antes de aplicar el identificador oficial.
+
+def commune_territory_id(value: object) -> str | None:
+    code = canonical_commune_code(value)
+    return f"CL-COM-{code}" if code else None
+
+
+def attach_cut_codes(records: list[dict], cut_map: dict[str, dict] | None = None) -> tuple[list[dict], dict]:
+    """Añade CUT comunal sin convertir fallas de join en ceros.
+
+    El identificador interoperable se deriva siempre del código oficial y usa
+    `CL-COM-{CUT}`. Los nombres quedan como atributos descriptivos, nunca como clave.
     """
     if cut_map is None:
         path = RAW_DIR / "CUT_2018_v04.xls"
@@ -27,7 +39,7 @@ def attach_cut_codes(records: list[dict], cut_map: dict[str, dict] | None = None
                 "source_id": "cead_cut_join",
                 "ok": False,
                 "matched_communes": 0,
-                "note": "CUT no disponible en runtime; se mantiene territory_id textual estable."
+                "note": "CUT no disponible en runtime; no se inventa una clave territorial."
             }
         try:
             cut_map = parse_cut_workbook(path)
@@ -37,7 +49,7 @@ def attach_cut_codes(records: list[dict], cut_map: dict[str, dict] | None = None
                 "ok": False,
                 "matched_communes": 0,
                 "error": f"{type(exc).__name__}: {exc}",
-                "note": "No se alteran los registros CEAD ante falla de normalización territorial."
+                "note": "No se alteran los registros ante falla de normalización territorial."
             }
 
     matched: set[str] = set()
@@ -53,15 +65,17 @@ def attach_cut_codes(records: list[dict], cut_map: dict[str, dict] | None = None
             unmatched.add(key)
             record.setdefault("territory_key_status", "name_fallback")
             continue
-        code = str(match.get("commune_code", "")).strip().zfill(5)
+        code = canonical_commune_code(match.get("commune_code"))
         region_code = str(record.get("region_code", "")).zfill(2)
-        if len(code) != 5 or not code.isdigit() or (region_code and code[:2] != region_code):
+        if not code or (region_code and code[:2] != region_code):
             region_mismatch.add(key)
             record.setdefault("territory_key_status", "cut_region_mismatch")
             continue
         record["commune_code"] = code
-        record["territory_id"] = f"CL-{code}"
+        record["territory_id"] = commune_territory_id(code)
         record["territory_key_status"] = "official_cut"
+        record["territory_mapping_method"] = "CODE_EXACT"
+        record["territory_mapping_confidence"] = 1.0
         matched.add(code)
 
     unique_input = {_norm(r["commune_name"]) for r in records if r.get("territory_level") == "commune" and r.get("commune_name")}
@@ -72,6 +86,7 @@ def attach_cut_codes(records: list[dict], cut_map: dict[str, dict] | None = None
         "matched_communes": len(matched),
         "unmatched_communes": len(unmatched),
         "region_mismatches": len(region_mismatch),
-        "note": "Join CEAD→CUT por nombre normalizado con validación de código regional; no modifica métricas delictuales."
+        "territory_id_format": "CL-COM-{CUT}",
+        "note": "Join por nombre normalizado con validación de código regional; la clave final siempre se deriva del CUT oficial."
     }
     return records, status
