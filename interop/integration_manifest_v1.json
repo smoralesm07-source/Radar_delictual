@@ -17,8 +17,13 @@
     "region_key": "CL-REG-{CODIGO_REGION}",
     "commune_key": "CL-COM-{CODIGO_COMUNA}",
     "name_is_not_key": true,
-    "current_status": "NATIVE_INTEROP_READY",
-    "native_fields": ["territory_id","region_code","commune_code","commune_name"]
+    "current_status": "ADAPTER_READY",
+    "native_fields": ["territory_id","region_code","commune_code","commune_name"],
+    "adapter": "scripts/build_territory_interop.py",
+    "materialized_path": "data/processed/territory_interop_v1.jsonl",
+    "status_path": "data/processed/territory_interop_status_v1.json",
+    "materialized_branch": "radar-data",
+    "mapping_method": "CODE_EXACT"
   },
   "sector": {
     "mapping_statuses": ["VALIDATED_EXACT","VALIDATED_RULE","EMPIRICAL_CANDIDATE","AMBIGUOUS","NO_EQUIVALENCE"],
@@ -41,6 +46,8 @@
     "native_scope": ["TERRITORY_X_YEAR_X_CATEGORY"]
   },
   "exports": [
+    {"path":"data/processed/territory_interop_v1.jsonl","branch":"radar-data","purpose":"canonical territorial interoperability view"},
+    {"path":"data/processed/territory_interop_status_v1.json","branch":"radar-data","purpose":"territorial interoperability status"},
     {"path":"data/processed/","branch":"radar-data","purpose":"territorial processed outputs"}
   ],
   "consumer_contract": {
