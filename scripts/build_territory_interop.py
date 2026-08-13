@@ -69,7 +69,7 @@ def source_evidence() -> dict:
     }
 
 
-def canonical_event(row: dict, evidence_id: str) -> dict | None:
+def canonical_event(row: dict, evidence: dict) -> dict | None:
     territory_id = row.get("territory_id")
     year = row.get("year") or row.get("commercial_year")
     category = row.get("crime_category") or row.get("category") or row.get("offense")
@@ -82,6 +82,7 @@ def canonical_event(row: dict, evidence_id: str) -> dict | None:
     seed = f"{territory_id}|{y}|{category}|{row.get('source_id') or ''}"
     event_id = "EVT-DELICTUAL-" + hashlib.sha256(seed.encode("utf-8")).hexdigest()[:24]
     attributes = {k: v for k, v in row.items() if k not in {"interop_version", "radar_id", "territory_id"}}
+    freshness_state = "STALE" if evidence.get("quality_status") == "STALE" else "CURRENT"
     return {
         "event_id": event_id,
         "event_type": "TERRITORIAL_CRIME_STATISTIC",
@@ -89,16 +90,16 @@ def canonical_event(row: dict, evidence_id: str) -> dict | None:
         "entity_ids": [],
         "territory_ids": [territory_id],
         "sector_ids": [],
-        "evidence_ids": [evidence_id],
+        "evidence_ids": [evidence["evidence_id"]],
         "temporal": {
             "valid_from": f"{y:04d}-01-01T00:00:00+00:00",
             "valid_to": f"{y + 1:04d}-01-01T00:00:00+00:00",
-            "source_published_at": None,
-            "observed_at": None,
-            "retrieved_at": None,
-            "ingested_at": None,
-            "last_seen_at": None,
-            "freshness_state": "UNKNOWN",
+            "source_published_at": evidence.get("source_published_at"),
+            "observed_at": evidence.get("retrieved_at"),
+            "retrieved_at": evidence.get("retrieved_at"),
+            "ingested_at": evidence.get("ingested_at"),
+            "last_seen_at": evidence.get("retrieved_at"),
+            "freshness_state": freshness_state,
         },
         "attributes": attributes,
     }
@@ -123,7 +124,7 @@ def main() -> None:
 
     evidence = source_evidence()
     EVIDENCE.write_text(json.dumps(evidence, ensure_ascii=False) + "\n", encoding="utf-8")
-    events = [event for event in (canonical_event(row, evidence["evidence_id"]) for row in rows) if event]
+    events = [event for event in (canonical_event(row, evidence) for row in rows) if event]
     EVENTS.write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in events), encoding="utf-8")
     fusion_status = {
         "interop_version": "1.0",
@@ -136,6 +137,7 @@ def main() -> None:
         "unresolved_territories": status["unresolved"],
         "source_failure_is_zero": False,
         "policy": "TERRITORIAL_STATISTICS_ARE_CONTEXT_NOT_ENTITY_ATTRIBUTION",
+        "freshness_state": "STALE" if evidence.get("quality_status") == "STALE" else "CURRENT",
     }
     FUSION_STATUS.write_text(json.dumps(fusion_status, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(fusion_status, ensure_ascii=False))
