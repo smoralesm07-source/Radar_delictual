@@ -72,7 +72,7 @@ jobs:
 
       - name: Materializar interoperabilidad territorial para Fusion Layer
         if: steps.clock.outputs.run == 'true'
-        run: python scripts/build_territory_interop.py
+        run: PYTHONPATH=. python scripts/build_territory_interop.py
 
       - name: Publicar snapshot en rama técnica radar-data
         if: steps.clock.outputs.run == 'true'
