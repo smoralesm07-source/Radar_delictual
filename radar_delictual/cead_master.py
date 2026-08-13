@@ -38,7 +38,6 @@ def annotate_master(records:list[dict],catalog:dict|None=None)->list[dict]:
 
 
 def merge_annual_sources(direct:list[dict],bridge:list[dict])->list[dict]:
-    """Combina métricas homogéneas de casos policiales; el dato CEAD directo prevalece."""
     chosen={}
     for row in bridge+direct:
         r=dict(row); tier=r.get("source_tier","quarantined")
@@ -68,4 +67,7 @@ def build_predicate_features(master:list[dict])->list[dict]:
 def build_manifest(probe:dict,bridge_meta:dict,master:list[dict],direct_cache:list[dict],bcn_control_count:int)->dict:
     years=sorted({int(r["year"]) for r in master}); communes={r.get("commune_code") for r in master if r.get("commune_code")}; offenses={_norm(r.get("crime_category","")) for r in master}; direct_years=sorted({int(r["year"]) for r in direct_cache})
     expected=int(bridge_meta.get("expected_communes") or 346); missing=bridge_meta.get("missing_expected_communes") or []
-    return {"version":"0.4.0","generated_at":datetime.now(timezone.utc).isoformat(),"source_precedence":["primary_direct","mirror_of_primary","official_secondary","quarantined"],"primary_probe":probe,"active_backbone":"primary_direct" if direct_cache and probe.get("ok") else "mirror_of_primary","bridge_snapshot":bridge_meta,"coverage":{"years":years,"expected_communes":expected,"observed_communes":len(communes),"unavailable_communes":missing,"offenses":len(offenses),"records":len(master),"direct_years":direct_years,"bcn_control_records":bcn_control_count},"last_primary_period":probe.get("latest_nonzero_period") if probe.get("ok") else None,"update_policy":"Sondear CEAD primario en cada corrida. Si aparece un período nuevo y el POST responde, actualizar incrementalmente la capa directa; si está bloqueado, refrescar/verificar la réplica y conservar control BCN. Nunca sustituir ausencia por cero."}
+    externalized=bool(probe.get("externalized")) or bridge_meta.get("source_id")=="cead_data_pipeline_external"
+    active="external_cead_data_pipeline" if externalized else ("primary_direct" if direct_cache and probe.get("ok") else "mirror_of_primary")
+    policy="Consumir el snapshot validado publicado por CEAD-Data-Pipeline. La adquisición, sonda primaria, continuidad y QA de CEAD se administran fuera de Radar Delictual. Radar conserva control BCN secundario y nunca sustituye ausencia por cero." if externalized else "Mantener precedencia de fuentes y nunca sustituir ausencia por cero."
+    return {"version":"0.5.0","generated_at":datetime.now(timezone.utc).isoformat(),"source_precedence":["external_cead_data_pipeline","official_secondary","quarantined"],"primary_probe":probe,"active_backbone":active,"bridge_snapshot":bridge_meta,"coverage":{"years":years,"expected_communes":expected,"observed_communes":len(communes),"unavailable_communes":missing,"offenses":len(offenses),"records":len(master),"direct_years":direct_years,"bcn_control_records":bcn_control_count},"last_primary_period":None if externalized else (probe.get("latest_nonzero_period") if probe.get("ok") else None),"update_policy":policy}
