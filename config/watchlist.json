@@ -1,11 +1,12 @@
 {
-  "keywords":["lavado de activos","lavado de dinero","narcotráfico","tráfico de drogas","microtráfico","tráfico de armas","armas","secuestro","extorsión","trata de personas","tráfico ilícito de migrantes","crimen organizado","organización criminal","asociación criminal","contrabando","incautación","robo de vehículos","receptación","corrupción","delitos económicos","delitos tributarios","ciberdelito","criptoactivos","recuperación de activos"],
+  "keywords":["lavado de activos","lavado de dinero","narcotráfico","tráfico de drogas","microtráfico","tráfico de armas","armas","secuestro","extorsión","trata de personas","tráfico ilícito de migrantes","crimen organizado","organización criminal","asociación criminal","contrabando","incautación","robo de vehículos","robos violentos","receptación","corrupción","delitos económicos","delitos tributarios","ciberdelito","criptoactivos","recuperación de activos","casos policiales","homicidios","seguridad ciudadana"],
   "feeds":[
     {"source_id":"fiscalia_noticias_nacionales","url":"https://www.fiscaliadechile.cl/actualidad/noticias/nacionales"},
     {"source_id":"fiscalia_noticias_regionales","url":"https://www.fiscaliadechile.cl/actualidad/noticias/regionales"},
     {"source_id":"fiscalia_estudios","url":"https://www.fiscaliadechile.cl/taxonomy/term/74"},
     {"source_id":"pdi_prensa","url":"https://www.pdichile.cl/centro-de-prensa"},
     {"source_id":"cead_documentacion","url":"https://cead.minsegpublica.gob.cl/centro-de-documentacion/"},
+    {"source_id":"gobierno_traspaso_spd","url":"https://traspaso.digital.gob.cl/ministerio-de-seguridad-publica/subsecretaria-de-prevencion-del-delito/"},
     {"source_id":"cead_balance_2025","url":"https://subprevenciondeldelito.gob.cl/noticia/la-familia-delictual-de-robos-violentos-disminuyo-98-en-su-tasa-en-2025-de-acuerdo-con-las-ultimas-cifras-policiales-unificadas/"}
   ]
 }
