@@ -5,6 +5,7 @@
     {"source_id":"fiscalia_noticias_regionales","url":"https://www.fiscaliadechile.cl/actualidad/noticias/regionales"},
     {"source_id":"fiscalia_estudios","url":"https://www.fiscaliadechile.cl/taxonomy/term/74"},
     {"source_id":"pdi_prensa","url":"https://www.pdichile.cl/centro-de-prensa"},
-    {"source_id":"cead_documentacion","url":"https://cead.spd.gov.cl/centro-de-documentacion/"}
+    {"source_id":"cead_documentacion","url":"https://cead.minsegpublica.gob.cl/centro-de-documentacion/"},
+    {"source_id":"cead_balance_2025","url":"https://subprevenciondeldelito.gob.cl/noticia/la-familia-delictual-de-robos-violentos-disminuyo-98-en-su-tasa-en-2025-de-acuerdo-con-las-ultimas-cifras-policiales-unificadas/"}
   ]
 }
