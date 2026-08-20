@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from radar_delictual.geographic_score import materialize_geographic_score
+from radar_delictual.geographic_score_runtime import materialize_geographic_score
 from radar_delictual.pipeline import run
 from scripts.build_territory_interop import main as build_territory_interop
 
