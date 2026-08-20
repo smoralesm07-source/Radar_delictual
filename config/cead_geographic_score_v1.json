@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "name": "Componente criminógeno CEAD",
+  "score_range": [0, 100],
+  "layer_weights": {
+    "predicate_direct": 0.55,
+    "criminal_economy": 0.35,
+    "criminogenic_context": 0.10
+  },
+  "feature_weights": {
+    "intensity": 0.40,
+    "persistence": 0.25,
+    "trend": 0.20,
+    "anomaly": 0.15
+  },
+  "layers": {
+    "predicate_direct": {
+      "label": "Delito base directo",
+      "selection_rule": "Preferir subgrupos directos Ley 20.000; si no existen, usar grupo o familia agregada sin duplicar conteos.",
+      "fallback_aliases": [
+        "crimenes y simples delitos ley de drogas",
+        "delitos asociados a drogas"
+      ],
+      "components": [
+        {"id": "drug_traffic", "label": "Tráfico de sustancias", "weight": 0.333333, "aliases": ["trafico de sustancias"]},
+        {"id": "drug_microtraffic", "label": "Microtráfico de sustancias", "weight": 0.333333, "aliases": ["microtrafico de sustancias"]},
+        {"id": "drug_production", "label": "Elaboración o producción de sustancias", "weight": 0.333334, "aliases": ["elaboracion o produccion de sustancias"]}
+      ]
+    },
+    "criminal_economy": {
+      "label": "Economía criminal y facilitadores",
+      "components": [
+        {"id": "reception", "label": "Receptación", "weight": 0.25, "aliases": ["receptacion"]},
+        {"id": "illegal_trade", "label": "Comercio ilegal", "weight": 0.20, "aliases": ["comercio ilegal"]},
+        {"id": "vehicle_theft", "label": "Robo de vehículo motorizado", "weight": 0.20, "aliases": ["robo de vehiculo motorizado"]},
+        {"id": "violent_vehicle_theft", "label": "Robo violento de vehículo motorizado", "weight": 0.15, "aliases": ["robo violento de vehiculo motorizado"]},
+        {"id": "weapons_possession", "label": "Porte / posesión de armas o explosivos", "weight": 0.12, "aliases": ["porte posesion de armas o explosivos"]},
+        {"id": "cattle_theft", "label": "Abigeato", "weight": 0.08, "aliases": ["abigeato"]}
+      ]
+    },
+    "criminogenic_context": {
+      "label": "Contexto criminógeno",
+      "components": [
+        {"id": "homicide", "label": "Homicidios y femicidios", "weight": 0.25, "aliases": ["homicidios y femicidios", "homicidios", "femicidios"]},
+        {"id": "violent_robbery", "label": "Robos con violencia o intimidación", "weight": 0.25, "aliases": ["robos con violencia o intimidacion"]},
+        {"id": "serious_injury", "label": "Lesiones graves o gravísimas", "weight": 0.20, "aliases": ["lesiones graves o gravisimas"]},
+        {"id": "threats", "label": "Amenazas", "weight": 0.15, "aliases": ["amenazas"]},
+        {"id": "public_disorder", "label": "Desórdenes públicos", "weight": 0.15, "aliases": ["desordenes publicos"]}
+      ]
+    }
+  },
+  "convergence_bonus": {
+    "enabled": false,
+    "note": "No se aplica prima de convergencia en v1 para evitar doble contabilización. Puede evaluarse con validación empírica posterior."
+  },
+  "methodology": {
+    "intensity": "Percentil territorial del volumen observado para la categoría y año. Reduce el efecto de escala frente al uso de conteos crudos, pero no reemplaza una tasa poblacional cuando ésta esté disponible.",
+    "persistence": "Proporción de años observados en que la comuna se ubica en el cuartil superior nacional de esa categoría.",
+    "trend": "Cambio del último año frente al promedio de hasta tres años previos, transformado a escala 0-100 y centrado en 50 cuando no hay cambio.",
+    "anomaly": "Separación robusta del último valor respecto de la distribución comunal, usando mediana y MAD, transformada a escala 0-100.",
+    "missing_data": "Los pesos internos se renormalizan solo entre componentes efectivamente observados. La cobertura se informa por separado y reduce la confianza; ausencia de datos nunca se interpreta como cero.",
+    "interpretation": "El indicador caracteriza presión criminógena territorial relevante para análisis AML. No representa probabilidad de lavado de activos, no acredita delito base respecto de una persona y no atribuye conductas a residentes, empresas o sectores del territorio."
+  }
+}
