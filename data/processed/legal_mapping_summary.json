@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "legal_basis": {
+    "law": "Ley 19.913",
+    "article": "27",
+    "version_date": "2026-05-30",
+    "source": "https://www.bcn.cl/leychile/navegar?idNorma=219119&idParte=8649605"
+  },
+  "catalog": {
+    "name": "Catálogo de Delitos - Codificación Penal a diciembre 2025",
+    "published": "2026-02-10",
+    "source": "https://www.fiscaliadechile.cl/sites/default/files/2026-02/Catalogo_de_delitos.pdf"
+  },
+  "exact_rules": 53,
+  "range_rules": 2,
+  "classes": {
+    "laundering_offense": 2,
+    "predicate_direct": 37,
+    "organized_crime_signal": 10,
+    "predicate_candidate": 4
+  }
+}

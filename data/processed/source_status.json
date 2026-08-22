@@ -1,0 +1,293 @@
+{
+  "generated_at": "2026-08-22T11:36:08.821885+00:00",
+  "offline": false,
+  "target_period": [
+    2020,
+    2025
+  ],
+  "version": "0.4.0",
+  "sources": [
+    {
+      "source_id": "ministerio_publico_estadisticas",
+      "year": 2020,
+      "ok": true,
+      "records": 336
+    },
+    {
+      "source_id": "ministerio_publico_estadisticas",
+      "year": 2021,
+      "ok": true,
+      "records": 336
+    },
+    {
+      "source_id": "ministerio_publico_estadisticas",
+      "year": 2022,
+      "ok": true,
+      "records": 336
+    },
+    {
+      "source_id": "ministerio_publico_estadisticas",
+      "year": 2023,
+      "ok": true,
+      "records": 336
+    },
+    {
+      "source_id": "ministerio_publico_estadisticas",
+      "year": 2024,
+      "ok": true,
+      "records": 336
+    },
+    {
+      "source_id": "ministerio_publico_estadisticas",
+      "year": 2025,
+      "ok": true,
+      "records": 336
+    },
+    {
+      "source_id": "cead_primary_externalized",
+      "retrieved_at": "2026-08-22T11:34:41.554260+00:00",
+      "ok": false,
+      "externalized": true,
+      "producer_repo": "smoralesm07-source/CEAD-Data-Pipeline",
+      "upstream_primary_available": false,
+      "upstream_primary_status": {
+        "source_id": "cead_direct_post",
+        "endpoint": "https://cead.minsegpublica.gob.cl/wp-content/themes/gobcl-wp-master/data/get_estadisticas_delictuales.php",
+        "retrieved_at": "2026-08-17T13:10:53.496023+00:00",
+        "ok": false,
+        "http_status": 403,
+        "bytes": 27,
+        "response_sha256": "145d990c380068b3a689c515724a582940bcdc0509da9217bf875fd19ebade10",
+        "parsed_rows": 0,
+        "latest_nonzero_period": null,
+        "blocking_message": "Maximum request file upload",
+        "note": "Sonda primaria sin bypass; un bloqueo no se interpreta como ausencia de delitos."
+      },
+      "latest_nonzero_period": null,
+      "note": "La adquisición primaria CEAD pertenece a CEAD-Data-Pipeline; Radar Delictual solo consume su dataset publicado."
+    },
+    {
+      "source_id": "cead_direct_incremental",
+      "ok": false,
+      "executed": false,
+      "records_cached": 0
+    },
+    {
+      "source_id": "cead_community_bridge",
+      "ok": true,
+      "observed_communes": 345,
+      "expected_communes": 346,
+      "unavailable_communes": null,
+      "offenses": 30,
+      "min_date": "2020-01-01",
+      "max_date": "2025-12-01",
+      "upstream_blob_sha": null,
+      "content_sha256": null,
+      "source_tier": "mirror_of_primary",
+      "note": "Réplica pública con proceso de extracción directa CEAD documentado; no se presenta como fuente oficial."
+    },
+    {
+      "source_id": "bcn_siit_cead_annual_2024",
+      "ok": true,
+      "communes": 346,
+      "records": 1384,
+      "note": "Tasas comunales 2024; procedencia declarada BCN→SPD/CEAD."
+    },
+    {
+      "source_id": "bcn_siit_cead_latest_2025",
+      "ok": true,
+      "records": 346,
+      "usable_communes": 0,
+      "quarantined_districts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "note": "La v0.3 detecta tablas repetidas entre secciones y las excluye del score."
+    },
+    {
+      "source_id": "bcn_siit_topic_drugs",
+      "ok": true,
+      "available_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "source_id": "bcn_siit_topic_arms",
+      "ok": true,
+      "available_years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ]
+    },
+    {
+      "source_id": "cead_bridge_cut_join",
+      "ok": false,
+      "matched_communes": 334,
+      "note": "CUT comunal reutilizado desde la serie CEAD puente; evita depender de disponibilidad puntual de SUBDERE."
+    },
+    {
+      "source_id": "fiscalia_catalogo_delitos",
+      "ok": true,
+      "evidence_sha256": "b2b7a83688bb7d12ee44b4a98546728800de9c7f6db11e19d3b282738d6f2efd"
+    },
+    {
+      "source_id": "bcn_ley_19913",
+      "ok": true,
+      "evidence_sha256": "4ff75cdc3dade5550d6eee84a015e513a646a920e50ffce12cdea8cf379e9131"
+    },
+    {
+      "source_id": "fiscalia_noticias_nacionales",
+      "ok": true,
+      "events": 2
+    },
+    {
+      "source_id": "fiscalia_noticias_regionales",
+      "ok": true,
+      "events": 2
+    },
+    {
+      "source_id": "fiscalia_estudios",
+      "ok": true,
+      "events": 14
+    },
+    {
+      "source_id": "pdi_prensa",
+      "ok": false,
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.pdichile.cl/centro-de-prensa"
+    },
+    {
+      "source_id": "cead_documentacion",
+      "ok": false,
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://cead.minsegpublica.gob.cl/centro-de-documentacion/"
+    },
+    {
+      "source_id": "gobierno_traspaso_spd",
+      "ok": true,
+      "events": 0
+    },
+    {
+      "source_id": "cead_balance_2025",
+      "ok": false,
+      "error": "ConnectTimeout: HTTPSConnectionPool(host='subprevenciondeldelito.gob.cl', port=443): Max retries exceeded with url: /noticia/la-familia-delictual-de-robos-violentos-disminuyo-98-en-su-tasa-en-2025-de-acuerdo-con-las-ultimas-cifras-policiales-unificadas/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='subprevenciondeldelito.gob.cl', port=443) at 0x7f6af5c4c140>, 'Connection to subprevenciondeldelito.gob.cl timed out. (connect timeout=45)'))"
+    },
+    {
+      "source_id": "gobierno_traspaso_spd_discovery",
+      "ok": true,
+      "publications": 0
+    },
+    {
+      "source_id": "cead_direct_post",
+      "url": "https://cead.minsegpublica.gob.cl/wp-content/themes/gobcl-wp-master/data/get_estadisticas_delictuales.php",
+      "retrieved_at": "2026-08-22T11:36:05.583373+00:00",
+      "ok": false,
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://cead.minsegpublica.gob.cl/wp-content/themes/gobcl-wp-master/data/get_estadisticas_delictuales.php"
+    },
+    {
+      "source_id": "cead_community_bridge",
+      "url": "https://github.com/bastianolea/delincuencia_chile",
+      "retrieved_at": "2026-08-22T11:36:05.584126+00:00",
+      "http_status": 200,
+      "ok": true,
+      "title": "GitHub - bastianolea/delincuencia_chile: Visualizador web de estadísticas de delincuencia en Chile · GitHub"
+    },
+    {
+      "source_id": "bcn_siit_cead_communal",
+      "url": "https://www.bcn.cl/siit/estadisticasterritoriales/tema?id=262",
+      "retrieved_at": "2026-08-22T11:36:05.584993+00:00",
+      "http_status": 200,
+      "ok": true,
+      "title": "Buscador Estadístico - SIIT"
+    },
+    {
+      "source_id": "ministerio_publico_estadisticas",
+      "url": "https://www.fiscaliadechile.cl/persecucion-penal/estadisticas",
+      "retrieved_at": "2026-08-22T11:36:05.585967+00:00",
+      "http_status": 200,
+      "ok": true,
+      "title": "Estadísticas Ministerio Público | Web Fiscalía de Chile"
+    },
+    {
+      "source_id": "fiscalia_catalogo_delitos",
+      "url": "https://www.fiscaliadechile.cl/sites/default/files/2026-02/Catalogo_de_delitos.pdf",
+      "retrieved_at": "2026-08-22T11:36:05.586228+00:00",
+      "http_status": 200,
+      "ok": true,
+      "title": ""
+    },
+    {
+      "source_id": "bcn_ley_19913",
+      "url": "https://www.bcn.cl/leychile/navegar?idNorma=219119&idParte=8649605",
+      "retrieved_at": "2026-08-22T11:36:05.588118+00:00",
+      "http_status": 200,
+      "ok": true,
+      "title": "Ley Chile - Biblioteca del Congreso Nacional"
+    }
+  ],
+  "coverage": {
+    "mp_region_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "cead_master_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "cead_expected_communes": 346,
+    "cead_observed_communes": 345,
+    "cead_unavailable_communes": [],
+    "cead_master_offenses": 30,
+    "cead_predicate_features": 2070,
+    "cead_current_activity_communes": 345,
+    "cead_primary_direct_available": false,
+    "cead_active_backbone": "external_cead_data_pipeline",
+    "cead_bridge_max_date": "2025-12-01",
+    "homicides_in_aml_core": 0
+  }
+}

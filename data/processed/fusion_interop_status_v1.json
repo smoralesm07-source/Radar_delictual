@@ -1,0 +1,13 @@
+{
+  "interop_version": "1.0",
+  "radar_id": "RADAR_DELICTUAL",
+  "status": "FUSION_EXPORT_READY_TERRITORY_CONTEXT",
+  "territory_rows": 62100,
+  "events": 62100,
+  "evidence": 1,
+  "resolved_territories": 62100,
+  "unresolved_territories": 0,
+  "source_failure_is_zero": false,
+  "policy": "TERRITORIAL_STATISTICS_ARE_CONTEXT_NOT_ENTITY_ATTRIBUTION",
+  "freshness_state": "STALE"
+}
