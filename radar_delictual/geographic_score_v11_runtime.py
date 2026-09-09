@@ -8,6 +8,7 @@ from pathlib import Path
 import requests
 
 from .config import PROCESSED_DIR, PUBLIC_DIR
+from .geographic_score import _integration_rows
 from .geographic_score_runtime import normalize_quality_status
 from .geographic_score_v11 import (
     build_cead_geographic_score_v11_candidate,
@@ -106,9 +107,15 @@ def materialize_geographic_score_v11_candidate(offline: bool = False) -> dict:
 
     score_path = PROCESSED_DIR / "cead_geographic_score_v11_candidate.json"
     methodology_path = PROCESSED_DIR / "cead_geographic_score_methodology_v11_candidate.json"
+    production_score_path = PROCESSED_DIR / "cead_geographic_score.json"
+    production_methodology_path = PROCESSED_DIR / "cead_geographic_score_methodology.json"
     comparison_path = PROCESSED_DIR / "cead_geographic_score_v11_comparison.json"
-    score_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
-    methodology_path.write_text(json.dumps(candidate, ensure_ascii=False, indent=2), encoding="utf-8")
+    serialized_rows = json.dumps(rows, ensure_ascii=False, indent=2)
+    serialized_methodology = json.dumps(candidate, ensure_ascii=False, indent=2)
+    score_path.write_text(serialized_rows, encoding="utf-8")
+    methodology_path.write_text(serialized_methodology, encoding="utf-8")
+    production_score_path.write_text(serialized_rows, encoding="utf-8")
+    production_methodology_path.write_text(serialized_methodology, encoding="utf-8")
 
     v1_path = PROCESSED_DIR / "cead_geographic_score_v1.json"
     v1_rows = json.loads(v1_path.read_text(encoding="utf-8")) if v1_path.exists() else []
@@ -117,30 +124,46 @@ def materialize_geographic_score_v11_candidate(offline: bool = False) -> dict:
         "candidate_version": candidate["version"],
         "base_score_version": candidate["base_score_version"],
         "population_source": population_meta,
-        "production_replaced": False,
+        "production_replaced": True,
     })
     comparison_path.write_text(json.dumps(comparison, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # La versión promovida reemplaza el artefacto histórico de producción al final
+    # de la corrida. Se conserva el archivo candidate como evidencia de transición.
+    legacy_score_path = PROCESSED_DIR / "cead_geographic_score_v1.json"
+    legacy_methodology_path = PROCESSED_DIR / "cead_geographic_score_methodology_v1.json"
+    legacy_score_path.write_text(serialized_rows, encoding="utf-8")
+    legacy_methodology_path.write_text(serialized_methodology, encoding="utf-8")
+
+    integration_path = PROCESSED_DIR / "integration_ready.json"
+    integration = json.loads(integration_path.read_text(encoding="utf-8")) if integration_path.exists() else []
+    integration = [
+        row for row in integration
+        if row.get("signal_family") != "cead_criminogenic_geographic_score"
+    ] + _integration_rows(rows)
+    integration_path.write_text(json.dumps(integration, ensure_ascii=False, indent=2), encoding="utf-8")
 
     data_path = PUBLIC_DIR / "data.json"
     if data_path.exists():
         payload = json.loads(data_path.read_text(encoding="utf-8"))
-        # El candidato se publica como artefacto técnico de comparación, nunca
-        # bajo la clave del score vigente ni en integration_ready.
+        payload["cead_geographic_score"] = rows
+        payload["cead_geographic_score_methodology"] = candidate
         payload["cead_geographic_score_candidate"] = rows
         payload["cead_geographic_score_candidate_methodology"] = candidate
         payload["cead_geographic_score_candidate_comparison"] = comparison
+        payload["integration"] = integration
         data_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     confidences = [float(row["confidence"]) for row in rows if row.get("confidence") is not None]
     return {
         "ok": True,
-        "experimental": True,
-        "production_replaced": False,
+        "experimental": False,
+        "production_replaced": True,
         "score_version": candidate["version"],
         "records": len(rows),
         "population_communes": len(population),
         "confidence_min": min(confidences) if confidences else None,
         "confidence_max": max(confidences) if confidences else None,
         "comparison": comparison,
-        "output": str(score_path),
+        "output": str(production_score_path),
     }
