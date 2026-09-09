@@ -108,7 +108,7 @@ def test_temporal_anomaly_retains_signal_when_event_support_is_substantial():
     assert comp["temporal_anomaly_reliability"] > 90.0
     assert abs(comp["temporal_anomaly"] - comp["temporal_anomaly_raw"]) < 6.0
 '''
-    TEST.write_text(text.rstrip() + addition + '\n', encoding='utf-8')
+    TEST.write_text((text.rstrip() + addition).rstrip() + '\n', encoding='utf-8')
 
 
 if __name__ == '__main__':
