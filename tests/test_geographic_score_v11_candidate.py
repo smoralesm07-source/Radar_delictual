@@ -1,6 +1,8 @@
 from radar_delictual.geographic_score_v11 import (
+    _population_reliability,
     _temporal_anomaly_score,
     build_cead_geographic_score_v11_candidate,
+    load_candidate_config,
 )
 
 
@@ -26,6 +28,14 @@ def test_temporal_anomaly_compares_commune_against_its_own_history():
     assert _temporal_anomaly_score([10, 10, 10, 10], 2) < 50.0
 
 
+def test_population_reliability_shrinks_small_denominators():
+    config = load_candidate_config()
+    small = _population_reliability(5000, config)
+    medium = _population_reliability(50000, config)
+    large = _population_reliability(500000, config)
+    assert 0 < small < medium < large < 1
+
+
 def test_candidate_penalizes_semantic_precision_of_drug_family_fallback():
     master = []
     for year in (2020, 2021, 2022, 2023, 2024, 2025):
@@ -44,6 +54,7 @@ def test_candidate_penalizes_semantic_precision_of_drug_family_fallback():
     assert layer["thematic_coverage"] == 0.75
     assert by["13101"]["confidence_components"]["thematic_coverage"] < 100.0
     assert by["13101"]["confidence"] is not None
+    assert by["13101"]["methodological_coverage"] < 100.0
 
 
 def test_candidate_intensity_combines_volume_and_population_rate_when_available():
@@ -68,6 +79,26 @@ def test_candidate_intensity_combines_volume_and_population_rate_when_available(
     assert comp2["rate_percentile"] is not None
     assert comp1["intensity"] != comp1["volume_percentile"]
     assert comp2["intensity"] != comp2["volume_percentile"]
+
+
+def test_small_population_gets_less_rate_weight_than_large_population():
+    master = []
+    for year in (2020, 2021, 2022, 2023, 2024, 2025):
+        master += [
+            row("13101", year, "Delitos asociados a drogas", 20),
+            row("13102", year, "Delitos asociados a drogas", 20),
+            row("13103", year, "Delitos asociados a drogas", 20),
+        ]
+
+    population = {"13101": 5000, "13102": 50000, "13103": 500000}
+    scores = build_cead_geographic_score_v11_candidate(master, population)
+    by = {r["commune_code"]: r for r in scores}
+    small = by["13101"]["layers"]["predicate_direct"]["components"][0]
+    large = by["13103"]["layers"]["predicate_direct"]["components"][0]
+
+    assert small["effective_rate_weight"] < large["effective_rate_weight"]
+    assert small["effective_volume_weight"] > large["effective_volume_weight"]
+    assert by["13101"]["confidence_components"]["denominator_reliability"] < by["13103"]["confidence_components"]["denominator_reliability"]
 
 
 def test_candidate_source_quality_is_separate_from_score():
