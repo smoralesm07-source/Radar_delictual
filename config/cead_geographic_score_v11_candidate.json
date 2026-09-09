@@ -3,7 +3,10 @@
   "status": "experimental",
   "base_score_version": "1.0.0",
   "name": "Componente criminógeno CEAD · candidato IGR v1.1",
-  "score_range": [0, 100],
+  "score_range": [
+    0,
+    100
+  ],
   "feature_weights": {
     "intensity": 0.4,
     "persistence": 0.25,
@@ -58,7 +61,11 @@
         "multi_band_jumps": 0
       },
       "temporal_backtest": {
-        "years": [2023, 2024, 2025],
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
         "raw_band_churn_pct": {
           "2023_2024": 41.45,
           "2024_2025": 34.78

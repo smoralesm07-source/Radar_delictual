@@ -287,6 +287,29 @@ def _level(score: float | None) -> str | None:
     return "Muy alto" if score >= 80 else "Alto" if score >= 65 else "Medio" if score >= 45 else "Bajo" if score >= 25 else "Muy bajo"
 
 
+def _provisional_level(score: float | None, candidate: dict) -> str | None:
+    """Banda candidate.3 calibrada; sigue siendo sólo diagnóstica."""
+    if score is None:
+        return None
+    policy = (candidate.get("level_policy") or {}).get("provisional_candidate3") or {}
+    thresholds = policy.get("thresholds") or {}
+    try:
+        low = float(thresholds["bajo_min"])
+        medium = float(thresholds["medio_min"])
+        high = float(thresholds["alto_min"])
+        very_high = float(thresholds["muy_alto_min"])
+    except (KeyError, TypeError, ValueError):
+        return None
+    value = float(score)
+    return (
+        "Muy alto" if value >= very_high
+        else "Alto" if value >= high
+        else "Medio" if value >= medium
+        else "Bajo" if value >= low
+        else "Muy bajo"
+    )
+
+
 def _build_candidate_rows(
     master: list[dict],
     population: dict[str, float],
@@ -447,6 +470,32 @@ def build_cead_geographic_score_v11_candidate(
             else "Media" if confidence >= float(bands["medium_min"])
             else "Baja"
         )
+
+        # La banda recalibrada se publica como segundo diagnóstico, nunca como
+        # reemplazo del level legado ni como clasificación oficial. Además se
+        # explicita si el score está cerca de una frontera respecto de su propia
+        # inestabilidad leave-one-year-out.
+        provisional_policy = (candidate.get("level_policy") or {}).get("provisional_candidate3") or {}
+        row["provisional_level"] = _provisional_level(row.get("score"), candidate)
+        row["provisional_level_status"] = provisional_policy.get("status", "diagnostic_only")
+        thresholds = provisional_policy.get("thresholds") or {}
+        boundary_values = []
+        for key in ("bajo_min", "medio_min", "alto_min", "muy_alto_min"):
+            try:
+                boundary_values.append(float(thresholds[key]))
+            except (KeyError, TypeError, ValueError):
+                pass
+        if row.get("score") is not None and boundary_values:
+            distance = min(abs(float(row["score"]) - boundary) for boundary in boundary_values)
+            row["provisional_boundary_distance"] = round(distance, 2)
+            uncertainty = max(float(row.get("stability_sd") or 0.0), 0.5)
+            row["provisional_boundary_status"] = (
+                "borderline" if distance <= uncertainty
+                else "stable_relative_to_thresholds"
+            )
+        else:
+            row["provisional_boundary_distance"] = None
+            row["provisional_boundary_status"] = "unavailable"
 
     return rows
 

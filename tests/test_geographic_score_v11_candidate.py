@@ -164,3 +164,23 @@ def test_temporal_anomaly_retains_signal_when_event_support_is_substantial():
     assert comp["temporal_anomaly"] > 50.0
     assert comp["temporal_anomaly_reliability"] > 90.0
     assert abs(comp["temporal_anomaly"] - comp["temporal_anomaly_raw"]) < 6.0
+
+
+def test_candidate_exposes_provisional_level_without_replacing_legacy_level():
+    master = []
+    for year in (2020, 2021, 2022, 2023, 2024, 2025):
+        master += [
+            row("13101", year, "Delitos asociados a drogas", 100),
+            row("13102", year, "Delitos asociados a drogas", 20),
+            row("13103", year, "Delitos asociados a drogas", 5),
+        ]
+    scores = build_cead_geographic_score_v11_candidate(
+        master, {"13101": 300000, "13102": 100000, "13103": 50000}
+    )
+    assert scores
+    for item in scores:
+        assert item["level_status"] == "comparison_only"
+        assert item["provisional_level_status"] == "diagnostic_only"
+        assert item["provisional_level"] in {"Muy bajo", "Bajo", "Medio", "Alto", "Muy alto"}
+        assert item["provisional_boundary_status"] in {"borderline", "stable_relative_to_thresholds"}
+        assert item["provisional_boundary_distance"] is not None
