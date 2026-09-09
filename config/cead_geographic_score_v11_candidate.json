@@ -3,10 +3,7 @@
   "status": "experimental",
   "base_score_version": "1.0.0",
   "name": "Componente criminógeno CEAD · candidato IGR v1.1",
-  "score_range": [
-    0,
-    100
-  ],
+  "score_range": [0, 100],
   "feature_weights": {
     "intensity": 0.4,
     "persistence": 0.25,
@@ -35,8 +32,49 @@
     "note": "Bandas experimentales de lectura; no son umbrales de riesgo ni modifican el IGR."
   },
   "level_policy": {
-    "mode": "legacy_thresholds_for_comparison_only",
-    "note": "Los cortes 25/45/65/80 se conservan únicamente para comparar con v1.0. La calibración de bandas se estima después de estabilizar la anomalía temporal y permanece experimental hasta validación."
+    "mode": "dual_diagnostic",
+    "legacy_thresholds": {
+      "bajo_min": 25.0,
+      "medio_min": 45.0,
+      "alto_min": 65.0,
+      "muy_alto_min": 80.0,
+      "status": "comparison_only"
+    },
+    "provisional_candidate3": {
+      "status": "diagnostic_only",
+      "thresholds": {
+        "bajo_min": 26.61,
+        "medio_min": 45.43,
+        "alto_min": 61.89,
+        "muy_alto_min": 71.12
+      },
+      "calibration_basis": "Cortes 2025 que minimizan desacuerdo en cada frontera del IGR v1.0; en empates se minimiza fragilidad leave-one-year-out. Backtest descriptivo 2023-2025 con los mismos cortes.",
+      "validation_2025": {
+        "communes": 345,
+        "agreement_with_v1_pct": 91.3,
+        "changed_level": 30,
+        "upgrades": 16,
+        "downgrades": 14,
+        "multi_band_jumps": 0
+      },
+      "temporal_backtest": {
+        "years": [2023, 2024, 2025],
+        "raw_band_churn_pct": {
+          "2023_2024": 41.45,
+          "2024_2025": 34.78
+        },
+        "note": "La distribución agregada por banda es razonablemente estable, pero el recambio individual sigue siendo alto; por eso estas bandas permanecen diagnósticas."
+      },
+      "stability_recommendation": {
+        "status": "evaluated_not_applied",
+        "method": "one_point_hysteresis",
+        "margin_points": 1.0,
+        "mean_churn_pct": 32.03,
+        "large_move_capture_pct": 89.66,
+        "note": "Fue la alternativa que mejor preservó movimientos anuales grandes sin introducir suavizamiento del score. Requiere estado temporal explícito antes de poder publicarse como regla operativa."
+      }
+    },
+    "note": "El campo level conserva 25/45/65/80 sólo para comparar con v1.0. provisional_level usa cortes candidate.3 calibrados, sigue siendo diagnóstico y no reemplaza la clasificación oficial."
   },
   "source_quality": {
     "primary_direct": 1.0,
@@ -73,6 +111,7 @@
     "stability": "Se recalcula el IGR excluyendo sucesivamente cada año histórico previo al corte. La desviación estándar entre variantes se convierte a estabilidad con 100 - 5*DE, truncada a 0-100.",
     "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). Afecta la confianza y también contrae el peso de tasa; no se interpreta como amenaza.",
     "methodological_coverage": "Se conserva además la cobertura metodológica comparable con v1.0, separada explícitamente de confianza.",
+    "level_calibration": "Las bandas candidate.3 se calibran como lectura diagnóstica separada. El score continuo sigue siendo la salida primaria. El backtest 2023-2025 mostró recambio individual relevante, por lo que las bandas no se promueven aún como clasificación oficial.",
     "interpretation": "Candidato experimental para validación comparativa. No sustituye el IGR v1.0 vigente, no representa probabilidad de lavado de activos y no atribuye conducta a personas o entidades del territorio."
   },
   "temporal_anomaly_reliability": {
