@@ -28,10 +28,6 @@ def patch_config() -> None:
         'de uno o pocos casos en series escasas no generen saltos artificiales. Sustituye la anomalía transversal '
         'de v1.0 y mantiene intensidad y anomalía conceptualmente separadas.'
     )
-    cfg['level_policy']['note'] = (
-        'Los cortes 25/45/65/80 se conservan únicamente para comparar con v1.0. La calibración de bandas se '
-        'estima después de estabilizar la anomalía temporal y permanece experimental hasta validación.'
-    )
     CFG.write_text(json.dumps(cfg, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
@@ -50,15 +46,28 @@ def patch_code() -> None:
         text = text.replace(old_return, new_return, 1)
     elif '"temporal_anomaly_raw": raw_temporal_anomaly' not in text:
         raise RuntimeError('No se encontró el bloque de salida de anomalía esperado')
+
+    helper_anchor = '''def _level(score: float | None) -> str | None:\n    # Legado v1.0: solo para comparar. El candidato no promueve estas bandas.\n    if score is None:\n        return None\n    return "Muy alto" if score >= 80 else "Alto" if score >= 65 else "Medio" if score >= 45 else "Bajo" if score >= 25 else "Muy bajo"\n\n\n'''
+    helper_new = helper_anchor + '''def _provisional_level(score: float | None, candidate: dict) -> str | None:\n    """Banda candidate.3 calibrada; sigue siendo sólo diagnóstica."""\n    if score is None:\n        return None\n    policy = (candidate.get("level_policy") or {}).get("provisional_candidate3") or {}\n    thresholds = policy.get("thresholds") or {}\n    try:\n        low = float(thresholds["bajo_min"])\n        medium = float(thresholds["medio_min"])\n        high = float(thresholds["alto_min"])\n        very_high = float(thresholds["muy_alto_min"])\n    except (KeyError, TypeError, ValueError):\n        return None\n    value = float(score)\n    return (\n        "Muy alto" if value >= very_high\n        else "Alto" if value >= high\n        else "Medio" if value >= medium\n        else "Bajo" if value >= low\n        else "Muy bajo"\n    )\n\n\n'''
+    if 'def _provisional_level(' not in text:
+        if helper_anchor not in text:
+            raise RuntimeError('No se encontró _level para insertar banda provisional')
+        text = text.replace(helper_anchor, helper_new, 1)
+
+    finalize_anchor = '''        row["confidence_level"] = (\n            "Alta" if confidence >= float(bands["high_min"])\n            else "Media" if confidence >= float(bands["medium_min"])\n            else "Baja"\n        )\n\n    return rows\n'''
+    finalize_new = '''        row["confidence_level"] = (\n            "Alta" if confidence >= float(bands["high_min"])\n            else "Media" if confidence >= float(bands["medium_min"])\n            else "Baja"\n        )\n\n        # La banda recalibrada se publica como segundo diagnóstico, nunca como\n        # reemplazo del level legado ni como clasificación oficial. Además se\n        # explicita si el score está cerca de una frontera respecto de su propia\n        # inestabilidad leave-one-year-out.\n        provisional_policy = (candidate.get("level_policy") or {}).get("provisional_candidate3") or {}\n        row["provisional_level"] = _provisional_level(row.get("score"), candidate)\n        row["provisional_level_status"] = provisional_policy.get("status", "diagnostic_only")\n        thresholds = provisional_policy.get("thresholds") or {}\n        boundary_values = []\n        for key in ("bajo_min", "medio_min", "alto_min", "muy_alto_min"):\n            try:\n                boundary_values.append(float(thresholds[key]))\n            except (KeyError, TypeError, ValueError):\n                pass\n        if row.get("score") is not None and boundary_values:\n            distance = min(abs(float(row["score"]) - boundary) for boundary in boundary_values)\n            row["provisional_boundary_distance"] = round(distance, 2)\n            uncertainty = max(float(row.get("stability_sd") or 0.0), 0.5)\n            row["provisional_boundary_status"] = (\n                "borderline" if distance <= uncertainty\n                else "stable_relative_to_thresholds"\n            )\n        else:\n            row["provisional_boundary_distance"] = None\n            row["provisional_boundary_status"] = "unavailable"\n\n    return rows\n'''
+    if 'row["provisional_level"] = _provisional_level' not in text:
+        if finalize_anchor not in text:
+            raise RuntimeError('No se encontró finalización de confianza para banda provisional')
+        text = text.replace(finalize_anchor, finalize_new, 1)
+
     CODE.write_text(text, encoding='utf-8')
 
 
 def patch_tests() -> None:
     text = TEST.read_text(encoding='utf-8')
-    marker = 'def test_sparse_temporal_anomaly_is_shrunk_toward_neutral():'
-    if marker in text:
-        return
-    addition = r'''
+    if 'def test_sparse_temporal_anomaly_is_shrunk_toward_neutral():' not in text:
+        addition = r'''
 
 
 def test_sparse_temporal_anomaly_is_shrunk_toward_neutral():
@@ -108,7 +117,33 @@ def test_temporal_anomaly_retains_signal_when_event_support_is_substantial():
     assert comp["temporal_anomaly_reliability"] > 90.0
     assert abs(comp["temporal_anomaly"] - comp["temporal_anomaly_raw"]) < 6.0
 '''
-    TEST.write_text((text.rstrip() + addition).rstrip() + '\n', encoding='utf-8')
+        text = text.rstrip() + addition
+
+    marker = 'def test_candidate_exposes_provisional_level_without_replacing_legacy_level():'
+    if marker not in text:
+        text = text.rstrip() + r'''
+
+
+def test_candidate_exposes_provisional_level_without_replacing_legacy_level():
+    master = []
+    for year in (2020, 2021, 2022, 2023, 2024, 2025):
+        master += [
+            row("13101", year, "Delitos asociados a drogas", 100),
+            row("13102", year, "Delitos asociados a drogas", 20),
+            row("13103", year, "Delitos asociados a drogas", 5),
+        ]
+    scores = build_cead_geographic_score_v11_candidate(
+        master, {"13101": 300000, "13102": 100000, "13103": 50000}
+    )
+    assert scores
+    for item in scores:
+        assert item["level_status"] == "comparison_only"
+        assert item["provisional_level_status"] == "diagnostic_only"
+        assert item["provisional_level"] in {"Muy bajo", "Bajo", "Medio", "Alto", "Muy alto"}
+        assert item["provisional_boundary_status"] in {"borderline", "stable_relative_to_thresholds"}
+        assert item["provisional_boundary_distance"] is not None
+'''
+    TEST.write_text(text.rstrip() + '\n', encoding='utf-8')
 
 
 if __name__ == '__main__':
