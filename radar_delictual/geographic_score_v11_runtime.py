@@ -105,6 +105,14 @@ def materialize_geographic_score_v11_candidate(offline: bool = False) -> dict:
     population, population_meta = load_census_population_2024(offline=offline)
     rows = build_cead_geographic_score_v11_candidate(master, population, candidate)
 
+    # El motor conserva nombres internos de la etapa candidate por trazabilidad,
+    # pero una corrida con contrato productivo no debe publicar metadatos experimentales.
+    if candidate.get("status") == "production":
+        for row in rows:
+            row["signal_family"] = "cead_criminogenic_geographic_score"
+            row["level_status"] = "secondary_context"
+            row["provisional_level_status"] = "secondary_context"
+
     score_path = PROCESSED_DIR / "cead_geographic_score_v11_candidate.json"
     methodology_path = PROCESSED_DIR / "cead_geographic_score_methodology_v11_candidate.json"
     production_score_path = PROCESSED_DIR / "cead_geographic_score.json"
