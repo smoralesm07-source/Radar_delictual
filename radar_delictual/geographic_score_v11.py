@@ -497,6 +497,25 @@ def build_cead_geographic_score_v11_candidate(
             row["provisional_boundary_distance"] = None
             row["provisional_boundary_status"] = "unavailable"
 
+    # Lectura primaria RC1: el score conserva magnitud absoluta y el percentil
+    # agrega posición relativa nacional sin introducir otra fórmula de amenaza.
+    # Los empates reciben el mismo percentil mediante rango promedio.
+    scored = [row for row in rows if row.get("score") is not None]
+    values = [float(row["score"]) for row in scored]
+    n_scored = len(scored)
+    for row in scored:
+        value = float(row["score"])
+        higher = sum(v > value for v in values)
+        equal = sum(v == value for v in values)
+        average_rank = higher + (equal + 1.0) / 2.0
+        row["national_rank"] = higher + 1
+        row["national_rank_ties"] = equal
+        row["national_percentile"] = (
+            round(100.0 * (n_scored - average_rank) / (n_scored - 1), 1)
+            if n_scored > 1 else 100.0
+        )
+        row["primary_reading"] = "score_plus_national_percentile"
+
     return rows
 
 

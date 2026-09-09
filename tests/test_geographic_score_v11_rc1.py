@@ -25,6 +25,8 @@ def test_rc1_freezes_score_formula_and_removes_denominator_from_confidence():
     assert cfg["version"] == "1.1.0-rc.1"
     assert cfg["status"] == "release_candidate"
     assert cfg["rc1_policy"]["score_formula_frozen"] is True
+    assert cfg["presentation_policy"]["primary_outputs"] == ["score", "national_percentile"]
+    assert cfg["presentation_policy"]["band_role"] == "secondary_context"
     assert cfg["feature_weights"] == {
         "intensity": 0.4,
         "persistence": 0.25,
@@ -81,3 +83,25 @@ def test_rc1_confidence_still_responds_to_source_quality():
     )
     by = {r["commune_code"]: r for r in scores}
     assert by["13101"]["confidence"] > by["13102"]["confidence"]
+
+
+def test_rc1_exposes_national_rank_and_percentile_as_primary_context():
+    master = []
+    for year in (2020, 2021, 2022, 2023, 2024, 2025):
+        master += [
+            row("13101", year, 100),
+            row("13102", year, 30),
+            row("13103", year, 5),
+        ]
+
+    scores = build_cead_geographic_score_v11_candidate(
+        master,
+        {"13101": 100000, "13102": 100000, "13103": 100000},
+    )
+    ordered = sorted(scores, key=lambda item: float(item["score"]), reverse=True)
+
+    assert ordered[0]["national_rank"] == 1
+    assert ordered[0]["national_percentile"] == 100.0
+    assert ordered[-1]["national_percentile"] == 0.0
+    assert all(0.0 <= float(item["national_percentile"]) <= 100.0 for item in scores)
+    assert all(item["primary_reading"] == "score_plus_national_percentile" for item in scores)
