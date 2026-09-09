@@ -139,7 +139,24 @@ def _component_metrics(
 
     history = [float(series[(commune, y)]) for y in years if y < latest_year]
     trend = _trend_score(current, history)
-    temporal_anomaly = _temporal_anomaly_score(history, current)
+    raw_temporal_anomaly = _temporal_anomaly_score(history, current)
+
+    # Una anomalía longitudinal puede ser matemáticamente grande con soporte
+    # mínimo (por ejemplo, pasar de 0 a 1 caso). Eso es informativo como cambio,
+    # pero no debe pesar igual que una ruptura sostenida sobre decenas de hechos.
+    # Contraemos sólo la anomalía hacia el punto neutro 50; intensidad,
+    # persistencia y tendencia permanecen intactas.
+    anomaly_cfg = candidate.get("temporal_anomaly_reliability", {})
+    support_scale = float(anomaly_cfg.get("support_scale", 20.0))
+    anomaly_support = sum(max(0.0, x) for x in history) + max(0.0, current)
+    anomaly_reliability = (
+        anomaly_support / (anomaly_support + support_scale)
+        if support_scale > 0 else 1.0
+    )
+    temporal_anomaly = round(
+        50.0 + anomaly_reliability * (raw_temporal_anomaly - 50.0),
+        2,
+    )
 
     fw = candidate["feature_weights"]
     score = round(
@@ -167,6 +184,9 @@ def _component_metrics(
         "persistence": persistence,
         "trend": trend,
         "temporal_anomaly": temporal_anomaly,
+        "temporal_anomaly_raw": raw_temporal_anomaly,
+        "temporal_anomaly_reliability": round(100.0 * anomaly_reliability, 1),
+        "temporal_anomaly_support": round(anomaly_support, 1),
         "years_observed": observed,
         "population_available": population_available,
         "source_quality": round(100.0 * source_quality_mean, 1),
@@ -265,6 +285,29 @@ def _level(score: float | None) -> str | None:
     if score is None:
         return None
     return "Muy alto" if score >= 80 else "Alto" if score >= 65 else "Medio" if score >= 45 else "Bajo" if score >= 25 else "Muy bajo"
+
+
+def _provisional_level(score: float | None, candidate: dict) -> str | None:
+    """Banda candidate.3 calibrada; sigue siendo sólo diagnóstica."""
+    if score is None:
+        return None
+    policy = (candidate.get("level_policy") or {}).get("provisional_candidate3") or {}
+    thresholds = policy.get("thresholds") or {}
+    try:
+        low = float(thresholds["bajo_min"])
+        medium = float(thresholds["medio_min"])
+        high = float(thresholds["alto_min"])
+        very_high = float(thresholds["muy_alto_min"])
+    except (KeyError, TypeError, ValueError):
+        return None
+    value = float(score)
+    return (
+        "Muy alto" if value >= very_high
+        else "Alto" if value >= high
+        else "Medio" if value >= medium
+        else "Bajo" if value >= low
+        else "Muy bajo"
+    )
 
 
 def _build_candidate_rows(
@@ -427,6 +470,32 @@ def build_cead_geographic_score_v11_candidate(
             else "Media" if confidence >= float(bands["medium_min"])
             else "Baja"
         )
+
+        # La banda recalibrada se publica como segundo diagnóstico, nunca como
+        # reemplazo del level legado ni como clasificación oficial. Además se
+        # explicita si el score está cerca de una frontera respecto de su propia
+        # inestabilidad leave-one-year-out.
+        provisional_policy = (candidate.get("level_policy") or {}).get("provisional_candidate3") or {}
+        row["provisional_level"] = _provisional_level(row.get("score"), candidate)
+        row["provisional_level_status"] = provisional_policy.get("status", "diagnostic_only")
+        thresholds = provisional_policy.get("thresholds") or {}
+        boundary_values = []
+        for key in ("bajo_min", "medio_min", "alto_min", "muy_alto_min"):
+            try:
+                boundary_values.append(float(thresholds[key]))
+            except (KeyError, TypeError, ValueError):
+                pass
+        if row.get("score") is not None and boundary_values:
+            distance = min(abs(float(row["score"]) - boundary) for boundary in boundary_values)
+            row["provisional_boundary_distance"] = round(distance, 2)
+            uncertainty = max(float(row.get("stability_sd") or 0.0), 0.5)
+            row["provisional_boundary_status"] = (
+                "borderline" if distance <= uncertainty
+                else "stable_relative_to_thresholds"
+            )
+        else:
+            row["provisional_boundary_distance"] = None
+            row["provisional_boundary_status"] = "unavailable"
 
     return rows
 

@@ -1,18 +1,21 @@
 {
-  "version": "1.1.0-candidate.2",
+  "version": "1.1.0-candidate.3",
   "status": "experimental",
   "base_score_version": "1.0.0",
   "name": "Componente criminógeno CEAD · candidato IGR v1.1",
-  "score_range": [0, 100],
+  "score_range": [
+    0,
+    100
+  ],
   "feature_weights": {
-    "intensity": 0.40,
+    "intensity": 0.4,
     "persistence": 0.25,
-    "trend": 0.20,
+    "trend": 0.2,
     "temporal_anomaly": 0.15
   },
   "intensity_mix": {
-    "volume_percentile": 0.60,
-    "rate_per_100k_percentile": 0.40,
+    "volume_percentile": 0.6,
+    "rate_per_100k_percentile": 0.4,
     "rate_reliability": {
       "method": "population_shrinkage",
       "population_scale": 25000,
@@ -20,11 +23,11 @@
     }
   },
   "confidence_weights": {
-    "thematic_coverage": 0.30,
-    "temporal_coverage": 0.20,
-    "source_quality": 0.20,
-    "stability": 0.20,
-    "denominator_reliability": 0.10
+    "thematic_coverage": 0.3,
+    "temporal_coverage": 0.2,
+    "source_quality": 0.2,
+    "stability": 0.2,
+    "denominator_reliability": 0.1
   },
   "confidence_bands": {
     "high_min": 80,
@@ -32,20 +35,65 @@
     "note": "Bandas experimentales de lectura; no son umbrales de riesgo ni modifican el IGR."
   },
   "level_policy": {
-    "mode": "legacy_thresholds_for_comparison_only",
-    "note": "Los cortes 25/45/65/80 se conservan únicamente para comparar con v1.0. Deben recalibrarse antes de cualquier promoción del candidato."
+    "mode": "dual_diagnostic",
+    "legacy_thresholds": {
+      "bajo_min": 25.0,
+      "medio_min": 45.0,
+      "alto_min": 65.0,
+      "muy_alto_min": 80.0,
+      "status": "comparison_only"
+    },
+    "provisional_candidate3": {
+      "status": "diagnostic_only",
+      "thresholds": {
+        "bajo_min": 26.61,
+        "medio_min": 45.43,
+        "alto_min": 61.89,
+        "muy_alto_min": 71.12
+      },
+      "calibration_basis": "Cortes 2025 que minimizan desacuerdo en cada frontera del IGR v1.0; en empates se minimiza fragilidad leave-one-year-out. Backtest descriptivo 2023-2025 con los mismos cortes.",
+      "validation_2025": {
+        "communes": 345,
+        "agreement_with_v1_pct": 91.3,
+        "changed_level": 30,
+        "upgrades": 16,
+        "downgrades": 14,
+        "multi_band_jumps": 0
+      },
+      "temporal_backtest": {
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "raw_band_churn_pct": {
+          "2023_2024": 41.45,
+          "2024_2025": 34.78
+        },
+        "note": "La distribución agregada por banda es razonablemente estable, pero el recambio individual sigue siendo alto; por eso estas bandas permanecen diagnósticas."
+      },
+      "stability_recommendation": {
+        "status": "evaluated_not_applied",
+        "method": "one_point_hysteresis",
+        "margin_points": 1.0,
+        "mean_churn_pct": 32.03,
+        "large_move_capture_pct": 89.66,
+        "note": "Fue la alternativa que mejor preservó movimientos anuales grandes sin introducir suavizamiento del score. Requiere estado temporal explícito antes de poder publicarse como regla operativa."
+      }
+    },
+    "note": "El campo level conserva 25/45/65/80 sólo para comparar con v1.0. provisional_level usa cortes candidate.3 calibrados, sigue siendo diagnóstico y no reemplaza la clasificación oficial."
   },
   "source_quality": {
-    "primary_direct": 1.00,
+    "primary_direct": 1.0,
     "primary_direct_cached": 0.95,
-    "external_cead_data_pipeline": 0.90,
+    "external_cead_data_pipeline": 0.9,
     "mirror_of_primary": 0.85,
     "official_secondary": 0.75,
     "quarantined": 0.35,
-    "unknown": 0.50
+    "unknown": 0.5
   },
   "semantic_precision": {
-    "default_component": 1.00,
+    "default_component": 1.0,
     "predicate_family_fallback": 0.75
   },
   "stability": {
@@ -64,12 +112,19 @@
     "intensity": "Combina materialidad absoluta y tasa por 100.000 habitantes. El peso máximo de tasa es 40%, pero se contrae en comunas pequeñas mediante r=población/(población+25.000); la parte no confiable vuelve al percentil de volumen. Así se reduce sesgo de tamaño sin sobrerreaccionar a denominadores pequeños.",
     "persistence": "Proporción de años observados en que la comuna se ubica en el cuartil superior nacional de la categoría.",
     "trend": "Cambio del último año frente al promedio de hasta tres años previos, transformado a escala 0-100 y centrado en 50 cuando no hay cambio.",
-    "temporal_anomaly": "Separación robusta del valor actual respecto de la historia de la misma comuna, usando mediana y MAD. Sustituye la anomalía transversal de v1.0 para evitar duplicar intensidad.",
+    "temporal_anomaly": "Separación robusta del valor actual respecto de la historia de la misma comuna, usando mediana y MAD. La anomalía cruda se contrae hacia 50 según soporte de eventos q=soporte/(soporte+20), para que cambios de uno o pocos casos en series escasas no generen saltos artificiales. Sustituye la anomalía transversal de v1.0 y mantiene intensidad y anomalía conceptualmente separadas.",
     "confidence": "La confianza candidata es distinta del score: 30% cobertura temática, 20% cobertura temporal, 20% calidad de fuente, 20% estabilidad leave-one-history-year-out y 10% confiabilidad estadística del denominador poblacional.",
     "semantic_precision": "Cuando la capa de delito base usa la familia agregada de drogas por falta de subgrupos, la cobertura temática se penaliza a 75% en esa parte, aunque el score siga siendo calculable.",
     "stability": "Se recalcula el IGR excluyendo sucesivamente cada año histórico previo al corte. La desviación estándar entre variantes se convierte a estabilidad con 100 - 5*DE, truncada a 0-100.",
     "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). Afecta la confianza y también contrae el peso de tasa; no se interpreta como amenaza.",
     "methodological_coverage": "Se conserva además la cobertura metodológica comparable con v1.0, separada explícitamente de confianza.",
+    "level_calibration": "Las bandas candidate.3 se calibran como lectura diagnóstica separada. El score continuo sigue siendo la salida primaria. El backtest 2023-2025 mostró recambio individual relevante, por lo que las bandas no se promueven aún como clasificación oficial.",
     "interpretation": "Candidato experimental para validación comparativa. No sustituye el IGR v1.0 vigente, no representa probabilidad de lavado de activos y no atribuye conducta a personas o entidades del territorio."
+  },
+  "temporal_anomaly_reliability": {
+    "method": "event_support_shrinkage",
+    "support_scale": 20,
+    "formula": "q = soporte/(soporte+20); anomalía_ajustada = 50 + q*(anomalía_cruda-50)",
+    "note": "El soporte es la suma de casos observados en la historia de la comuna más el corte actual. La contracción evita que variaciones de uno o pocos casos en series escasas dominen la anomalía."
   }
 }

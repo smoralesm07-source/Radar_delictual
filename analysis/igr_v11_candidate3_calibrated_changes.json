@@ -1,0 +1,799 @@
+{
+  "candidate_version": "1.1.0-candidate.3",
+  "status": "diagnostic_only",
+  "production_replaced": false,
+  "thresholds": {
+    "Muy alto": 71.12,
+    "Alto": 61.89,
+    "Medio": 45.43,
+    "Bajo": 26.61
+  },
+  "summary": {
+    "matched_communes": 345,
+    "changed_level": 30,
+    "unchanged_level": 315,
+    "agreement_pct": 91.3,
+    "upgrades": 16,
+    "downgrades": 14,
+    "borderline_changes": 7,
+    "small_population_upgrades": 5,
+    "multi_band_jumps": 0,
+    "high_confidence_changes": 9
+  },
+  "calibrated_level_counts": {
+    "Muy alto": 60,
+    "Alto": 26,
+    "Muy bajo": 68,
+    "Bajo": 141,
+    "Medio": 50
+  },
+  "transition_matrix": {
+    "Alto -> Alto": 22,
+    "Alto -> Medio": 2,
+    "Alto -> Muy alto": 10,
+    "Bajo -> Bajo": 135,
+    "Bajo -> Medio": 3,
+    "Bajo -> Muy bajo": 5,
+    "Medio -> Alto": 1,
+    "Medio -> Bajo": 4,
+    "Medio -> Medio": 45,
+    "Muy alto -> Alto": 3,
+    "Muy alto -> Muy alto": 50,
+    "Muy bajo -> Bajo": 2,
+    "Muy bajo -> Muy bajo": 63
+  },
+  "small_population_upgrades": [
+    {
+      "territory_id": "CL-08308",
+      "commune_name": "Quilaco",
+      "region_name": "Biobío",
+      "v1_level": "Muy bajo",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": 1,
+      "v1_score": 24.7,
+      "candidate3_score": 27.56,
+      "score_delta": 2.86,
+      "candidate_confidence": 73.2,
+      "population": 4440,
+      "stability_sd": 1.836,
+      "distance_to_nearest_calibrated_boundary": 0.95,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena",
+        "confianza_moderada_baja"
+      ]
+    },
+    {
+      "territory_id": "CL-07103",
+      "commune_name": "Curepto",
+      "region_name": "Maule",
+      "v1_level": "Muy bajo",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": 1,
+      "v1_score": 24.73,
+      "candidate3_score": 27.11,
+      "score_delta": 2.38,
+      "candidate_confidence": 75.2,
+      "population": 9519,
+      "stability_sd": 1.015,
+      "distance_to_nearest_calibrated_boundary": 0.5,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-02203",
+      "commune_name": "San Pedro de Atacama",
+      "region_name": "Antofagasta",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": 1,
+      "v1_score": 44.15,
+      "candidate3_score": 47.96,
+      "score_delta": 3.81,
+      "candidate_confidence": 75.7,
+      "population": 9843,
+      "stability_sd": 0.63,
+      "distance_to_nearest_calibrated_boundary": 2.53,
+      "flags": [
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-08313",
+      "commune_name": "Yumbel",
+      "region_name": "Biobío",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": 1,
+      "v1_score": 44.3,
+      "candidate3_score": 45.86,
+      "score_delta": 1.56,
+      "candidate_confidence": 76.5,
+      "population": 23170,
+      "stability_sd": 1.831,
+      "distance_to_nearest_calibrated_boundary": 0.43,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-05603",
+      "commune_name": "Cartagena",
+      "region_name": "Valparaíso",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 76.24,
+      "candidate3_score": 74.86,
+      "score_delta": -1.38,
+      "candidate_confidence": 77.5,
+      "population": 24599,
+      "stability_sd": 0.987,
+      "distance_to_nearest_calibrated_boundary": 3.74,
+      "flags": [
+        "upgrade_poblacion_pequena"
+      ]
+    }
+  ],
+  "borderline_changes": [
+    {
+      "territory_id": "CL-14204",
+      "commune_name": "Río Bueno",
+      "region_name": "Los Ríos",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": 1,
+      "v1_score": 43.63,
+      "candidate3_score": 45.56,
+      "score_delta": 1.93,
+      "candidate_confidence": 78.8,
+      "population": 33363,
+      "stability_sd": 0.39,
+      "distance_to_nearest_calibrated_boundary": 0.13,
+      "flags": [
+        "borderline_estabilidad"
+      ]
+    },
+    {
+      "territory_id": "CL-08313",
+      "commune_name": "Yumbel",
+      "region_name": "Biobío",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": 1,
+      "v1_score": 44.3,
+      "candidate3_score": 45.86,
+      "score_delta": 1.56,
+      "candidate_confidence": 76.5,
+      "population": 23170,
+      "stability_sd": 1.831,
+      "distance_to_nearest_calibrated_boundary": 0.43,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-07103",
+      "commune_name": "Curepto",
+      "region_name": "Maule",
+      "v1_level": "Muy bajo",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": 1,
+      "v1_score": 24.73,
+      "candidate3_score": 27.11,
+      "score_delta": 2.38,
+      "candidate_confidence": 75.2,
+      "population": 9519,
+      "stability_sd": 1.015,
+      "distance_to_nearest_calibrated_boundary": 0.5,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-08308",
+      "commune_name": "Quilaco",
+      "region_name": "Biobío",
+      "v1_level": "Muy bajo",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": 1,
+      "v1_score": 24.7,
+      "candidate3_score": 27.56,
+      "score_delta": 2.86,
+      "candidate_confidence": 73.2,
+      "population": 4440,
+      "stability_sd": 1.836,
+      "distance_to_nearest_calibrated_boundary": 0.95,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena",
+        "confianza_moderada_baja"
+      ]
+    },
+    {
+      "territory_id": "CL-06110",
+      "commune_name": "Mostazal",
+      "region_name": "Libertador Gral. Bernardo O'Higgins",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 71.16,
+      "candidate3_score": 72.14,
+      "score_delta": 0.98,
+      "candidate_confidence": 76.8,
+      "population": 27394,
+      "stability_sd": 1.956,
+      "distance_to_nearest_calibrated_boundary": 1.02,
+      "flags": [
+        "borderline_estabilidad"
+      ]
+    },
+    {
+      "territory_id": "CL-09120",
+      "commune_name": "Villarrica",
+      "region_name": "La Araucanía",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 75.59,
+      "candidate3_score": 72.14,
+      "score_delta": -3.45,
+      "candidate_confidence": 79.3,
+      "population": 67737,
+      "stability_sd": 1.456,
+      "distance_to_nearest_calibrated_boundary": 1.02,
+      "flags": [
+        "borderline_estabilidad"
+      ]
+    },
+    {
+      "territory_id": "CL-13302",
+      "commune_name": "Lampa",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 79.6,
+      "candidate3_score": 72.16,
+      "score_delta": -7.44,
+      "candidate_confidence": 80.7,
+      "population": 145160,
+      "stability_sd": 1.343,
+      "distance_to_nearest_calibrated_boundary": 1.04,
+      "flags": [
+        "borderline_estabilidad",
+        "confianza_alta"
+      ]
+    }
+  ],
+  "multi_band_jumps": [],
+  "all_changes": [
+    {
+      "territory_id": "CL-13110",
+      "commune_name": "La Florida",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Muy alto",
+      "candidate3_calibrated_level": "Alto",
+      "band_step": -1,
+      "v1_score": 86.32,
+      "candidate3_score": 68.36,
+      "score_delta": -17.96,
+      "candidate_confidence": 81.7,
+      "population": 374836,
+      "stability_sd": 1.149,
+      "distance_to_nearest_calibrated_boundary": 2.76,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-05801",
+      "commune_name": "Quilpué",
+      "region_name": "Valparaíso",
+      "v1_level": "Muy alto",
+      "candidate3_calibrated_level": "Alto",
+      "band_step": -1,
+      "v1_score": 80.48,
+      "candidate3_score": 65.06,
+      "score_delta": -15.42,
+      "candidate_confidence": 81.5,
+      "population": 162559,
+      "stability_sd": 0.629,
+      "distance_to_nearest_calibrated_boundary": 3.17,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-13114",
+      "commune_name": "Las Condes",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": -1,
+      "v1_score": 72.28,
+      "candidate3_score": 57.81,
+      "score_delta": -14.47,
+      "candidate_confidence": 81.2,
+      "population": 296134,
+      "stability_sd": 1.465,
+      "distance_to_nearest_calibrated_boundary": 4.08,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-04301",
+      "commune_name": "Ovalle",
+      "region_name": "Coquimbo",
+      "v1_level": "Muy alto",
+      "candidate3_calibrated_level": "Alto",
+      "band_step": -1,
+      "v1_score": 81.09,
+      "candidate3_score": 68.49,
+      "score_delta": -12.6,
+      "candidate_confidence": 80.7,
+      "population": 118696,
+      "stability_sd": 1.026,
+      "distance_to_nearest_calibrated_boundary": 2.63,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-09112",
+      "commune_name": "Padre Las Casas",
+      "region_name": "La Araucanía",
+      "v1_level": "Medio",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": -1,
+      "v1_score": 51.7,
+      "candidate3_score": 43.77,
+      "score_delta": -7.93,
+      "candidate_confidence": 80.2,
+      "population": 80656,
+      "stability_sd": 0.89,
+      "distance_to_nearest_calibrated_boundary": 1.66,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-13302",
+      "commune_name": "Lampa",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 79.6,
+      "candidate3_score": 72.16,
+      "score_delta": -7.44,
+      "candidate_confidence": 80.7,
+      "population": 145160,
+      "stability_sd": 1.343,
+      "distance_to_nearest_calibrated_boundary": 1.04,
+      "flags": [
+        "borderline_estabilidad",
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-13131",
+      "commune_name": "San Ramón",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 79.52,
+      "candidate3_score": 73.86,
+      "score_delta": -5.66,
+      "candidate_confidence": 79.3,
+      "population": 76002,
+      "stability_sd": 1.735,
+      "distance_to_nearest_calibrated_boundary": 2.74,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-13107",
+      "commune_name": "Huechuraba",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": -1,
+      "v1_score": 65.4,
+      "candidate3_score": 59.76,
+      "score_delta": -5.64,
+      "candidate_confidence": 80.4,
+      "population": 101808,
+      "stability_sd": 1.101,
+      "distance_to_nearest_calibrated_boundary": 2.13,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-13404",
+      "commune_name": "Paine",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 77.19,
+      "candidate3_score": 72.93,
+      "score_delta": -4.26,
+      "candidate_confidence": 80.0,
+      "population": 78828,
+      "stability_sd": 1.107,
+      "distance_to_nearest_calibrated_boundary": 1.81,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-02203",
+      "commune_name": "San Pedro de Atacama",
+      "region_name": "Antofagasta",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": 1,
+      "v1_score": 44.15,
+      "candidate3_score": 47.96,
+      "score_delta": 3.81,
+      "candidate_confidence": 75.7,
+      "population": 9843,
+      "stability_sd": 0.63,
+      "distance_to_nearest_calibrated_boundary": 2.53,
+      "flags": [
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-16301",
+      "commune_name": "San Carlos",
+      "region_name": "Ñuble",
+      "v1_level": "Medio",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": -1,
+      "v1_score": 48.33,
+      "candidate3_score": 44.61,
+      "score_delta": -3.72,
+      "candidate_confidence": 79.8,
+      "population": 55847,
+      "stability_sd": 0.585,
+      "distance_to_nearest_calibrated_boundary": 0.82,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-13601",
+      "commune_name": "Talagante",
+      "region_name": "Metropolitana de Santiago",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 78.22,
+      "candidate3_score": 74.68,
+      "score_delta": -3.54,
+      "candidate_confidence": 80.0,
+      "population": 76429,
+      "stability_sd": 1.069,
+      "distance_to_nearest_calibrated_boundary": 3.56,
+      "flags": [
+        "confianza_alta"
+      ]
+    },
+    {
+      "territory_id": "CL-09120",
+      "commune_name": "Villarrica",
+      "region_name": "La Araucanía",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 75.59,
+      "candidate3_score": 72.14,
+      "score_delta": -3.45,
+      "candidate_confidence": 79.3,
+      "population": 67737,
+      "stability_sd": 1.456,
+      "distance_to_nearest_calibrated_boundary": 1.02,
+      "flags": [
+        "borderline_estabilidad"
+      ]
+    },
+    {
+      "territory_id": "CL-08111",
+      "commune_name": "Tomé",
+      "region_name": "Biobío",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 74.77,
+      "candidate3_score": 71.9,
+      "score_delta": -2.87,
+      "candidate_confidence": 79.7,
+      "population": 56907,
+      "stability_sd": 0.767,
+      "distance_to_nearest_calibrated_boundary": 0.78,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-08308",
+      "commune_name": "Quilaco",
+      "region_name": "Biobío",
+      "v1_level": "Muy bajo",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": 1,
+      "v1_score": 24.7,
+      "candidate3_score": 27.56,
+      "score_delta": 2.86,
+      "candidate_confidence": 73.2,
+      "population": 4440,
+      "stability_sd": 1.836,
+      "distance_to_nearest_calibrated_boundary": 0.95,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena",
+        "confianza_moderada_baja"
+      ]
+    },
+    {
+      "territory_id": "CL-06115",
+      "commune_name": "Rengo",
+      "region_name": "Libertador Gral. Bernardo O'Higgins",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 76.87,
+      "candidate3_score": 74.32,
+      "score_delta": -2.55,
+      "candidate_confidence": 79.2,
+      "population": 63620,
+      "stability_sd": 1.488,
+      "distance_to_nearest_calibrated_boundary": 3.2,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-06113",
+      "commune_name": "Pichidegua",
+      "region_name": "Libertador Gral. Bernardo O'Higgins",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Muy bajo",
+      "band_step": -1,
+      "v1_score": 26.11,
+      "candidate3_score": 23.7,
+      "score_delta": -2.41,
+      "candidate_confidence": 77.1,
+      "population": 20363,
+      "stability_sd": 0.811,
+      "distance_to_nearest_calibrated_boundary": 2.91,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-07103",
+      "commune_name": "Curepto",
+      "region_name": "Maule",
+      "v1_level": "Muy bajo",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": 1,
+      "v1_score": 24.73,
+      "candidate3_score": 27.11,
+      "score_delta": 2.38,
+      "candidate_confidence": 75.2,
+      "population": 9519,
+      "stability_sd": 1.015,
+      "distance_to_nearest_calibrated_boundary": 0.5,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-07109",
+      "commune_name": "San Clemente",
+      "region_name": "Maule",
+      "v1_level": "Medio",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": -1,
+      "v1_score": 45.57,
+      "candidate3_score": 43.25,
+      "score_delta": -2.32,
+      "candidate_confidence": 78.7,
+      "population": 47380,
+      "stability_sd": 1.288,
+      "distance_to_nearest_calibrated_boundary": 2.18,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-14204",
+      "commune_name": "Río Bueno",
+      "region_name": "Los Ríos",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": 1,
+      "v1_score": 43.63,
+      "candidate3_score": 45.56,
+      "score_delta": 1.93,
+      "candidate_confidence": 78.8,
+      "population": 33363,
+      "stability_sd": 0.39,
+      "distance_to_nearest_calibrated_boundary": 0.13,
+      "flags": [
+        "borderline_estabilidad"
+      ]
+    },
+    {
+      "territory_id": "CL-05404",
+      "commune_name": "Petorca",
+      "region_name": "Valparaíso",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Muy bajo",
+      "band_step": -1,
+      "v1_score": 26.09,
+      "candidate3_score": 24.3,
+      "score_delta": -1.79,
+      "candidate_confidence": 75.6,
+      "population": 10206,
+      "stability_sd": 0.731,
+      "distance_to_nearest_calibrated_boundary": 2.31,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-08313",
+      "commune_name": "Yumbel",
+      "region_name": "Biobío",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Medio",
+      "band_step": 1,
+      "v1_score": 44.3,
+      "candidate3_score": 45.86,
+      "score_delta": 1.56,
+      "candidate_confidence": 76.5,
+      "population": 23170,
+      "stability_sd": 1.831,
+      "distance_to_nearest_calibrated_boundary": 0.43,
+      "flags": [
+        "borderline_estabilidad",
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-09113",
+      "commune_name": "Perquenco",
+      "region_name": "La Araucanía",
+      "v1_level": "Medio",
+      "candidate3_calibrated_level": "Bajo",
+      "band_step": -1,
+      "v1_score": 45.37,
+      "candidate3_score": 43.82,
+      "score_delta": -1.55,
+      "candidate_confidence": 74.7,
+      "population": 7438,
+      "stability_sd": 1.056,
+      "distance_to_nearest_calibrated_boundary": 1.61,
+      "flags": [
+        "confianza_moderada_baja"
+      ]
+    },
+    {
+      "territory_id": "CL-05603",
+      "commune_name": "Cartagena",
+      "region_name": "Valparaíso",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 76.24,
+      "candidate3_score": 74.86,
+      "score_delta": -1.38,
+      "candidate_confidence": 77.5,
+      "population": 24599,
+      "stability_sd": 0.987,
+      "distance_to_nearest_calibrated_boundary": 3.74,
+      "flags": [
+        "upgrade_poblacion_pequena"
+      ]
+    },
+    {
+      "territory_id": "CL-09201",
+      "commune_name": "Angol",
+      "region_name": "La Araucanía",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 76.85,
+      "candidate3_score": 75.84,
+      "score_delta": -1.01,
+      "candidate_confidence": 79.5,
+      "population": 53022,
+      "stability_sd": 0.763,
+      "distance_to_nearest_calibrated_boundary": 4.72,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-06110",
+      "commune_name": "Mostazal",
+      "region_name": "Libertador Gral. Bernardo O'Higgins",
+      "v1_level": "Alto",
+      "candidate3_calibrated_level": "Muy alto",
+      "band_step": 1,
+      "v1_score": 71.16,
+      "candidate3_score": 72.14,
+      "score_delta": 0.98,
+      "candidate_confidence": 76.8,
+      "population": 27394,
+      "stability_sd": 1.956,
+      "distance_to_nearest_calibrated_boundary": 1.02,
+      "flags": [
+        "borderline_estabilidad"
+      ]
+    },
+    {
+      "territory_id": "CL-08104",
+      "commune_name": "Florida",
+      "region_name": "Biobío",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Muy bajo",
+      "band_step": -1,
+      "v1_score": 25.72,
+      "candidate3_score": 25.04,
+      "score_delta": -0.68,
+      "candidate_confidence": 76.2,
+      "population": 12958,
+      "stability_sd": 0.644,
+      "distance_to_nearest_calibrated_boundary": 1.57,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-08303",
+      "commune_name": "Cabrero",
+      "region_name": "Biobío",
+      "v1_level": "Medio",
+      "candidate3_calibrated_level": "Alto",
+      "band_step": 1,
+      "v1_score": 62.18,
+      "candidate3_score": 62.8,
+      "score_delta": 0.62,
+      "candidate_confidence": 78.2,
+      "population": 31256,
+      "stability_sd": 0.795,
+      "distance_to_nearest_calibrated_boundary": 0.91,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-09103",
+      "commune_name": "Cunco",
+      "region_name": "La Araucanía",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Muy bajo",
+      "band_step": -1,
+      "v1_score": 25.12,
+      "candidate3_score": 24.61,
+      "score_delta": -0.51,
+      "candidate_confidence": 76.7,
+      "population": 19177,
+      "stability_sd": 1.123,
+      "distance_to_nearest_calibrated_boundary": 2.0,
+      "flags": []
+    },
+    {
+      "territory_id": "CL-09121",
+      "commune_name": "Cholchol",
+      "region_name": "La Araucanía",
+      "v1_level": "Bajo",
+      "candidate3_calibrated_level": "Muy bajo",
+      "band_step": -1,
+      "v1_score": 25.2,
+      "candidate3_score": 25.29,
+      "score_delta": 0.09,
+      "candidate_confidence": 76.6,
+      "population": 13167,
+      "stability_sd": 0.327,
+      "distance_to_nearest_calibrated_boundary": 1.32,
+      "flags": []
+    }
+  ],
+  "interpretation": "Las bandas son una calibración provisional para comparar continuidad de lectura con v1.0. No convierten el candidato en clasificación oficial ni atribuyen riesgo a entidades o personas."
+}

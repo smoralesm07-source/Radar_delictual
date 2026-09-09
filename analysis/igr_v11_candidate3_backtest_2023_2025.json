@@ -1,0 +1,452 @@
+{
+  "candidate_version": "1.1.0-candidate.3",
+  "status": "diagnostic_only",
+  "production_replaced": false,
+  "population_reference": {
+    "available": true,
+    "source": "cache",
+    "communes": 346,
+    "metadata": {
+      "reference_year": 2024,
+      "metric": "poblacion_censada",
+      "bridge_url": "https://raw.githubusercontent.com/bastianolea/censo_poblacion_consultar/master/datos/censo_2024_tidy.csv",
+      "ultimate_source": "INE Censo de Población y Vivienda 2024",
+      "bridge_note": "Puente público derivado de la base oficial del Censo 2024. Se usa solo en el candidato para construir la tasa comunal; no reemplaza la fuente CEAD."
+    }
+  },
+  "fixed_provisional_thresholds_from_2025": {
+    "Muy alto": 71.12,
+    "Alto": 61.89,
+    "Medio": 45.43,
+    "Bajo": 26.61
+  },
+  "cutoffs": [
+    2023,
+    2024,
+    2025
+  ],
+  "years": {
+    "2023": {
+      "communes": 345,
+      "score_distribution": {
+        "min": 14.31,
+        "p10": 22.54,
+        "p25": 31.04,
+        "median": 40.87,
+        "p75": 60.07,
+        "p90": 76.92,
+        "max": 89.67
+      },
+      "confidence": {
+        "median": 77.1,
+        "min": 71.3,
+        "max": 82.7
+      },
+      "level_counts": {
+        "Muy bajo": 59,
+        "Bajo": 146,
+        "Medio": 61,
+        "Alto": 25,
+        "Muy alto": 54
+      },
+      "level_shares_pct": {
+        "Muy bajo": 17.1,
+        "Bajo": 42.32,
+        "Medio": 17.68,
+        "Alto": 7.25,
+        "Muy alto": 15.65
+      },
+      "population_bias_score_vs_log_population": 0.7876,
+      "borderline_within_stability_sd": 31,
+      "within_one_point_of_boundary": 38
+    },
+    "2024": {
+      "communes": 345,
+      "score_distribution": {
+        "min": 14.43,
+        "p10": 21.94,
+        "p25": 29.62,
+        "median": 38.73,
+        "p75": 59.02,
+        "p90": 75.39,
+        "max": 83.94
+      },
+      "confidence": {
+        "median": 77.0,
+        "min": 71.5,
+        "max": 82.3
+      },
+      "level_counts": {
+        "Muy bajo": 66,
+        "Bajo": 143,
+        "Medio": 60,
+        "Alto": 29,
+        "Muy alto": 47
+      },
+      "level_shares_pct": {
+        "Muy bajo": 19.13,
+        "Bajo": 41.45,
+        "Medio": 17.39,
+        "Alto": 8.41,
+        "Muy alto": 13.62
+      },
+      "population_bias_score_vs_log_population": 0.8026,
+      "borderline_within_stability_sd": 44,
+      "within_one_point_of_boundary": 36
+    },
+    "2025": {
+      "communes": 345,
+      "score_distribution": {
+        "min": 13.09,
+        "p10": 22.62,
+        "p25": 29.04,
+        "median": 39.58,
+        "p75": 61.77,
+        "p90": 75.85,
+        "max": 87.24
+      },
+      "confidence": {
+        "median": 77.0,
+        "min": 71.2,
+        "max": 82.3
+      },
+      "level_counts": {
+        "Muy bajo": 68,
+        "Bajo": 141,
+        "Medio": 50,
+        "Alto": 26,
+        "Muy alto": 60
+      },
+      "level_shares_pct": {
+        "Muy bajo": 19.71,
+        "Bajo": 40.87,
+        "Medio": 14.49,
+        "Alto": 7.54,
+        "Muy alto": 17.39
+      },
+      "population_bias_score_vs_log_population": 0.8238,
+      "borderline_within_stability_sd": 41,
+      "within_one_point_of_boundary": 44
+    }
+  },
+  "adjacent_year_stability": {
+    "2023->2024": {
+      "common_communes": 345,
+      "score_correlation": 0.9037,
+      "rank_correlation": 0.8553,
+      "level_changes": 143,
+      "level_churn_pct": 41.45,
+      "top25_overlap": 17,
+      "largest_score_moves": [
+        {
+          "territory_id": "CL-07303",
+          "commune_name": "Licantén",
+          "from": "Muy bajo",
+          "to": "Medio",
+          "score_from": 23.12,
+          "score_to": 47.07,
+          "confidence_to": 75.0
+        },
+        {
+          "territory_id": "CL-07408",
+          "commune_name": "Yerbas Buenas",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 42.22,
+          "score_to": 18.6,
+          "confidence_to": 77.2
+        },
+        {
+          "territory_id": "CL-08305",
+          "commune_name": "Mulchén",
+          "from": "Alto",
+          "to": "Medio",
+          "score_from": 70.1,
+          "score_to": 46.73,
+          "confidence_to": 77.7
+        },
+        {
+          "territory_id": "CL-09117",
+          "commune_name": "Teodoro Schmidt",
+          "from": "Muy bajo",
+          "to": "Bajo",
+          "score_from": 22.4,
+          "score_to": 44.2,
+          "confidence_to": 77.1
+        },
+        {
+          "territory_id": "CL-01403",
+          "commune_name": "Colchane",
+          "from": "Medio",
+          "to": "Bajo",
+          "score_from": 60.4,
+          "score_to": 40.68,
+          "confidence_to": 72.8
+        },
+        {
+          "territory_id": "CL-05304",
+          "commune_name": "San Esteban",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 44.0,
+          "score_to": 24.59,
+          "confidence_to": 77.3
+        },
+        {
+          "territory_id": "CL-03304",
+          "commune_name": "Huasco",
+          "from": "Medio",
+          "to": "Bajo",
+          "score_from": 45.93,
+          "score_to": 26.85,
+          "confidence_to": 74.1
+        },
+        {
+          "territory_id": "CL-05704",
+          "commune_name": "Panquehue",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 44.73,
+          "score_to": 26.52,
+          "confidence_to": 74.6
+        },
+        {
+          "territory_id": "CL-08109",
+          "commune_name": "Santa Juana",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 39.05,
+          "score_to": 20.99,
+          "confidence_to": 76.9
+        },
+        {
+          "territory_id": "CL-14106",
+          "commune_name": "Mariquina",
+          "from": "Medio",
+          "to": "Bajo",
+          "score_from": 46.26,
+          "score_to": 28.27,
+          "confidence_to": 77.7
+        },
+        {
+          "territory_id": "CL-16105",
+          "commune_name": "Pemuco",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 37.99,
+          "score_to": 20.35,
+          "confidence_to": 75.3
+        },
+        {
+          "territory_id": "CL-13603",
+          "commune_name": "Isla de Maipo",
+          "from": "Bajo",
+          "to": "Medio",
+          "score_from": 35.79,
+          "score_to": 53.32,
+          "confidence_to": 78.8
+        },
+        {
+          "territory_id": "CL-10207",
+          "commune_name": "Queilén",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 31.97,
+          "score_to": 14.8,
+          "confidence_to": 75.1
+        },
+        {
+          "territory_id": "CL-12101",
+          "commune_name": "Punta Arenas",
+          "from": "Medio",
+          "to": "Alto",
+          "score_from": 51.58,
+          "score_to": 68.59,
+          "confidence_to": 80.1
+        },
+        {
+          "territory_id": "CL-03103",
+          "commune_name": "Tierra Amarilla",
+          "from": "Medio",
+          "to": "Bajo",
+          "score_from": 51.0,
+          "score_to": 34.38,
+          "confidence_to": 75.4
+        }
+      ]
+    },
+    "2024->2025": {
+      "common_communes": 345,
+      "score_correlation": 0.9176,
+      "rank_correlation": 0.8675,
+      "level_changes": 120,
+      "level_churn_pct": 34.78,
+      "top25_overlap": 18,
+      "largest_score_moves": [
+        {
+          "territory_id": "CL-08105",
+          "commune_name": "Hualqui",
+          "from": "Muy bajo",
+          "to": "Medio",
+          "score_from": 23.86,
+          "score_to": 54.22,
+          "confidence_to": 78.4
+        },
+        {
+          "territory_id": "CL-05803",
+          "commune_name": "Olmué",
+          "from": "Muy bajo",
+          "to": "Bajo",
+          "score_from": 23.2,
+          "score_to": 44.99,
+          "confidence_to": 77.3
+        },
+        {
+          "territory_id": "CL-09107",
+          "commune_name": "Gorbea",
+          "from": "Muy bajo",
+          "to": "Bajo",
+          "score_from": 24.17,
+          "score_to": 45.32,
+          "confidence_to": 77.0
+        },
+        {
+          "territory_id": "CL-05705",
+          "commune_name": "Putaendo",
+          "from": "Medio",
+          "to": "Bajo",
+          "score_from": 48.85,
+          "score_to": 29.26,
+          "confidence_to": 76.5
+        },
+        {
+          "territory_id": "CL-16108",
+          "commune_name": "San Ignacio",
+          "from": "Muy bajo",
+          "to": "Bajo",
+          "score_from": 19.83,
+          "score_to": 38.99,
+          "confidence_to": 76.7
+        },
+        {
+          "territory_id": "CL-09108",
+          "commune_name": "Lautaro",
+          "from": "Alto",
+          "to": "Medio",
+          "score_from": 70.77,
+          "score_to": 51.77,
+          "confidence_to": 79.1
+        },
+        {
+          "territory_id": "CL-04305",
+          "commune_name": "Río Hurtado",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 41.32,
+          "score_to": 22.52,
+          "confidence_to": 74.2
+        },
+        {
+          "territory_id": "CL-01405",
+          "commune_name": "Pica",
+          "from": "Muy bajo",
+          "to": "Bajo",
+          "score_from": 22.77,
+          "score_to": 40.58,
+          "confidence_to": 74.5
+        },
+        {
+          "territory_id": "CL-15202",
+          "commune_name": "General Lagos",
+          "from": "Bajo",
+          "to": "Muy bajo",
+          "score_from": 30.83,
+          "score_to": 13.28,
+          "confidence_to": 73.2
+        },
+        {
+          "territory_id": "CL-13402",
+          "commune_name": "Buin",
+          "from": "Medio",
+          "to": "Muy alto",
+          "score_from": 58.39,
+          "score_to": 75.85,
+          "confidence_to": 80.2
+        },
+        {
+          "territory_id": "CL-08304",
+          "commune_name": "Laja",
+          "from": "Bajo",
+          "to": "Medio",
+          "score_from": 29.05,
+          "score_to": 46.38,
+          "confidence_to": 77.7
+        },
+        {
+          "territory_id": "CL-16107",
+          "commune_name": "Quillón",
+          "from": "Medio",
+          "to": "Bajo",
+          "score_from": 51.2,
+          "score_to": 34.2,
+          "confidence_to": 76.4
+        },
+        {
+          "territory_id": "CL-09112",
+          "commune_name": "Padre Las Casas",
+          "from": "Medio",
+          "to": "Bajo",
+          "score_from": 60.38,
+          "score_to": 43.77,
+          "confidence_to": 80.2
+        },
+        {
+          "territory_id": "CL-05802",
+          "commune_name": "Limache",
+          "from": "Medio",
+          "to": "Alto",
+          "score_from": 53.52,
+          "score_to": 69.86,
+          "confidence_to": 79.9
+        },
+        {
+          "territory_id": "CL-09114",
+          "commune_name": "Pitrufquén",
+          "from": "Bajo",
+          "to": "Medio",
+          "score_from": 34.26,
+          "score_to": 50.48,
+          "confidence_to": 78.2
+        }
+      ]
+    }
+  },
+  "prevalence_drift": {
+    "Muy bajo": {
+      "min_share_pct": 17.1,
+      "max_share_pct": 19.71,
+      "range_pp": 2.61
+    },
+    "Bajo": {
+      "min_share_pct": 40.87,
+      "max_share_pct": 42.32,
+      "range_pp": 1.45
+    },
+    "Medio": {
+      "min_share_pct": 14.49,
+      "max_share_pct": 17.68,
+      "range_pp": 3.19
+    },
+    "Alto": {
+      "min_share_pct": 7.25,
+      "max_share_pct": 8.41,
+      "range_pp": 1.16
+    },
+    "Muy alto": {
+      "min_share_pct": 13.62,
+      "max_share_pct": 17.39,
+      "range_pp": 3.77
+    }
+  },
+  "interpretation": "Backtest descriptivo de estabilidad temporal. Usa Censo 2024 como denominador constante para aislar el comportamiento del índice. No valida causalidad ni convierte las bandas en oficiales."
+}
