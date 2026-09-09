@@ -1,0 +1,202 @@
+{
+  "candidate_version": "1.1.0-candidate.3",
+  "status": "diagnostic_only",
+  "production_replaced": false,
+  "thresholds": {
+    "Bajo": 26.61,
+    "Medio": 45.43,
+    "Alto": 61.89,
+    "Muy alto": 71.12
+  },
+  "raw_banding": {
+    "2023->2024": {
+      "n": 345,
+      "changes": 143,
+      "churn_pct": 41.45
+    },
+    "2024->2025": {
+      "n": 345,
+      "changes": 120,
+      "churn_pct": 34.78
+    },
+    "mean_churn_pct": 38.12
+  },
+  "strategies": {
+    "hysteresis_1pt": {
+      "2023->2024": {
+        "n": 345,
+        "changes": 120,
+        "churn_pct": 34.78
+      },
+      "2024->2025": {
+        "n": 345,
+        "changes": 101,
+        "churn_pct": 29.28
+      },
+      "mean_churn_pct": 32.03,
+      "2025_differs_from_raw_band": 17,
+      "2025_agreement_with_v1_pct": 89.28,
+      "2025_level_counts": {
+        "Muy bajo": 67,
+        "Bajo": 143,
+        "Medio": 50,
+        "Alto": 27,
+        "Muy alto": 58
+      },
+      "large_raw_band_moves_2024_2025": 58,
+      "large_moves_captured": 52,
+      "large_move_capture_pct": 89.66,
+      "small_raw_band_moves_2024_2025": 23,
+      "small_moves_suppressed": 11,
+      "small_move_suppression_pct": 47.83
+    },
+    "hysteresis_2pt": {
+      "2023->2024": {
+        "n": 345,
+        "changes": 93,
+        "churn_pct": 26.96
+      },
+      "2024->2025": {
+        "n": 345,
+        "changes": 85,
+        "churn_pct": 24.64
+      },
+      "mean_churn_pct": 25.8,
+      "2025_differs_from_raw_band": 36,
+      "2025_agreement_with_v1_pct": 88.99,
+      "2025_level_counts": {
+        "Muy bajo": 65,
+        "Bajo": 143,
+        "Medio": 50,
+        "Alto": 30,
+        "Muy alto": 57
+      },
+      "large_raw_band_moves_2024_2025": 58,
+      "large_moves_captured": 46,
+      "large_move_capture_pct": 79.31,
+      "small_raw_band_moves_2024_2025": 23,
+      "small_moves_suppressed": 18,
+      "small_move_suppression_pct": 78.26
+    },
+    "hysteresis_stability": {
+      "2023->2024": {
+        "n": 345,
+        "changes": 112,
+        "churn_pct": 32.46
+      },
+      "2024->2025": {
+        "n": 345,
+        "changes": 100,
+        "churn_pct": 28.99
+      },
+      "mean_churn_pct": 30.73,
+      "2025_differs_from_raw_band": 21,
+      "2025_agreement_with_v1_pct": 89.28,
+      "2025_level_counts": {
+        "Muy bajo": 68,
+        "Bajo": 142,
+        "Medio": 49,
+        "Alto": 30,
+        "Muy alto": 56
+      },
+      "large_raw_band_moves_2024_2025": 58,
+      "large_moves_captured": 51,
+      "large_move_capture_pct": 87.93,
+      "small_raw_band_moves_2024_2025": 23,
+      "small_moves_suppressed": 12,
+      "small_move_suppression_pct": 52.17
+    },
+    "ewma_80": {
+      "2023->2024": {
+        "n": 345,
+        "changes": 110,
+        "churn_pct": 31.88
+      },
+      "2024->2025": {
+        "n": 345,
+        "changes": 98,
+        "churn_pct": 28.41
+      },
+      "mean_churn_pct": 30.14,
+      "2025_differs_from_raw_band": 21,
+      "2025_agreement_with_v1_pct": 91.01,
+      "2025_level_counts": {
+        "Muy bajo": 65,
+        "Bajo": 143,
+        "Medio": 52,
+        "Alto": 29,
+        "Muy alto": 56
+      },
+      "large_raw_band_moves_2024_2025": 58,
+      "large_moves_captured": 46,
+      "large_move_capture_pct": 79.31,
+      "small_raw_band_moves_2024_2025": 23,
+      "small_moves_suppressed": 8,
+      "small_move_suppression_pct": 34.78,
+      "2025_band_score_vs_raw_score_corr": 0.9973,
+      "2025_mean_abs_band_score_lag": 1.15
+    },
+    "ewma_70": {
+      "2023->2024": {
+        "n": 345,
+        "changes": 90,
+        "churn_pct": 26.09
+      },
+      "2024->2025": {
+        "n": 345,
+        "changes": 79,
+        "churn_pct": 22.9
+      },
+      "mean_churn_pct": 24.49,
+      "2025_differs_from_raw_band": 33,
+      "2025_agreement_with_v1_pct": 89.28,
+      "2025_level_counts": {
+        "Muy bajo": 60,
+        "Bajo": 149,
+        "Medio": 51,
+        "Alto": 29,
+        "Muy alto": 56
+      },
+      "large_raw_band_moves_2024_2025": 58,
+      "large_moves_captured": 35,
+      "large_move_capture_pct": 60.34,
+      "small_raw_band_moves_2024_2025": 23,
+      "small_moves_suppressed": 13,
+      "small_move_suppression_pct": 56.52,
+      "2025_band_score_vs_raw_score_corr": 0.9943,
+      "2025_mean_abs_band_score_lag": 1.69
+    },
+    "ewma_60": {
+      "2023->2024": {
+        "n": 345,
+        "changes": 77,
+        "churn_pct": 22.32
+      },
+      "2024->2025": {
+        "n": 345,
+        "changes": 66,
+        "churn_pct": 19.13
+      },
+      "mean_churn_pct": 20.73,
+      "2025_differs_from_raw_band": 49,
+      "2025_agreement_with_v1_pct": 87.54,
+      "2025_level_counts": {
+        "Muy bajo": 55,
+        "Bajo": 154,
+        "Medio": 52,
+        "Alto": 30,
+        "Muy alto": 54
+      },
+      "large_raw_band_moves_2024_2025": 58,
+      "large_moves_captured": 30,
+      "large_move_capture_pct": 51.72,
+      "small_raw_band_moves_2024_2025": 23,
+      "small_moves_suppressed": 14,
+      "small_move_suppression_pct": 60.87,
+      "2025_band_score_vs_raw_score_corr": 0.9901,
+      "2025_mean_abs_band_score_lag": 2.24
+    }
+  },
+  "diagnostic_preference": "hysteresis_1pt",
+  "diagnostic_preference_note": "Preference is diagnostic only: preserve large annual movements first, then reduce band churn. No banding rule is promoted automatically."
+}
