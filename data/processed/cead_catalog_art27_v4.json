@@ -1,0 +1,210 @@
+{
+  "version": "0.4.0",
+  "legal_reference": {
+    "law": "Ley 19.913",
+    "article": "27",
+    "version_date": "2026-05-30"
+  },
+  "cead_model": {
+    "note": "Catálogo observado en la consulta de la interfaz CEAD vigente y contrastado con la clasificación pública. La homologación jurídica se aplica al nivel más granular disponible; una familia mixta nunca hereda automáticamente la calidad de delito base.",
+    "families": {
+      "1": "Delitos contra la vida o integridad de las personas",
+      "2": "Robos violentos",
+      "3": "Violencia intrafamiliar",
+      "4": "Delitos asociados a drogas",
+      "5": "Delitos asociados a armas",
+      "6": "Delitos contra la propiedad no violentos",
+      "7": "Incivilidades",
+      "99": "Otros delitos o faltas"
+    },
+    "groups": {
+      "101": "Homicidios y femicidios",
+      "102": "Violaciones y delitos sexuales",
+      "103": "Lesiones graves o gravísimas",
+      "104": "Lesiones menos graves",
+      "105": "Lesiones leves",
+      "106": "Amenazas",
+      "201": "Robos con violencia o intimidación",
+      "202": "Robo por sorpresa",
+      "301": "Violencia intrafamiliar",
+      "401": "Crímenes y simples delitos ley de drogas",
+      "501": "Crímenes y simples delitos ley de armas",
+      "502": "Porte de arma cortante o punzante",
+      "601": "Robos en lugares habitados y no habitados",
+      "602": "Robos de vehículos y sus accesorios",
+      "603": "Otros robos con fuerza en las cosas",
+      "604": "Hurtos",
+      "605": "Receptación",
+      "701": "Amenaza falta o riña",
+      "702": "Consumo de alcohol y drogas en la vía pública",
+      "703": "Daños",
+      "704": "Desórdenes públicos",
+      "705": "Otras incivilidades",
+      "999": "Otros delitos o faltas"
+    },
+    "subgroups": {
+      "10101": "Homicidios",
+      "10102": "Femicidios",
+      "10201": "Violaciones",
+      "10202": "Abusos sexuales",
+      "10203": "Acosos sexuales",
+      "10204": "Otros delitos sexuales",
+      "10301": "Lesiones graves o gravísimas",
+      "10401": "Lesiones menos graves",
+      "10501": "Lesiones leves",
+      "10601": "Amenazas",
+      "20101": "Robos con violencia o intimidación",
+      "20102": "Robo violento de vehículo motorizado",
+      "20201": "Robo por sorpresa",
+      "30101": "Violencia intrafamiliar con lesiones físicas",
+      "30102": "Violencia intrafamiliar con lesiones psicológicas",
+      "30103": "Maltrato habitual",
+      "30104": "Amenazas en contexto de violencia intrafamiliar",
+      "30105": "Violencia intrafamiliar no clasificada",
+      "40101": "Tráfico de sustancias",
+      "40102": "Microtráfico de sustancias",
+      "40103": "Elaboración o producción de sustancias",
+      "40104": "Otras infracciones a la ley de drogas",
+      "50101": "Disparo injustificado",
+      "50102": "Porte / posesión de armas o explosivos",
+      "50103": "Otras infracciones a la ley de armas",
+      "50201": "Porte de arma cortante o punzante",
+      "60101": "Robo en lugar habitado",
+      "60102": "Robo en lugar no habitado",
+      "60201": "Robo de vehículo motorizado",
+      "60202": "Robo de objetos de o desde vehículo",
+      "60301": "Otros robos con fuerza en las cosas",
+      "60401": "Hurtos",
+      "60501": "Receptación",
+      "70101": "Amenaza con armas (falta)",
+      "70102": "Riña pública",
+      "70201": "Consumo de drogas en la vía pública",
+      "70202": "Porte de drogas",
+      "70203": "Otras faltas a la ley de drogas",
+      "70204": "Consumo de alcohol en la vía pública",
+      "70301": "Daños",
+      "70401": "Desórdenes públicos",
+      "70501": "Animales sueltos en la vía pública",
+      "70502": "Comercio ilegal",
+      "70503": "Ofensas al pudor",
+      "70504": "Otras incivilidades",
+      "99901": "Abigeato",
+      "99902": "Robo frustrado",
+      "99903": "Otros delitos o faltas"
+    }
+  },
+  "aml_mapping": {
+    "family:4": {
+      "class": "predicate_family_direct",
+      "score_eligible": true,
+      "weight": 1.0,
+      "confidence": "high",
+      "basis": "Familia CEAD asociada a la Ley 20.000; el artículo 27 de la Ley 19.913 incorpora los delitos contemplados en esa ley. Para decisiones jurídicas finas se privilegia grupo/subgrupo."
+    },
+    "group:401": {
+      "class": "predicate_direct",
+      "score_eligible": true,
+      "weight": 1.0,
+      "confidence": "high",
+      "basis": "Crímenes y simples delitos de la Ley 20.000."
+    },
+    "subgroup:40101": {
+      "class": "predicate_direct",
+      "score_eligible": true,
+      "weight": 1.0,
+      "confidence": "high",
+      "basis": "Tráfico de sustancias · Ley 20.000."
+    },
+    "subgroup:40102": {
+      "class": "predicate_direct",
+      "score_eligible": true,
+      "weight": 1.0,
+      "confidence": "high",
+      "basis": "Microtráfico de sustancias · Ley 20.000."
+    },
+    "subgroup:40103": {
+      "class": "predicate_direct",
+      "score_eligible": true,
+      "weight": 1.0,
+      "confidence": "high",
+      "basis": "Elaboración o producción de sustancias · Ley 20.000."
+    },
+    "subgroup:40104": {
+      "class": "predicate_candidate",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "medium",
+      "basis": "Categoría residual de infracciones a Ley 20.000; requiere tipo penal antes de ponderar."
+    },
+    "family:5": {
+      "class": "predicate_candidate",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "high",
+      "basis": "El artículo 27 remite específicamente al artículo 10 de la Ley 17.798; la familia CEAD es más amplia."
+    },
+    "group:501": {
+      "class": "predicate_candidate",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "high",
+      "basis": "Debe distinguirse la conducta exacta del artículo 10 de Ley 17.798."
+    },
+    "subgroup:50101": {
+      "class": "context_only",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "high",
+      "basis": "Disparo injustificado no se equipara automáticamente al artículo 10 de Ley 17.798."
+    },
+    "subgroup:50102": {
+      "class": "predicate_candidate",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "medium",
+      "basis": "Porte/posesión es más amplio que las conductas del artículo 10; requiere código penal específico."
+    },
+    "subgroup:50103": {
+      "class": "predicate_candidate",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "low",
+      "basis": "Residual de Ley de Armas; requiere código específico."
+    },
+    "group:101": {
+      "class": "context_only",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "high",
+      "basis": "Homicidios y femicidios se excluyen del score AML/LAFT."
+    },
+    "subgroup:10101": {
+      "class": "context_only",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "high",
+      "basis": "Homicidio no se utiliza por sí solo como delito base o indicio LA/FT."
+    },
+    "subgroup:10102": {
+      "class": "context_only",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "high",
+      "basis": "Femicidio no se utiliza por sí solo como delito base o indicio LA/FT."
+    },
+    "group:102": {
+      "class": "predicate_candidate",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "medium",
+      "basis": "El artículo 27 contempla tipos sexuales específicos, no toda la familia CEAD."
+    },
+    "default": {
+      "class": "context_or_unresolved",
+      "score_eligible": false,
+      "weight": 0.0,
+      "confidence": "low",
+      "basis": "Sin homologación jurídica suficientemente precisa para ponderación automática."
+    }
+  }
+}

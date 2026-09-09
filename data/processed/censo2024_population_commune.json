@@ -1,0 +1,1741 @@
+{
+  "metadata": {
+    "reference_year": 2024,
+    "metric": "poblacion_censada",
+    "bridge_url": "https://raw.githubusercontent.com/bastianolea/censo_poblacion_consultar/master/datos/censo_2024_tidy.csv",
+    "ultimate_source": "INE Censo de Población y Vivienda 2024",
+    "bridge_note": "Puente público derivado de la base oficial del Censo 2024. Se usa solo en el candidato para construir la tasa comunal; no reemplaza la fuente CEAD."
+  },
+  "rows": [
+    {
+      "commune_code": "01101",
+      "commune_name": "Iquique",
+      "population": 199587
+    },
+    {
+      "commune_code": "01107",
+      "commune_name": "Alto Hospicio",
+      "population": 142086
+    },
+    {
+      "commune_code": "01401",
+      "commune_name": "Pozo Almonte",
+      "population": 16878
+    },
+    {
+      "commune_code": "01402",
+      "commune_name": "Camiña",
+      "population": 1335
+    },
+    {
+      "commune_code": "01403",
+      "commune_name": "Colchane",
+      "population": 790
+    },
+    {
+      "commune_code": "01404",
+      "commune_name": "Huara",
+      "population": 2858
+    },
+    {
+      "commune_code": "01405",
+      "commune_name": "Pica",
+      "population": 6272
+    },
+    {
+      "commune_code": "02101",
+      "commune_name": "Antofagasta",
+      "population": 401096
+    },
+    {
+      "commune_code": "02102",
+      "commune_name": "Mejillones",
+      "population": 14084
+    },
+    {
+      "commune_code": "02103",
+      "commune_name": "Sierra Gorda",
+      "population": 1472
+    },
+    {
+      "commune_code": "02104",
+      "commune_name": "Taltal",
+      "population": 12097
+    },
+    {
+      "commune_code": "02201",
+      "commune_name": "Calama",
+      "population": 166334
+    },
+    {
+      "commune_code": "02202",
+      "commune_name": "Ollagüe",
+      "population": 256
+    },
+    {
+      "commune_code": "02203",
+      "commune_name": "San Pedro de Atacama",
+      "population": 9843
+    },
+    {
+      "commune_code": "02301",
+      "commune_name": "Tocopilla",
+      "population": 25400
+    },
+    {
+      "commune_code": "02302",
+      "commune_name": "María Elena",
+      "population": 4834
+    },
+    {
+      "commune_code": "03101",
+      "commune_name": "Copiapó",
+      "population": 168831
+    },
+    {
+      "commune_code": "03102",
+      "commune_name": "Caldera",
+      "population": 18805
+    },
+    {
+      "commune_code": "03103",
+      "commune_name": "Tierra Amarilla",
+      "population": 11846
+    },
+    {
+      "commune_code": "03201",
+      "commune_name": "Chañaral",
+      "population": 12345
+    },
+    {
+      "commune_code": "03202",
+      "commune_name": "Diego de Almagro",
+      "population": 11397
+    },
+    {
+      "commune_code": "03301",
+      "commune_name": "Vallenar",
+      "population": 54222
+    },
+    {
+      "commune_code": "03302",
+      "commune_name": "Alto del Carmen",
+      "population": 4788
+    },
+    {
+      "commune_code": "03303",
+      "commune_name": "Freirina",
+      "population": 7577
+    },
+    {
+      "commune_code": "03304",
+      "commune_name": "Huasco",
+      "population": 9369
+    },
+    {
+      "commune_code": "04101",
+      "commune_name": "La Serena",
+      "population": 250141
+    },
+    {
+      "commune_code": "04102",
+      "commune_name": "Coquimbo",
+      "population": 263719
+    },
+    {
+      "commune_code": "04103",
+      "commune_name": "Andacollo",
+      "population": 11566
+    },
+    {
+      "commune_code": "04104",
+      "commune_name": "La Higuera",
+      "population": 4335
+    },
+    {
+      "commune_code": "04105",
+      "commune_name": "Paihuano",
+      "population": 4649
+    },
+    {
+      "commune_code": "04106",
+      "commune_name": "Vicuña",
+      "population": 28047
+    },
+    {
+      "commune_code": "04201",
+      "commune_name": "Illapel",
+      "population": 32009
+    },
+    {
+      "commune_code": "04202",
+      "commune_name": "Canela",
+      "population": 9639
+    },
+    {
+      "commune_code": "04203",
+      "commune_name": "Los Vilos",
+      "population": 22879
+    },
+    {
+      "commune_code": "04204",
+      "commune_name": "Salamanca",
+      "population": 27823
+    },
+    {
+      "commune_code": "04301",
+      "commune_name": "Ovalle",
+      "population": 118696
+    },
+    {
+      "commune_code": "04302",
+      "commune_name": "Combarbalá",
+      "population": 12954
+    },
+    {
+      "commune_code": "04303",
+      "commune_name": "Monte Patria",
+      "population": 29997
+    },
+    {
+      "commune_code": "04304",
+      "commune_name": "Punitaqui",
+      "population": 12076
+    },
+    {
+      "commune_code": "04305",
+      "commune_name": "Río Hurtado",
+      "population": 4334
+    },
+    {
+      "commune_code": "05101",
+      "commune_name": "Valparaíso",
+      "population": 284938
+    },
+    {
+      "commune_code": "05102",
+      "commune_name": "Casablanca",
+      "population": 29876
+    },
+    {
+      "commune_code": "05103",
+      "commune_name": "Concón",
+      "population": 48294
+    },
+    {
+      "commune_code": "05104",
+      "commune_name": "Juan Fernández",
+      "population": 904
+    },
+    {
+      "commune_code": "05105",
+      "commune_name": "Puchuncaví",
+      "population": 22539
+    },
+    {
+      "commune_code": "05107",
+      "commune_name": "Quintero",
+      "population": 35754
+    },
+    {
+      "commune_code": "05109",
+      "commune_name": "Viña del Mar",
+      "population": 334871
+    },
+    {
+      "commune_code": "05201",
+      "commune_name": "Isla de Pascua",
+      "population": 4800
+    },
+    {
+      "commune_code": "05301",
+      "commune_name": "Los Andes",
+      "population": 63440
+    },
+    {
+      "commune_code": "05302",
+      "commune_name": "Calle Larga",
+      "population": 16597
+    },
+    {
+      "commune_code": "05303",
+      "commune_name": "Rinconada",
+      "population": 11855
+    },
+    {
+      "commune_code": "05304",
+      "commune_name": "San Esteban",
+      "population": 20112
+    },
+    {
+      "commune_code": "05401",
+      "commune_name": "La Ligua",
+      "population": 39270
+    },
+    {
+      "commune_code": "05402",
+      "commune_name": "Cabildo",
+      "population": 20015
+    },
+    {
+      "commune_code": "05403",
+      "commune_name": "Papudo",
+      "population": 7561
+    },
+    {
+      "commune_code": "05404",
+      "commune_name": "Petorca",
+      "population": 10206
+    },
+    {
+      "commune_code": "05405",
+      "commune_name": "Zapallar",
+      "population": 7980
+    },
+    {
+      "commune_code": "05501",
+      "commune_name": "Quillota",
+      "population": 96753
+    },
+    {
+      "commune_code": "05502",
+      "commune_name": "Calera",
+      "population": 50631
+    },
+    {
+      "commune_code": "05503",
+      "commune_name": "Hijuelas",
+      "population": 19286
+    },
+    {
+      "commune_code": "05504",
+      "commune_name": "La Cruz",
+      "population": 24939
+    },
+    {
+      "commune_code": "05506",
+      "commune_name": "Nogales",
+      "population": 22136
+    },
+    {
+      "commune_code": "05601",
+      "commune_name": "San Antonio",
+      "population": 96770
+    },
+    {
+      "commune_code": "05602",
+      "commune_name": "Algarrobo",
+      "population": 16076
+    },
+    {
+      "commune_code": "05603",
+      "commune_name": "Cartagena",
+      "population": 24599
+    },
+    {
+      "commune_code": "05604",
+      "commune_name": "El Quisco",
+      "population": 18971
+    },
+    {
+      "commune_code": "05605",
+      "commune_name": "El Tabo",
+      "population": 16260
+    },
+    {
+      "commune_code": "05606",
+      "commune_name": "Santo Domingo",
+      "population": 13171
+    },
+    {
+      "commune_code": "05701",
+      "commune_name": "San Felipe",
+      "population": 80413
+    },
+    {
+      "commune_code": "05702",
+      "commune_name": "Catemu",
+      "population": 13760
+    },
+    {
+      "commune_code": "05703",
+      "commune_name": "Llaillay",
+      "population": 25484
+    },
+    {
+      "commune_code": "05704",
+      "commune_name": "Panquehue",
+      "population": 7269
+    },
+    {
+      "commune_code": "05705",
+      "commune_name": "Putaendo",
+      "population": 17336
+    },
+    {
+      "commune_code": "05706",
+      "commune_name": "Santa María",
+      "population": 15134
+    },
+    {
+      "commune_code": "05801",
+      "commune_name": "Quilpué",
+      "population": 162559
+    },
+    {
+      "commune_code": "05802",
+      "commune_name": "Limache",
+      "population": 56145
+    },
+    {
+      "commune_code": "05803",
+      "commune_name": "Olmué",
+      "population": 19778
+    },
+    {
+      "commune_code": "05804",
+      "commune_name": "Villa Alemana",
+      "population": 139571
+    },
+    {
+      "commune_code": "06101",
+      "commune_name": "Rancagua",
+      "population": 257744
+    },
+    {
+      "commune_code": "06102",
+      "commune_name": "Codegua",
+      "population": 13955
+    },
+    {
+      "commune_code": "06103",
+      "commune_name": "Coinco",
+      "population": 7916
+    },
+    {
+      "commune_code": "06104",
+      "commune_name": "Coltauco",
+      "population": 21373
+    },
+    {
+      "commune_code": "06105",
+      "commune_name": "Doñihue",
+      "population": 21925
+    },
+    {
+      "commune_code": "06106",
+      "commune_name": "Graneros",
+      "population": 35938
+    },
+    {
+      "commune_code": "06107",
+      "commune_name": "Las Cabras",
+      "population": 27554
+    },
+    {
+      "commune_code": "06108",
+      "commune_name": "Machalí",
+      "population": 60875
+    },
+    {
+      "commune_code": "06109",
+      "commune_name": "Malloa",
+      "population": 13882
+    },
+    {
+      "commune_code": "06110",
+      "commune_name": "Mostazal",
+      "population": 27394
+    },
+    {
+      "commune_code": "06111",
+      "commune_name": "Olivar",
+      "population": 13901
+    },
+    {
+      "commune_code": "06112",
+      "commune_name": "Peumo",
+      "population": 14243
+    },
+    {
+      "commune_code": "06113",
+      "commune_name": "Pichidegua",
+      "population": 20363
+    },
+    {
+      "commune_code": "06114",
+      "commune_name": "Quinta de Tilcoco",
+      "population": 13558
+    },
+    {
+      "commune_code": "06115",
+      "commune_name": "Rengo",
+      "population": 63620
+    },
+    {
+      "commune_code": "06116",
+      "commune_name": "Requínoa",
+      "population": 29508
+    },
+    {
+      "commune_code": "06117",
+      "commune_name": "San Vicente",
+      "population": 49559
+    },
+    {
+      "commune_code": "06201",
+      "commune_name": "Pichilemu",
+      "population": 19847
+    },
+    {
+      "commune_code": "06202",
+      "commune_name": "La Estrella",
+      "population": 4609
+    },
+    {
+      "commune_code": "06203",
+      "commune_name": "Litueche",
+      "population": 8852
+    },
+    {
+      "commune_code": "06204",
+      "commune_name": "Marchihue",
+      "population": 8715
+    },
+    {
+      "commune_code": "06205",
+      "commune_name": "Navidad",
+      "population": 8885
+    },
+    {
+      "commune_code": "06206",
+      "commune_name": "Paredones",
+      "population": 7228
+    },
+    {
+      "commune_code": "06301",
+      "commune_name": "San Fernando",
+      "population": 75585
+    },
+    {
+      "commune_code": "06302",
+      "commune_name": "Chépica",
+      "population": 15668
+    },
+    {
+      "commune_code": "06303",
+      "commune_name": "Chimbarongo",
+      "population": 37258
+    },
+    {
+      "commune_code": "06304",
+      "commune_name": "Lolol",
+      "population": 7791
+    },
+    {
+      "commune_code": "06305",
+      "commune_name": "Nancagua",
+      "population": 18723
+    },
+    {
+      "commune_code": "06306",
+      "commune_name": "Palmilla",
+      "population": 13060
+    },
+    {
+      "commune_code": "06307",
+      "commune_name": "Peralillo",
+      "population": 12493
+    },
+    {
+      "commune_code": "06308",
+      "commune_name": "Placilla",
+      "population": 9438
+    },
+    {
+      "commune_code": "06309",
+      "commune_name": "Pumanque",
+      "population": 4559
+    },
+    {
+      "commune_code": "06310",
+      "commune_name": "Santa Cruz",
+      "population": 41209
+    },
+    {
+      "commune_code": "07101",
+      "commune_name": "Talca",
+      "population": 232131
+    },
+    {
+      "commune_code": "07102",
+      "commune_name": "Constitución",
+      "population": 47004
+    },
+    {
+      "commune_code": "07103",
+      "commune_name": "Curepto",
+      "population": 9519
+    },
+    {
+      "commune_code": "07104",
+      "commune_name": "Empedrado",
+      "population": 3990
+    },
+    {
+      "commune_code": "07105",
+      "commune_name": "Maule",
+      "population": 61081
+    },
+    {
+      "commune_code": "07106",
+      "commune_name": "Pelarco",
+      "population": 9229
+    },
+    {
+      "commune_code": "07107",
+      "commune_name": "Pencahue",
+      "population": 9181
+    },
+    {
+      "commune_code": "07108",
+      "commune_name": "Río Claro",
+      "population": 14276
+    },
+    {
+      "commune_code": "07109",
+      "commune_name": "San Clemente",
+      "population": 47380
+    },
+    {
+      "commune_code": "07110",
+      "commune_name": "San Rafael",
+      "population": 11230
+    },
+    {
+      "commune_code": "07201",
+      "commune_name": "Cauquenes",
+      "population": 42798
+    },
+    {
+      "commune_code": "07202",
+      "commune_name": "Chanco",
+      "population": 9446
+    },
+    {
+      "commune_code": "07203",
+      "commune_name": "Pelluhue",
+      "population": 8578
+    },
+    {
+      "commune_code": "07301",
+      "commune_name": "Curicó",
+      "population": 159968
+    },
+    {
+      "commune_code": "07302",
+      "commune_name": "Hualañé",
+      "population": 10775
+    },
+    {
+      "commune_code": "07303",
+      "commune_name": "Licantén",
+      "population": 6892
+    },
+    {
+      "commune_code": "07304",
+      "commune_name": "Molina",
+      "population": 48949
+    },
+    {
+      "commune_code": "07305",
+      "commune_name": "Rauco",
+      "population": 11266
+    },
+    {
+      "commune_code": "07306",
+      "commune_name": "Romeral",
+      "population": 17233
+    },
+    {
+      "commune_code": "07307",
+      "commune_name": "Sagrada Familia",
+      "population": 19427
+    },
+    {
+      "commune_code": "07308",
+      "commune_name": "Teno",
+      "population": 30113
+    },
+    {
+      "commune_code": "07309",
+      "commune_name": "Vichuquén",
+      "population": 4716
+    },
+    {
+      "commune_code": "07401",
+      "commune_name": "Linares",
+      "population": 96744
+    },
+    {
+      "commune_code": "07402",
+      "commune_name": "Colbún",
+      "population": 22637
+    },
+    {
+      "commune_code": "07403",
+      "commune_name": "Longaví",
+      "population": 33299
+    },
+    {
+      "commune_code": "07404",
+      "commune_name": "Parral",
+      "population": 45323
+    },
+    {
+      "commune_code": "07405",
+      "commune_name": "Retiro",
+      "population": 22310
+    },
+    {
+      "commune_code": "07406",
+      "commune_name": "San Javier",
+      "population": 49559
+    },
+    {
+      "commune_code": "07407",
+      "commune_name": "Villa Alegre",
+      "population": 17919
+    },
+    {
+      "commune_code": "07408",
+      "commune_name": "Yerbas Buenas",
+      "population": 20035
+    },
+    {
+      "commune_code": "08101",
+      "commune_name": "Concepción",
+      "population": 230375
+    },
+    {
+      "commune_code": "08102",
+      "commune_name": "Coronel",
+      "population": 123648
+    },
+    {
+      "commune_code": "08103",
+      "commune_name": "Chiguayante",
+      "population": 85822
+    },
+    {
+      "commune_code": "08104",
+      "commune_name": "Florida",
+      "population": 12958
+    },
+    {
+      "commune_code": "08105",
+      "commune_name": "Hualqui",
+      "population": 25795
+    },
+    {
+      "commune_code": "08106",
+      "commune_name": "Lota",
+      "population": 39980
+    },
+    {
+      "commune_code": "08107",
+      "commune_name": "Penco",
+      "population": 48971
+    },
+    {
+      "commune_code": "08108",
+      "commune_name": "San Pedro de La paz",
+      "population": 150992
+    },
+    {
+      "commune_code": "08109",
+      "commune_name": "Santa Juana",
+      "population": 14947
+    },
+    {
+      "commune_code": "08110",
+      "commune_name": "Talcahuano",
+      "population": 147322
+    },
+    {
+      "commune_code": "08111",
+      "commune_name": "Tomé",
+      "population": 56907
+    },
+    {
+      "commune_code": "08112",
+      "commune_name": "Hualpén",
+      "population": 87731
+    },
+    {
+      "commune_code": "08201",
+      "commune_name": "Lebu",
+      "population": 25246
+    },
+    {
+      "commune_code": "08202",
+      "commune_name": "Arauco",
+      "population": 37163
+    },
+    {
+      "commune_code": "08203",
+      "commune_name": "Cañete",
+      "population": 34640
+    },
+    {
+      "commune_code": "08204",
+      "commune_name": "Contulmo",
+      "population": 5905
+    },
+    {
+      "commune_code": "08205",
+      "commune_name": "Curanilahue",
+      "population": 31119
+    },
+    {
+      "commune_code": "08206",
+      "commune_name": "Los Álamos",
+      "population": 21950
+    },
+    {
+      "commune_code": "08207",
+      "commune_name": "Tirúa",
+      "population": 10208
+    },
+    {
+      "commune_code": "08301",
+      "commune_name": "Los Ángeles",
+      "population": 219441
+    },
+    {
+      "commune_code": "08302",
+      "commune_name": "Antuco",
+      "population": 4373
+    },
+    {
+      "commune_code": "08303",
+      "commune_name": "Cabrero",
+      "population": 31256
+    },
+    {
+      "commune_code": "08304",
+      "commune_name": "Laja",
+      "population": 23706
+    },
+    {
+      "commune_code": "08305",
+      "commune_name": "Mulchén",
+      "population": 29036
+    },
+    {
+      "commune_code": "08306",
+      "commune_name": "Nacimiento",
+      "population": 26140
+    },
+    {
+      "commune_code": "08307",
+      "commune_name": "Negrete",
+      "population": 10723
+    },
+    {
+      "commune_code": "08308",
+      "commune_name": "Quilaco",
+      "population": 4440
+    },
+    {
+      "commune_code": "08309",
+      "commune_name": "Quilleco",
+      "population": 9700
+    },
+    {
+      "commune_code": "08310",
+      "commune_name": "San Rosendo",
+      "population": 3575
+    },
+    {
+      "commune_code": "08311",
+      "commune_name": "Santa Bárbara",
+      "population": 14075
+    },
+    {
+      "commune_code": "08312",
+      "commune_name": "Tucapel",
+      "population": 15729
+    },
+    {
+      "commune_code": "08313",
+      "commune_name": "Yumbel",
+      "population": 23170
+    },
+    {
+      "commune_code": "08314",
+      "commune_name": "Alto Biobío",
+      "population": 6016
+    },
+    {
+      "commune_code": "09101",
+      "commune_name": "Temuco",
+      "population": 292518
+    },
+    {
+      "commune_code": "09102",
+      "commune_name": "Carahue",
+      "population": 24957
+    },
+    {
+      "commune_code": "09103",
+      "commune_name": "Cunco",
+      "population": 19177
+    },
+    {
+      "commune_code": "09104",
+      "commune_name": "Curarrehue",
+      "population": 7733
+    },
+    {
+      "commune_code": "09105",
+      "commune_name": "Freire",
+      "population": 26164
+    },
+    {
+      "commune_code": "09106",
+      "commune_name": "Galvarino",
+      "population": 12710
+    },
+    {
+      "commune_code": "09107",
+      "commune_name": "Gorbea",
+      "population": 14148
+    },
+    {
+      "commune_code": "09108",
+      "commune_name": "Lautaro",
+      "population": 41936
+    },
+    {
+      "commune_code": "09109",
+      "commune_name": "Loncoche",
+      "population": 25158
+    },
+    {
+      "commune_code": "09110",
+      "commune_name": "Melipeuco",
+      "population": 6796
+    },
+    {
+      "commune_code": "09111",
+      "commune_name": "Nueva Imperial",
+      "population": 33988
+    },
+    {
+      "commune_code": "09112",
+      "commune_name": "Padre Las Casas",
+      "population": 80656
+    },
+    {
+      "commune_code": "09113",
+      "commune_name": "Perquenco",
+      "population": 7438
+    },
+    {
+      "commune_code": "09114",
+      "commune_name": "Pitrufquén",
+      "population": 27041
+    },
+    {
+      "commune_code": "09115",
+      "commune_name": "Pucón",
+      "population": 32321
+    },
+    {
+      "commune_code": "09116",
+      "commune_name": "Saavedra",
+      "population": 12877
+    },
+    {
+      "commune_code": "09117",
+      "commune_name": "Teodoro Schmidt",
+      "population": 15639
+    },
+    {
+      "commune_code": "09118",
+      "commune_name": "Toltén",
+      "population": 10041
+    },
+    {
+      "commune_code": "09119",
+      "commune_name": "Vilcún",
+      "population": 31575
+    },
+    {
+      "commune_code": "09120",
+      "commune_name": "Villarrica",
+      "population": 67737
+    },
+    {
+      "commune_code": "09121",
+      "commune_name": "Cholchol",
+      "population": 13167
+    },
+    {
+      "commune_code": "09201",
+      "commune_name": "Angol",
+      "population": 53022
+    },
+    {
+      "commune_code": "09202",
+      "commune_name": "Collipulli",
+      "population": 24303
+    },
+    {
+      "commune_code": "09203",
+      "commune_name": "Curacautín",
+      "population": 18536
+    },
+    {
+      "commune_code": "09204",
+      "commune_name": "Ercilla",
+      "population": 7730
+    },
+    {
+      "commune_code": "09205",
+      "commune_name": "Lonquimay",
+      "population": 10247
+    },
+    {
+      "commune_code": "09206",
+      "commune_name": "Los Sauces",
+      "population": 7348
+    },
+    {
+      "commune_code": "09207",
+      "commune_name": "Lumaco",
+      "population": 9253
+    },
+    {
+      "commune_code": "09208",
+      "commune_name": "Purén",
+      "population": 12184
+    },
+    {
+      "commune_code": "09209",
+      "commune_name": "Renaico",
+      "population": 10686
+    },
+    {
+      "commune_code": "09210",
+      "commune_name": "Traiguén",
+      "population": 18873
+    },
+    {
+      "commune_code": "09211",
+      "commune_name": "Victoria",
+      "population": 34464
+    },
+    {
+      "commune_code": "10101",
+      "commune_name": "Puerto Montt",
+      "population": 277040
+    },
+    {
+      "commune_code": "10102",
+      "commune_name": "Calbuco",
+      "population": 36474
+    },
+    {
+      "commune_code": "10103",
+      "commune_name": "Cochamó",
+      "population": 4199
+    },
+    {
+      "commune_code": "10104",
+      "commune_name": "Fresia",
+      "population": 12320
+    },
+    {
+      "commune_code": "10105",
+      "commune_name": "Frutillar",
+      "population": 22554
+    },
+    {
+      "commune_code": "10106",
+      "commune_name": "Los Muermos",
+      "population": 17162
+    },
+    {
+      "commune_code": "10107",
+      "commune_name": "Llanquihue",
+      "population": 18088
+    },
+    {
+      "commune_code": "10108",
+      "commune_name": "Maullín",
+      "population": 15063
+    },
+    {
+      "commune_code": "10109",
+      "commune_name": "Puerto Varas",
+      "population": 52942
+    },
+    {
+      "commune_code": "10201",
+      "commune_name": "Castro",
+      "population": 46997
+    },
+    {
+      "commune_code": "10202",
+      "commune_name": "Ancud",
+      "population": 40949
+    },
+    {
+      "commune_code": "10203",
+      "commune_name": "Chonchi",
+      "population": 16078
+    },
+    {
+      "commune_code": "10204",
+      "commune_name": "Curaco de Vélez",
+      "population": 3662
+    },
+    {
+      "commune_code": "10205",
+      "commune_name": "Dalcahue",
+      "population": 14894
+    },
+    {
+      "commune_code": "10206",
+      "commune_name": "Puqueldón",
+      "population": 4048
+    },
+    {
+      "commune_code": "10207",
+      "commune_name": "Queilén",
+      "population": 5690
+    },
+    {
+      "commune_code": "10208",
+      "commune_name": "Quellón",
+      "population": 28460
+    },
+    {
+      "commune_code": "10209",
+      "commune_name": "Quemchi",
+      "population": 8409
+    },
+    {
+      "commune_code": "10210",
+      "commune_name": "Quinchao",
+      "population": 7678
+    },
+    {
+      "commune_code": "10301",
+      "commune_name": "Osorno",
+      "population": 166455
+    },
+    {
+      "commune_code": "10302",
+      "commune_name": "Puerto Octay",
+      "population": 8865
+    },
+    {
+      "commune_code": "10303",
+      "commune_name": "Purranque",
+      "population": 19542
+    },
+    {
+      "commune_code": "10304",
+      "commune_name": "Puyehue",
+      "population": 11712
+    },
+    {
+      "commune_code": "10305",
+      "commune_name": "Río Negro",
+      "population": 13874
+    },
+    {
+      "commune_code": "10306",
+      "commune_name": "San Juan de la Costa",
+      "population": 7776
+    },
+    {
+      "commune_code": "10307",
+      "commune_name": "San Pablo",
+      "population": 10883
+    },
+    {
+      "commune_code": "10401",
+      "commune_name": "Chaitén",
+      "population": 4025
+    },
+    {
+      "commune_code": "10402",
+      "commune_name": "Futaleufú",
+      "population": 3062
+    },
+    {
+      "commune_code": "10403",
+      "commune_name": "Hualaihué",
+      "population": 9480
+    },
+    {
+      "commune_code": "10404",
+      "commune_name": "Palena",
+      "population": 1903
+    },
+    {
+      "commune_code": "11101",
+      "commune_name": "Coyhaique",
+      "population": 57823
+    },
+    {
+      "commune_code": "11102",
+      "commune_name": "Lago Verde",
+      "population": 779
+    },
+    {
+      "commune_code": "11201",
+      "commune_name": "Aysén",
+      "population": 23170
+    },
+    {
+      "commune_code": "11202",
+      "commune_name": "Cisnes",
+      "population": 5137
+    },
+    {
+      "commune_code": "11203",
+      "commune_name": "Guaitecas",
+      "population": 1598
+    },
+    {
+      "commune_code": "11301",
+      "commune_name": "Cochrane",
+      "population": 3458
+    },
+    {
+      "commune_code": "11302",
+      "commune_name": "O'Higgins",
+      "population": 647
+    },
+    {
+      "commune_code": "11303",
+      "commune_name": "Tortel",
+      "population": 505
+    },
+    {
+      "commune_code": "11401",
+      "commune_name": "Chile Chico",
+      "population": 4905
+    },
+    {
+      "commune_code": "11402",
+      "commune_name": "Río Ibáñez",
+      "population": 2723
+    },
+    {
+      "commune_code": "12101",
+      "commune_name": "Punta Arenas",
+      "population": 132363
+    },
+    {
+      "commune_code": "12102",
+      "commune_name": "Laguna Blanca",
+      "population": 269
+    },
+    {
+      "commune_code": "12103",
+      "commune_name": "Río Verde",
+      "population": 102
+    },
+    {
+      "commune_code": "12104",
+      "commune_name": "San Gregorio",
+      "population": 241
+    },
+    {
+      "commune_code": "12201",
+      "commune_name": "Cabo de Hornos",
+      "population": 1750
+    },
+    {
+      "commune_code": "12202",
+      "commune_name": "Antártica",
+      "population": 60
+    },
+    {
+      "commune_code": "12301",
+      "commune_name": "Porvenir",
+      "population": 6809
+    },
+    {
+      "commune_code": "12302",
+      "commune_name": "Primavera",
+      "population": 431
+    },
+    {
+      "commune_code": "12303",
+      "commune_name": "Timaukel",
+      "population": 157
+    },
+    {
+      "commune_code": "12401",
+      "commune_name": "Natales",
+      "population": 24152
+    },
+    {
+      "commune_code": "12402",
+      "commune_name": "Torres del Paine",
+      "population": 203
+    },
+    {
+      "commune_code": "13101",
+      "commune_name": "Santiago",
+      "population": 438856
+    },
+    {
+      "commune_code": "13102",
+      "commune_name": "Cerrillos",
+      "population": 85041
+    },
+    {
+      "commune_code": "13103",
+      "commune_name": "Cerro Navia",
+      "population": 127250
+    },
+    {
+      "commune_code": "13104",
+      "commune_name": "Conchalí",
+      "population": 121587
+    },
+    {
+      "commune_code": "13105",
+      "commune_name": "El Bosque",
+      "population": 155257
+    },
+    {
+      "commune_code": "13106",
+      "commune_name": "Estación Central",
+      "population": 181049
+    },
+    {
+      "commune_code": "13107",
+      "commune_name": "Huechuraba",
+      "population": 101808
+    },
+    {
+      "commune_code": "13108",
+      "commune_name": "Independencia",
+      "population": 116943
+    },
+    {
+      "commune_code": "13109",
+      "commune_name": "La Cisterna",
+      "population": 103157
+    },
+    {
+      "commune_code": "13110",
+      "commune_name": "La Florida",
+      "population": 374836
+    },
+    {
+      "commune_code": "13111",
+      "commune_name": "La Granja",
+      "population": 112022
+    },
+    {
+      "commune_code": "13112",
+      "commune_name": "La Pintana",
+      "population": 175421
+    },
+    {
+      "commune_code": "13113",
+      "commune_name": "La Reina",
+      "population": 89870
+    },
+    {
+      "commune_code": "13114",
+      "commune_name": "Las Condes",
+      "population": 296134
+    },
+    {
+      "commune_code": "13115",
+      "commune_name": "Lo Barnechea",
+      "population": 112620
+    },
+    {
+      "commune_code": "13116",
+      "commune_name": "Lo Espejo",
+      "population": 87295
+    },
+    {
+      "commune_code": "13117",
+      "commune_name": "Lo Prado",
+      "population": 91290
+    },
+    {
+      "commune_code": "13118",
+      "commune_name": "Macul",
+      "population": 123800
+    },
+    {
+      "commune_code": "13119",
+      "commune_name": "Maipú",
+      "population": 503635
+    },
+    {
+      "commune_code": "13120",
+      "commune_name": "Ñuñoa",
+      "population": 241467
+    },
+    {
+      "commune_code": "13121",
+      "commune_name": "Pedro Aguirre Cerda",
+      "population": 96062
+    },
+    {
+      "commune_code": "13122",
+      "commune_name": "Peñalolén",
+      "population": 236478
+    },
+    {
+      "commune_code": "13123",
+      "commune_name": "Providencia",
+      "population": 143974
+    },
+    {
+      "commune_code": "13124",
+      "commune_name": "Pudahuel",
+      "population": 227820
+    },
+    {
+      "commune_code": "13125",
+      "commune_name": "Quilicura",
+      "population": 205624
+    },
+    {
+      "commune_code": "13126",
+      "commune_name": "Quinta Normal",
+      "population": 129351
+    },
+    {
+      "commune_code": "13127",
+      "commune_name": "Recoleta",
+      "population": 154615
+    },
+    {
+      "commune_code": "13128",
+      "commune_name": "Renca",
+      "population": 143622
+    },
+    {
+      "commune_code": "13129",
+      "commune_name": "San Joaquín",
+      "population": 95602
+    },
+    {
+      "commune_code": "13130",
+      "commune_name": "San Miguel",
+      "population": 150829
+    },
+    {
+      "commune_code": "13131",
+      "commune_name": "San Ramón",
+      "population": 76002
+    },
+    {
+      "commune_code": "13132",
+      "commune_name": "Vitacura",
+      "population": 86420
+    },
+    {
+      "commune_code": "13201",
+      "commune_name": "Puente Alto",
+      "population": 568086
+    },
+    {
+      "commune_code": "13202",
+      "commune_name": "Pirque",
+      "population": 29060
+    },
+    {
+      "commune_code": "13203",
+      "commune_name": "San José de Maipo",
+      "population": 17441
+    },
+    {
+      "commune_code": "13301",
+      "commune_name": "Colina",
+      "population": 173293
+    },
+    {
+      "commune_code": "13302",
+      "commune_name": "Lampa",
+      "population": 145160
+    },
+    {
+      "commune_code": "13303",
+      "commune_name": "Tiltil",
+      "population": 19742
+    },
+    {
+      "commune_code": "13401",
+      "commune_name": "San Bernardo",
+      "population": 306371
+    },
+    {
+      "commune_code": "13402",
+      "commune_name": "Buin",
+      "population": 116969
+    },
+    {
+      "commune_code": "13403",
+      "commune_name": "Calera de Tango",
+      "population": 25491
+    },
+    {
+      "commune_code": "13404",
+      "commune_name": "Paine",
+      "population": 78828
+    },
+    {
+      "commune_code": "13501",
+      "commune_name": "Melipilla",
+      "population": 136325
+    },
+    {
+      "commune_code": "13502",
+      "commune_name": "Alhué",
+      "population": 7768
+    },
+    {
+      "commune_code": "13503",
+      "commune_name": "Curacaví",
+      "population": 35165
+    },
+    {
+      "commune_code": "13504",
+      "commune_name": "María Pinto",
+      "population": 15352
+    },
+    {
+      "commune_code": "13505",
+      "commune_name": "San Pedro",
+      "population": 11108
+    },
+    {
+      "commune_code": "13601",
+      "commune_name": "Talagante",
+      "population": 76429
+    },
+    {
+      "commune_code": "13602",
+      "commune_name": "El Monte",
+      "population": 37497
+    },
+    {
+      "commune_code": "13603",
+      "commune_name": "Isla de Maipo",
+      "population": 39274
+    },
+    {
+      "commune_code": "13604",
+      "commune_name": "Padre Hurtado",
+      "population": 81243
+    },
+    {
+      "commune_code": "13605",
+      "commune_name": "Peñaflor",
+      "population": 94402
+    },
+    {
+      "commune_code": "14101",
+      "commune_name": "Valdivia",
+      "population": 170043
+    },
+    {
+      "commune_code": "14102",
+      "commune_name": "Corral",
+      "population": 5501
+    },
+    {
+      "commune_code": "14103",
+      "commune_name": "Lanco",
+      "population": 16876
+    },
+    {
+      "commune_code": "14104",
+      "commune_name": "Los Lagos",
+      "population": 21431
+    },
+    {
+      "commune_code": "14105",
+      "commune_name": "Máfil",
+      "population": 8074
+    },
+    {
+      "commune_code": "14106",
+      "commune_name": "Mariquina",
+      "population": 22973
+    },
+    {
+      "commune_code": "14107",
+      "commune_name": "Paillaco",
+      "population": 19802
+    },
+    {
+      "commune_code": "14108",
+      "commune_name": "Panguipulli",
+      "population": 35098
+    },
+    {
+      "commune_code": "14201",
+      "commune_name": "La Unión",
+      "population": 38907
+    },
+    {
+      "commune_code": "14202",
+      "commune_name": "Futrono",
+      "population": 15635
+    },
+    {
+      "commune_code": "14203",
+      "commune_name": "Lago Ranco",
+      "population": 10527
+    },
+    {
+      "commune_code": "14204",
+      "commune_name": "Río Bueno",
+      "population": 33363
+    },
+    {
+      "commune_code": "15101",
+      "commune_name": "Arica",
+      "population": 241653
+    },
+    {
+      "commune_code": "15102",
+      "commune_name": "Camarones",
+      "population": 861
+    },
+    {
+      "commune_code": "15201",
+      "commune_name": "Putre",
+      "population": 1547
+    },
+    {
+      "commune_code": "15202",
+      "commune_name": "General Lagos",
+      "population": 508
+    },
+    {
+      "commune_code": "16101",
+      "commune_name": "Chillán",
+      "population": 190382
+    },
+    {
+      "commune_code": "16102",
+      "commune_name": "Bulnes",
+      "population": 23863
+    },
+    {
+      "commune_code": "16103",
+      "commune_name": "Chillán Viejo",
+      "population": 32688
+    },
+    {
+      "commune_code": "16104",
+      "commune_name": "El Carmen",
+      "population": 13186
+    },
+    {
+      "commune_code": "16105",
+      "commune_name": "Pemuco",
+      "population": 8930
+    },
+    {
+      "commune_code": "16106",
+      "commune_name": "Pinto",
+      "population": 12502
+    },
+    {
+      "commune_code": "16107",
+      "commune_name": "Quillón",
+      "population": 19165
+    },
+    {
+      "commune_code": "16108",
+      "commune_name": "San Ignacio",
+      "population": 17405
+    },
+    {
+      "commune_code": "16109",
+      "commune_name": "Yungay",
+      "population": 18680
+    },
+    {
+      "commune_code": "16201",
+      "commune_name": "Quirihue",
+      "population": 11746
+    },
+    {
+      "commune_code": "16202",
+      "commune_name": "Cobquecura",
+      "population": 5495
+    },
+    {
+      "commune_code": "16203",
+      "commune_name": "Coelemu",
+      "population": 15895
+    },
+    {
+      "commune_code": "16204",
+      "commune_name": "Ninhue",
+      "population": 5763
+    },
+    {
+      "commune_code": "16205",
+      "commune_name": "Portezuelo",
+      "population": 5203
+    },
+    {
+      "commune_code": "16206",
+      "commune_name": "Ránquil",
+      "population": 6508
+    },
+    {
+      "commune_code": "16207",
+      "commune_name": "Trehuaco",
+      "population": 6124
+    },
+    {
+      "commune_code": "16301",
+      "commune_name": "San Carlos",
+      "population": 55847
+    },
+    {
+      "commune_code": "16302",
+      "commune_name": "Coihueco",
+      "population": 29766
+    },
+    {
+      "commune_code": "16303",
+      "commune_name": "Ñiquén",
+      "population": 12797
+    },
+    {
+      "commune_code": "16304",
+      "commune_name": "San Fabián",
+      "population": 5245
+    },
+    {
+      "commune_code": "16305",
+      "commune_name": "San Nicolás",
+      "population": 15099
+    }
+  ]
+}

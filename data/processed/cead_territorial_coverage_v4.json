@@ -1,0 +1,6 @@
+{
+  "expected_communes": 346,
+  "observed_communes": 345,
+  "unavailable_communes": [],
+  "rule": "Una comuna sin observación permanece no_disponible; nunca se materializa como cero."
+}

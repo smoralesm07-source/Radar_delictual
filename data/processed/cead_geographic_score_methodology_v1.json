@@ -1,0 +1,162 @@
+{
+  "version": "1.1.0",
+  "status": "production",
+  "base_score_version": "1.0.0",
+  "name": "Componente criminógeno CEAD · IGR",
+  "score_range": [
+    0,
+    100
+  ],
+  "feature_weights": {
+    "intensity": 0.4,
+    "persistence": 0.25,
+    "trend": 0.2,
+    "temporal_anomaly": 0.15
+  },
+  "intensity_mix": {
+    "volume_percentile": 0.6,
+    "rate_per_100k_percentile": 0.4,
+    "rate_reliability": {
+      "method": "population_shrinkage",
+      "population_scale": 25000,
+      "formula": "r = población / (población + 25000); peso_tasa_efectivo = 0.40*r; el peso no confiable vuelve a volumen"
+    }
+  },
+  "confidence_weights": {
+    "thematic_coverage": 0.2,
+    "temporal_coverage": 0.1,
+    "source_quality": 0.1,
+    "stability": 0.6,
+    "denominator_reliability": 0.0
+  },
+  "confidence_bands": {
+    "high_min": 89,
+    "medium_min": 86,
+    "note": "Bandas cualitativas de robustez de la estimación RC1; no son umbrales de riesgo ni modifican el IGR."
+  },
+  "rc1_policy": {
+    "score_formula_frozen": true,
+    "score_formula_source": "1.1.0-candidate.3",
+    "confidence_revision": "Se elimina denominator_reliability del compuesto de confianza porque ya contrae el peso de la tasa en el score y su inclusión hacía que confianza funcionara principalmente como proxy del tamaño poblacional.",
+    "denominator_reliability_status": "diagnostic_only",
+    "bands_status": "secondary_context",
+    "full_replacement_status": "promoted_to_production",
+    "band_strategy_validation": {
+      "fixed_thresholds_mean_churn_pct": 38.12,
+      "one_point_hysteresis_mean_churn_pct": 33.05,
+      "relative_rank_bands_mean_churn_pct": 37.53,
+      "decision": "PROMOTE_SCORE_PERCENTILE_PRIMARY_KEEP_BAND_SECONDARY",
+      "note": "La histéresis reduce churn pero introduce dependencia del estado previo; las bandas relativas casi no reducen churn y pueden moverse en dirección opuesta al score. Se recomienda score continuo + percentil nacional como lectura primaria."
+    },
+    "promoted_at": "2026-09-09"
+  },
+  "level_policy": {
+    "mode": "score_percentile_primary_band_secondary",
+    "legacy_thresholds": {
+      "bajo_min": 25.0,
+      "medio_min": 45.0,
+      "alto_min": 65.0,
+      "muy_alto_min": 80.0,
+      "status": "comparison_only"
+    },
+    "provisional_candidate3": {
+      "status": "diagnostic_only",
+      "thresholds": {
+        "bajo_min": 26.61,
+        "medio_min": 45.43,
+        "alto_min": 61.89,
+        "muy_alto_min": 71.12
+      },
+      "calibration_basis": "Cortes 2025 que minimizan desacuerdo en cada frontera del IGR v1.0; en empates se minimiza fragilidad leave-one-year-out. Backtest descriptivo 2023-2025 con los mismos cortes.",
+      "validation_2025": {
+        "communes": 345,
+        "agreement_with_v1_pct": 91.3,
+        "changed_level": 30,
+        "upgrades": 16,
+        "downgrades": 14,
+        "multi_band_jumps": 0
+      },
+      "temporal_backtest": {
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "raw_band_churn_pct": {
+          "2023_2024": 41.45,
+          "2024_2025": 34.78
+        },
+        "note": "La distribución agregada por banda es razonablemente estable, pero el recambio individual sigue siendo alto; por eso estas bandas permanecen diagnósticas."
+      },
+      "stability_recommendation": {
+        "status": "evaluated_not_applied",
+        "method": "one_point_hysteresis",
+        "margin_points": 1.0,
+        "mean_churn_pct": 32.03,
+        "large_move_capture_pct": 89.66,
+        "note": "Fue la alternativa que mejor preservó movimientos anuales grandes sin introducir suavizamiento del score. Requiere estado temporal explícito antes de poder publicarse como regla operativa."
+      },
+      "role": "secondary_context"
+    },
+    "note": "El score continuo y el percentil nacional son las salidas primarias del IGR. La banda recalibrada queda como contexto secundario y no sustituye la lectura continua."
+  },
+  "source_quality": {
+    "primary_direct": 1.0,
+    "primary_direct_cached": 0.95,
+    "external_cead_data_pipeline": 0.9,
+    "mirror_of_primary": 0.85,
+    "official_secondary": 0.75,
+    "quarantined": 0.35,
+    "unknown": 0.5
+  },
+  "semantic_precision": {
+    "default_component": 1.0,
+    "predicate_family_fallback": 0.75
+  },
+  "stability": {
+    "penalty_per_sd_point": 5.0,
+    "minimum_variants": 3
+  },
+  "population": {
+    "reference_year": 2024,
+    "metric": "poblacion_censada",
+    "rate_scale": 100000,
+    "bridge_url": "https://raw.githubusercontent.com/bastianolea/censo_poblacion_consultar/master/datos/censo_2024_tidy.csv",
+    "ultimate_source": "INE Censo de Población y Vivienda 2024",
+    "bridge_note": "Puente público derivado de la base oficial del Censo 2024. Se usa solo en el candidato para construir la tasa comunal; no reemplaza la fuente CEAD."
+  },
+  "methodology": {
+    "intensity": "Combina materialidad absoluta y tasa por 100.000 habitantes. El peso máximo de tasa es 40%, pero se contrae en comunas pequeñas mediante r=población/(población+25.000); la parte no confiable vuelve al percentil de volumen. Así se reduce sesgo de tamaño sin sobrerreaccionar a denominadores pequeños.",
+    "persistence": "Proporción de años observados en que la comuna se ubica en el cuartil superior nacional de la categoría.",
+    "trend": "Cambio del último año frente al promedio de hasta tres años previos, transformado a escala 0-100 y centrado en 50 cuando no hay cambio.",
+    "temporal_anomaly": "Separación robusta del valor actual respecto de la historia de la misma comuna, usando mediana y MAD. La anomalía cruda se contrae hacia 50 según soporte de eventos q=soporte/(soporte+20), para que cambios de uno o pocos casos en series escasas no generen saltos artificiales. Sustituye la anomalía transversal de v1.0 y mantiene intensidad y anomalía conceptualmente separadas.",
+    "confidence": "RC1 separa robustez de amenaza. La confianza combina 20% cobertura temática, 10% cobertura temporal, 10% calidad de fuente y 60% estabilidad leave-one-history-year-out. La confiabilidad del denominador se publica aparte y pesa 0% en confianza porque ya modula el peso de la tasa en intensidad.",
+    "semantic_precision": "Cuando la capa de delito base usa la familia agregada de drogas por falta de subgrupos, la cobertura temática se penaliza a 75% en esa parte, aunque el score siga siendo calculable.",
+    "stability": "Se recalcula el IGR excluyendo sucesivamente cada año histórico previo al corte. La desviación estándar entre variantes se convierte a estabilidad con 100 - 5*DE, truncada a 0-100.",
+    "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). En RC1 afecta la intensidad por contracción del peso de tasa, pero se excluye del compuesto de confianza para no doble penalizar comunas pequeñas ni convertir confianza en proxy de población.",
+    "methodological_coverage": "Se conserva además la cobertura metodológica comparable con v1.0, separada explícitamente de confianza.",
+    "level_calibration": "La evaluación 2023-2025 comparó umbrales fijos, histéresis y bandas relativas. Ninguna alternativa categórica mejoró suficientemente la estabilidad sin introducir dependencia temporal o relatividad. Por ello el score continuo y el percentil nacional pasan a ser la lectura primaria RC1; la banda queda como apoyo secundario.",
+    "interpretation": "IGR vigente. La lectura primaria combina score continuo 0-100 y percentil nacional; la confianza informa robustez de la estimación y la banda es un apoyo secundario. El IGR describe amenaza territorial comunal y no se atribuye a entidades."
+  },
+  "temporal_anomaly_reliability": {
+    "method": "event_support_shrinkage",
+    "support_scale": 20,
+    "formula": "q = soporte/(soporte+20); anomalía_ajustada = 50 + q*(anomalía_cruda-50)",
+    "note": "El soporte es la suma de casos observados en la historia de la comuna más el corte actual. La contracción evita que variaciones de uno o pocos casos en series escasas dominen la anomalía."
+  },
+  "presentation_policy": {
+    "status": "production_primary_reading",
+    "primary_outputs": [
+      "score",
+      "national_percentile"
+    ],
+    "secondary_outputs": [
+      "provisional_level",
+      "confidence",
+      "provisional_boundary_status"
+    ],
+    "national_percentile_formula": "Percentil nacional derivado del orden por score RC1; 100 = posición superior del universo comunal observado, 0 = posición inferior. Empates comparten percentil mediante rango promedio.",
+    "band_role": "secondary_context",
+    "band_warning": "La banda no sustituye al score ni al percentil; cerca de una frontera debe privilegiarse la lectura continua."
+  }
+}

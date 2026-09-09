@@ -1,0 +1,7 @@
+{
+  "enabled": false,
+  "aml_weight": 0.0,
+  "score_eligible": false,
+  "records_in_v04_core": 0,
+  "note": "Homicidios retirados de la adquisición y scoring AML v0.4; no son usados como proxy LA/FT."
+}

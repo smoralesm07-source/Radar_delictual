@@ -1,0 +1,8 @@
+{
+  "interop_version": "1.0",
+  "radar_id": "RADAR_DELICTUAL",
+  "rows": 62100,
+  "resolved": 62100,
+  "unresolved": 0,
+  "territory_id_format": "CL-COM-{CUT}"
+}
