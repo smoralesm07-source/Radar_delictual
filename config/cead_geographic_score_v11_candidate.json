@@ -39,11 +39,18 @@
     "score_formula_source": "1.1.0-candidate.3",
     "confidence_revision": "Se elimina denominator_reliability del compuesto de confianza porque ya contrae el peso de la tasa en el score y su inclusión hacía que confianza funcionara principalmente como proxy del tamaño poblacional.",
     "denominator_reliability_status": "diagnostic_only",
-    "bands_status": "diagnostic_only",
-    "full_replacement_status": "blocked_pending_band_stability_validation"
+    "bands_status": "secondary_context",
+    "full_replacement_status": "ready_pending_explicit_promotion",
+    "band_strategy_validation": {
+      "fixed_thresholds_mean_churn_pct": 38.12,
+      "one_point_hysteresis_mean_churn_pct": 33.05,
+      "relative_rank_bands_mean_churn_pct": 37.53,
+      "decision": "PROMOTE_SCORE_PERCENTILE_PRIMARY_KEEP_BAND_SECONDARY",
+      "note": "La histéresis reduce churn pero introduce dependencia del estado previo; las bandas relativas casi no reducen churn y pueden moverse en dirección opuesta al score. Se recomienda score continuo + percentil nacional como lectura primaria."
+    }
   },
   "level_policy": {
-    "mode": "dual_diagnostic",
+    "mode": "score_percentile_primary_band_secondary",
     "legacy_thresholds": {
       "bajo_min": 25.0,
       "medio_min": 45.0,
@@ -87,9 +94,10 @@
         "mean_churn_pct": 32.03,
         "large_move_capture_pct": 89.66,
         "note": "Fue la alternativa que mejor preservó movimientos anuales grandes sin introducir suavizamiento del score. Requiere estado temporal explícito antes de poder publicarse como regla operativa."
-      }
+      },
+      "role": "secondary_context"
     },
-    "note": "El campo level conserva 25/45/65/80 sólo para comparar con v1.0. provisional_level usa cortes candidate.3 calibrados, sigue siendo diagnóstico y no reemplaza la clasificación oficial."
+    "note": "El score continuo y el percentil nacional son las salidas primarias de lectura RC1. El campo level conserva 25/45/65/80 sólo para comparar con v1.0. provisional_level usa los cortes recalibrados y queda como contexto secundario, con alerta de frontera."
   },
   "source_quality": {
     "primary_direct": 1.0,
@@ -126,13 +134,28 @@
     "stability": "Se recalcula el IGR excluyendo sucesivamente cada año histórico previo al corte. La desviación estándar entre variantes se convierte a estabilidad con 100 - 5*DE, truncada a 0-100.",
     "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). En RC1 afecta la intensidad por contracción del peso de tasa, pero se excluye del compuesto de confianza para no doble penalizar comunas pequeñas ni convertir confianza en proxy de población.",
     "methodological_coverage": "Se conserva además la cobertura metodológica comparable con v1.0, separada explícitamente de confianza.",
-    "level_calibration": "Las bandas candidate.3 se mantienen como lectura diagnóstica separada. El score continuo sigue siendo la salida primaria. El backtest 2023-2025 mostró recambio individual relevante, por lo que las bandas no se promueven aún como clasificación oficial.",
-    "interpretation": "IGR v1.1 RC1 para validación final. El score está congelado respecto de candidate.3; la revisión RC1 corrige la confianza. No sustituye todavía el IGR v1.0 vigente, no representa probabilidad de lavado de activos y no atribuye conducta a personas o entidades del territorio."
+    "level_calibration": "La evaluación 2023-2025 comparó umbrales fijos, histéresis y bandas relativas. Ninguna alternativa categórica mejoró suficientemente la estabilidad sin introducir dependencia temporal o relatividad. Por ello el score continuo y el percentil nacional pasan a ser la lectura primaria RC1; la banda queda como apoyo secundario.",
+    "interpretation": "IGR v1.1 RC1 en validación final. El score está congelado respecto de candidate.3 y la confianza ya fue corregida. La lectura primaria recomendada es score + percentil nacional; la banda es secundaria. Aún no sustituye el IGR v1.0 vigente hasta la promoción explícita del release."
   },
   "temporal_anomaly_reliability": {
     "method": "event_support_shrinkage",
     "support_scale": 20,
     "formula": "q = soporte/(soporte+20); anomalía_ajustada = 50 + q*(anomalía_cruda-50)",
     "note": "El soporte es la suma de casos observados en la historia de la comuna más el corte actual. La contracción evita que variaciones de uno o pocos casos en series escasas dominen la anomalía."
+  },
+  "presentation_policy": {
+    "status": "rc1_primary_reading",
+    "primary_outputs": [
+      "score",
+      "national_percentile"
+    ],
+    "secondary_outputs": [
+      "provisional_level",
+      "confidence",
+      "provisional_boundary_status"
+    ],
+    "national_percentile_formula": "Percentil nacional derivado del orden por score RC1; 100 = posición superior del universo comunal observado, 0 = posición inferior. Empates comparten percentil mediante rango promedio.",
+    "band_role": "secondary_context",
+    "band_warning": "La banda no sustituye al score ni al percentil; cerca de una frontera debe privilegiarse la lectura continua."
   }
 }
