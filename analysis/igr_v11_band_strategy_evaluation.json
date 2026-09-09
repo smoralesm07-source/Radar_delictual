@@ -1,0 +1,1348 @@
+{
+  "version": "1.1.0-rc.1",
+  "status": "band_strategy_evaluation",
+  "score_formula_changed": false,
+  "confidence_formula_changed": false,
+  "population_reference": {
+    "available": true,
+    "source": "cache",
+    "communes": 346,
+    "metadata": {
+      "reference_year": 2024,
+      "metric": "poblacion_censada",
+      "bridge_url": "https://raw.githubusercontent.com/bastianolea/censo_poblacion_consultar/master/datos/censo_2024_tidy.csv",
+      "ultimate_source": "INE Censo de Población y Vivienda 2024",
+      "bridge_note": "Puente público derivado de la base oficial del Censo 2024. Se usa solo en el candidato para construir la tasa comunal; no reemplaza la fuente CEAD."
+    }
+  },
+  "years": [
+    2023,
+    2024,
+    2025
+  ],
+  "fixed_thresholds": {
+    "bajo_min": 26.61,
+    "medio_min": 45.43,
+    "alto_min": 61.89,
+    "muy_alto_min": 71.12
+  },
+  "relative_band_reference_counts_2025": {
+    "Muy bajo": 68,
+    "Bajo": 141,
+    "Medio": 50,
+    "Alto": 26,
+    "Muy alto": 60
+  },
+  "strategies": {
+    "fixed_thresholds": {
+      "name": "fixed_thresholds",
+      "mean_band_churn_pct": 38.12,
+      "mean_small_move_share_of_changes_pct": 4.73,
+      "counter_direction_changes_total": 0,
+      "mean_large_move_band_change_rate_pct": 59.86,
+      "year_prevalence_pct": {
+        "2023": {
+          "Muy bajo": 17.1,
+          "Bajo": 42.32,
+          "Medio": 17.68,
+          "Alto": 7.25,
+          "Muy alto": 15.65
+        },
+        "2024": {
+          "Muy bajo": 19.13,
+          "Bajo": 41.45,
+          "Medio": 17.39,
+          "Alto": 8.41,
+          "Muy alto": 13.62
+        },
+        "2025": {
+          "Muy bajo": 19.71,
+          "Bajo": 40.87,
+          "Medio": 14.49,
+          "Alto": 7.54,
+          "Muy alto": 17.39
+        }
+      },
+      "prevalence_drift": {
+        "Muy bajo": {
+          "min_pct": 17.1,
+          "max_pct": 19.71,
+          "range_pp": 2.61
+        },
+        "Bajo": {
+          "min_pct": 40.87,
+          "max_pct": 42.32,
+          "range_pp": 1.45
+        },
+        "Medio": {
+          "min_pct": 14.49,
+          "max_pct": 17.68,
+          "range_pp": 3.19
+        },
+        "Alto": {
+          "min_pct": 7.25,
+          "max_pct": 8.41,
+          "range_pp": 1.16
+        },
+        "Muy alto": {
+          "min_pct": 13.62,
+          "max_pct": 17.39,
+          "range_pp": 3.77
+        }
+      },
+      "transitions": {
+        "2023->2024": {
+          "common_communes": 345,
+          "band_changes": 143,
+          "band_churn_pct": 41.45,
+          "small_move_changes_lt3": 4,
+          "small_move_share_of_changes_pct": 2.8,
+          "counter_direction_changes": 0,
+          "large_score_moves_ge5": 199,
+          "large_move_band_change_rate_pct": 62.31,
+          "score_correlation": 0.9037,
+          "percentile_correlation": 0.8553,
+          "median_abs_percentile_move": 8.7,
+          "p90_abs_percentile_move": 26.8,
+          "largest_band_changes": [
+            {
+              "territory_id": "CL-07303",
+              "commune_name": "Licantén",
+              "from": "Muy bajo",
+              "to": "Medio",
+              "score_from": 23.12,
+              "score_to": 47.07,
+              "score_delta": 23.95,
+              "percentile_from": 11.3,
+              "percentile_to": 63.4
+            },
+            {
+              "territory_id": "CL-07408",
+              "commune_name": "Yerbas Buenas",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 42.22,
+              "score_to": 18.6,
+              "score_delta": -23.62,
+              "percentile_from": 53.8,
+              "percentile_to": 4.1
+            },
+            {
+              "territory_id": "CL-08305",
+              "commune_name": "Mulchén",
+              "from": "Alto",
+              "to": "Medio",
+              "score_from": 70.1,
+              "score_to": 46.73,
+              "score_delta": -23.37,
+              "percentile_from": 83.4,
+              "percentile_to": 62.5
+            },
+            {
+              "territory_id": "CL-09117",
+              "commune_name": "Teodoro Schmidt",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 22.4,
+              "score_to": 44.2,
+              "score_delta": 21.8,
+              "percentile_from": 9.9,
+              "percentile_to": 57.8
+            },
+            {
+              "territory_id": "CL-01403",
+              "commune_name": "Colchane",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 60.4,
+              "score_to": 40.68,
+              "score_delta": -19.72,
+              "percentile_from": 75.3,
+              "percentile_to": 52.3
+            },
+            {
+              "territory_id": "CL-05304",
+              "commune_name": "San Esteban",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 44.0,
+              "score_to": 24.59,
+              "score_delta": -19.41,
+              "percentile_from": 57.3,
+              "percentile_to": 16.3
+            },
+            {
+              "territory_id": "CL-03304",
+              "commune_name": "Huasco",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 45.93,
+              "score_to": 26.85,
+              "score_delta": -19.08,
+              "percentile_from": 60.2,
+              "percentile_to": 19.8
+            },
+            {
+              "territory_id": "CL-05704",
+              "commune_name": "Panquehue",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 44.73,
+              "score_to": 26.52,
+              "score_delta": -18.21,
+              "percentile_from": 58.1,
+              "percentile_to": 18.9
+            },
+            {
+              "territory_id": "CL-08109",
+              "commune_name": "Santa Juana",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 39.05,
+              "score_to": 20.99,
+              "score_delta": -18.06,
+              "percentile_from": 44.5,
+              "percentile_to": 9.0
+            },
+            {
+              "territory_id": "CL-14106",
+              "commune_name": "Mariquina",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 46.26,
+              "score_to": 28.27,
+              "score_delta": -17.99,
+              "percentile_from": 60.8,
+              "percentile_to": 21.8
+            },
+            {
+              "territory_id": "CL-16105",
+              "commune_name": "Pemuco",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 37.99,
+              "score_to": 20.35,
+              "score_delta": -17.64,
+              "percentile_from": 41.6,
+              "percentile_to": 7.8
+            },
+            {
+              "territory_id": "CL-13603",
+              "commune_name": "Isla de Maipo",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 35.79,
+              "score_to": 53.32,
+              "score_delta": 17.53,
+              "percentile_from": 36.0,
+              "percentile_to": 69.5
+            },
+            {
+              "territory_id": "CL-10207",
+              "commune_name": "Queilén",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 31.97,
+              "score_to": 14.8,
+              "score_delta": -17.17,
+              "percentile_from": 27.6,
+              "percentile_to": 1.2
+            },
+            {
+              "territory_id": "CL-12101",
+              "commune_name": "Punta Arenas",
+              "from": "Medio",
+              "to": "Alto",
+              "score_from": 51.58,
+              "score_to": 68.59,
+              "score_delta": 17.01,
+              "percentile_from": 65.7,
+              "percentile_to": 83.1
+            },
+            {
+              "territory_id": "CL-03103",
+              "commune_name": "Tierra Amarilla",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 51.0,
+              "score_to": 34.38,
+              "score_delta": -16.62,
+              "percentile_from": 65.1,
+              "percentile_to": 39.5
+            }
+          ]
+        },
+        "2024->2025": {
+          "common_communes": 345,
+          "band_changes": 120,
+          "band_churn_pct": 34.78,
+          "small_move_changes_lt3": 8,
+          "small_move_share_of_changes_pct": 6.67,
+          "counter_direction_changes": 0,
+          "large_score_moves_ge5": 169,
+          "large_move_band_change_rate_pct": 57.4,
+          "score_correlation": 0.9176,
+          "percentile_correlation": 0.8675,
+          "median_abs_percentile_move": 7.3,
+          "p90_abs_percentile_move": 25.8,
+          "largest_band_changes": [
+            {
+              "territory_id": "CL-08105",
+              "commune_name": "Hualqui",
+              "from": "Muy bajo",
+              "to": "Medio",
+              "score_from": 23.86,
+              "score_to": 54.22,
+              "score_delta": 30.36,
+              "percentile_from": 13.1,
+              "percentile_to": 70.6
+            },
+            {
+              "territory_id": "CL-05803",
+              "commune_name": "Olmué",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 23.2,
+              "score_to": 44.99,
+              "score_delta": 21.79,
+              "percentile_from": 11.0,
+              "percentile_to": 59.6
+            },
+            {
+              "territory_id": "CL-09107",
+              "commune_name": "Gorbea",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 24.17,
+              "score_to": 45.32,
+              "score_delta": 21.15,
+              "percentile_from": 14.5,
+              "percentile_to": 60.5
+            },
+            {
+              "territory_id": "CL-05705",
+              "commune_name": "Putaendo",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 48.85,
+              "score_to": 29.26,
+              "score_delta": -19.59,
+              "percentile_from": 65.1,
+              "percentile_to": 25.9
+            },
+            {
+              "territory_id": "CL-16108",
+              "commune_name": "San Ignacio",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 19.83,
+              "score_to": 38.99,
+              "score_delta": 19.16,
+              "percentile_from": 6.7,
+              "percentile_to": 48.8
+            },
+            {
+              "territory_id": "CL-09108",
+              "commune_name": "Lautaro",
+              "from": "Alto",
+              "to": "Medio",
+              "score_from": 70.77,
+              "score_to": 51.77,
+              "score_delta": -19.0,
+              "percentile_from": 85.8,
+              "percentile_to": 69.5
+            },
+            {
+              "territory_id": "CL-04305",
+              "commune_name": "Río Hurtado",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 41.32,
+              "score_to": 22.52,
+              "score_delta": -18.8,
+              "percentile_from": 53.2,
+              "percentile_to": 9.9
+            },
+            {
+              "territory_id": "CL-01405",
+              "commune_name": "Pica",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 22.77,
+              "score_to": 40.58,
+              "score_delta": 17.81,
+              "percentile_from": 10.5,
+              "percentile_to": 52.0
+            },
+            {
+              "territory_id": "CL-15202",
+              "commune_name": "General Lagos",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 30.83,
+              "score_to": 13.28,
+              "score_delta": -17.55,
+              "percentile_from": 28.8,
+              "percentile_to": 0.3
+            },
+            {
+              "territory_id": "CL-13402",
+              "commune_name": "Buin",
+              "from": "Medio",
+              "to": "Muy alto",
+              "score_from": 58.39,
+              "score_to": 75.85,
+              "score_delta": 17.46,
+              "percentile_from": 74.7,
+              "percentile_to": 90.1
+            },
+            {
+              "territory_id": "CL-08304",
+              "commune_name": "Laja",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 29.05,
+              "score_to": 46.38,
+              "score_delta": 17.33,
+              "percentile_from": 23.8,
+              "percentile_to": 62.8
+            },
+            {
+              "territory_id": "CL-16107",
+              "commune_name": "Quillón",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 51.2,
+              "score_to": 34.2,
+              "score_delta": -17.0,
+              "percentile_from": 68.0,
+              "percentile_to": 37.5
+            },
+            {
+              "territory_id": "CL-09112",
+              "commune_name": "Padre Las Casas",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 60.38,
+              "score_to": 43.77,
+              "score_delta": -16.61,
+              "percentile_from": 76.7,
+              "percentile_to": 57.0
+            },
+            {
+              "territory_id": "CL-05802",
+              "commune_name": "Limache",
+              "from": "Medio",
+              "to": "Alto",
+              "score_from": 53.52,
+              "score_to": 69.86,
+              "score_delta": 16.34,
+              "percentile_from": 69.8,
+              "percentile_to": 82.3
+            },
+            {
+              "territory_id": "CL-09114",
+              "commune_name": "Pitrufquén",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 34.26,
+              "score_to": 50.48,
+              "score_delta": 16.22,
+              "percentile_from": 39.0,
+              "percentile_to": 67.7
+            }
+          ]
+        }
+      }
+    },
+    "one_point_hysteresis": {
+      "name": "one_point_hysteresis",
+      "mean_band_churn_pct": 33.05,
+      "mean_small_move_share_of_changes_pct": 4.05,
+      "counter_direction_changes_total": 0,
+      "mean_large_move_band_change_rate_pct": 52.49,
+      "year_prevalence_pct": {
+        "2023": {
+          "Muy bajo": 17.1,
+          "Bajo": 42.32,
+          "Medio": 17.68,
+          "Alto": 7.25,
+          "Muy alto": 15.65
+        },
+        "2024": {
+          "Muy bajo": 18.55,
+          "Bajo": 41.16,
+          "Medio": 17.97,
+          "Alto": 7.83,
+          "Muy alto": 14.49
+        },
+        "2025": {
+          "Muy bajo": 19.42,
+          "Bajo": 41.45,
+          "Medio": 14.49,
+          "Alto": 7.83,
+          "Muy alto": 16.81
+        }
+      },
+      "prevalence_drift": {
+        "Muy bajo": {
+          "min_pct": 17.1,
+          "max_pct": 19.42,
+          "range_pp": 2.32
+        },
+        "Bajo": {
+          "min_pct": 41.16,
+          "max_pct": 42.32,
+          "range_pp": 1.16
+        },
+        "Medio": {
+          "min_pct": 14.49,
+          "max_pct": 17.97,
+          "range_pp": 3.48
+        },
+        "Alto": {
+          "min_pct": 7.25,
+          "max_pct": 7.83,
+          "range_pp": 0.58
+        },
+        "Muy alto": {
+          "min_pct": 14.49,
+          "max_pct": 16.81,
+          "range_pp": 2.32
+        }
+      },
+      "transitions": {
+        "2023->2024": {
+          "common_communes": 345,
+          "band_changes": 127,
+          "band_churn_pct": 36.81,
+          "small_move_changes_lt3": 4,
+          "small_move_share_of_changes_pct": 3.15,
+          "counter_direction_changes": 0,
+          "large_score_moves_ge5": 199,
+          "large_move_band_change_rate_pct": 55.28,
+          "score_correlation": 0.9037,
+          "percentile_correlation": 0.8553,
+          "median_abs_percentile_move": 8.7,
+          "p90_abs_percentile_move": 26.8,
+          "largest_band_changes": [
+            {
+              "territory_id": "CL-07303",
+              "commune_name": "Licantén",
+              "from": "Muy bajo",
+              "to": "Medio",
+              "score_from": 23.12,
+              "score_to": 47.07,
+              "score_delta": 23.95,
+              "percentile_from": 11.3,
+              "percentile_to": 63.4
+            },
+            {
+              "territory_id": "CL-07408",
+              "commune_name": "Yerbas Buenas",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 42.22,
+              "score_to": 18.6,
+              "score_delta": -23.62,
+              "percentile_from": 53.8,
+              "percentile_to": 4.1
+            },
+            {
+              "territory_id": "CL-08305",
+              "commune_name": "Mulchén",
+              "from": "Alto",
+              "to": "Medio",
+              "score_from": 70.1,
+              "score_to": 46.73,
+              "score_delta": -23.37,
+              "percentile_from": 83.4,
+              "percentile_to": 62.5
+            },
+            {
+              "territory_id": "CL-09117",
+              "commune_name": "Teodoro Schmidt",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 22.4,
+              "score_to": 44.2,
+              "score_delta": 21.8,
+              "percentile_from": 9.9,
+              "percentile_to": 57.8
+            },
+            {
+              "territory_id": "CL-01403",
+              "commune_name": "Colchane",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 60.4,
+              "score_to": 40.68,
+              "score_delta": -19.72,
+              "percentile_from": 75.3,
+              "percentile_to": 52.3
+            },
+            {
+              "territory_id": "CL-05304",
+              "commune_name": "San Esteban",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 44.0,
+              "score_to": 24.59,
+              "score_delta": -19.41,
+              "percentile_from": 57.3,
+              "percentile_to": 16.3
+            },
+            {
+              "territory_id": "CL-03304",
+              "commune_name": "Huasco",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 45.93,
+              "score_to": 26.85,
+              "score_delta": -19.08,
+              "percentile_from": 60.2,
+              "percentile_to": 19.8
+            },
+            {
+              "territory_id": "CL-08109",
+              "commune_name": "Santa Juana",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 39.05,
+              "score_to": 20.99,
+              "score_delta": -18.06,
+              "percentile_from": 44.5,
+              "percentile_to": 9.0
+            },
+            {
+              "territory_id": "CL-14106",
+              "commune_name": "Mariquina",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 46.26,
+              "score_to": 28.27,
+              "score_delta": -17.99,
+              "percentile_from": 60.8,
+              "percentile_to": 21.8
+            },
+            {
+              "territory_id": "CL-16105",
+              "commune_name": "Pemuco",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 37.99,
+              "score_to": 20.35,
+              "score_delta": -17.64,
+              "percentile_from": 41.6,
+              "percentile_to": 7.8
+            },
+            {
+              "territory_id": "CL-13603",
+              "commune_name": "Isla de Maipo",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 35.79,
+              "score_to": 53.32,
+              "score_delta": 17.53,
+              "percentile_from": 36.0,
+              "percentile_to": 69.5
+            },
+            {
+              "territory_id": "CL-10207",
+              "commune_name": "Queilén",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 31.97,
+              "score_to": 14.8,
+              "score_delta": -17.17,
+              "percentile_from": 27.6,
+              "percentile_to": 1.2
+            },
+            {
+              "territory_id": "CL-12101",
+              "commune_name": "Punta Arenas",
+              "from": "Medio",
+              "to": "Alto",
+              "score_from": 51.58,
+              "score_to": 68.59,
+              "score_delta": 17.01,
+              "percentile_from": 65.7,
+              "percentile_to": 83.1
+            },
+            {
+              "territory_id": "CL-03103",
+              "commune_name": "Tierra Amarilla",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 51.0,
+              "score_to": 34.38,
+              "score_delta": -16.62,
+              "percentile_from": 65.1,
+              "percentile_to": 39.5
+            },
+            {
+              "territory_id": "CL-06306",
+              "commune_name": "Palmilla",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 33.1,
+              "score_to": 16.86,
+              "score_delta": -16.24,
+              "percentile_from": 29.7,
+              "percentile_to": 2.9
+            }
+          ]
+        },
+        "2024->2025": {
+          "common_communes": 345,
+          "band_changes": 101,
+          "band_churn_pct": 29.28,
+          "small_move_changes_lt3": 5,
+          "small_move_share_of_changes_pct": 4.95,
+          "counter_direction_changes": 0,
+          "large_score_moves_ge5": 169,
+          "large_move_band_change_rate_pct": 49.7,
+          "score_correlation": 0.9176,
+          "percentile_correlation": 0.8675,
+          "median_abs_percentile_move": 7.3,
+          "p90_abs_percentile_move": 25.8,
+          "largest_band_changes": [
+            {
+              "territory_id": "CL-08105",
+              "commune_name": "Hualqui",
+              "from": "Muy bajo",
+              "to": "Medio",
+              "score_from": 23.86,
+              "score_to": 54.22,
+              "score_delta": 30.36,
+              "percentile_from": 13.1,
+              "percentile_to": 70.6
+            },
+            {
+              "territory_id": "CL-05803",
+              "commune_name": "Olmué",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 23.2,
+              "score_to": 44.99,
+              "score_delta": 21.79,
+              "percentile_from": 11.0,
+              "percentile_to": 59.6
+            },
+            {
+              "territory_id": "CL-09107",
+              "commune_name": "Gorbea",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 24.17,
+              "score_to": 45.32,
+              "score_delta": 21.15,
+              "percentile_from": 14.5,
+              "percentile_to": 60.5
+            },
+            {
+              "territory_id": "CL-05705",
+              "commune_name": "Putaendo",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 48.85,
+              "score_to": 29.26,
+              "score_delta": -19.59,
+              "percentile_from": 65.1,
+              "percentile_to": 25.9
+            },
+            {
+              "territory_id": "CL-16108",
+              "commune_name": "San Ignacio",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 19.83,
+              "score_to": 38.99,
+              "score_delta": 19.16,
+              "percentile_from": 6.7,
+              "percentile_to": 48.8
+            },
+            {
+              "territory_id": "CL-09108",
+              "commune_name": "Lautaro",
+              "from": "Alto",
+              "to": "Medio",
+              "score_from": 70.77,
+              "score_to": 51.77,
+              "score_delta": -19.0,
+              "percentile_from": 85.8,
+              "percentile_to": 69.5
+            },
+            {
+              "territory_id": "CL-04305",
+              "commune_name": "Río Hurtado",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 41.32,
+              "score_to": 22.52,
+              "score_delta": -18.8,
+              "percentile_from": 53.2,
+              "percentile_to": 9.9
+            },
+            {
+              "territory_id": "CL-01405",
+              "commune_name": "Pica",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 22.77,
+              "score_to": 40.58,
+              "score_delta": 17.81,
+              "percentile_from": 10.5,
+              "percentile_to": 52.0
+            },
+            {
+              "territory_id": "CL-15202",
+              "commune_name": "General Lagos",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 30.83,
+              "score_to": 13.28,
+              "score_delta": -17.55,
+              "percentile_from": 28.8,
+              "percentile_to": 0.3
+            },
+            {
+              "territory_id": "CL-13402",
+              "commune_name": "Buin",
+              "from": "Medio",
+              "to": "Muy alto",
+              "score_from": 58.39,
+              "score_to": 75.85,
+              "score_delta": 17.46,
+              "percentile_from": 74.7,
+              "percentile_to": 90.1
+            },
+            {
+              "territory_id": "CL-16107",
+              "commune_name": "Quillón",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 51.2,
+              "score_to": 34.2,
+              "score_delta": -17.0,
+              "percentile_from": 68.0,
+              "percentile_to": 37.5
+            },
+            {
+              "territory_id": "CL-09112",
+              "commune_name": "Padre Las Casas",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 60.38,
+              "score_to": 43.77,
+              "score_delta": -16.61,
+              "percentile_from": 76.7,
+              "percentile_to": 57.0
+            },
+            {
+              "territory_id": "CL-05802",
+              "commune_name": "Limache",
+              "from": "Medio",
+              "to": "Alto",
+              "score_from": 53.52,
+              "score_to": 69.86,
+              "score_delta": 16.34,
+              "percentile_from": 69.8,
+              "percentile_to": 82.3
+            },
+            {
+              "territory_id": "CL-09114",
+              "commune_name": "Pitrufquén",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 34.26,
+              "score_to": 50.48,
+              "score_delta": 16.22,
+              "percentile_from": 39.0,
+              "percentile_to": 67.7
+            },
+            {
+              "territory_id": "CL-13302",
+              "commune_name": "Lampa",
+              "from": "Medio",
+              "to": "Muy alto",
+              "score_from": 56.13,
+              "score_to": 72.16,
+              "score_delta": 16.03,
+              "percentile_from": 72.1,
+              "percentile_to": 85.2
+            }
+          ]
+        }
+      },
+      "stateful": true,
+      "margin_points": 1.0
+    },
+    "relative_rank_bands": {
+      "name": "relative_rank_bands",
+      "mean_band_churn_pct": 37.53,
+      "mean_small_move_share_of_changes_pct": 6.35,
+      "counter_direction_changes_total": 2,
+      "mean_large_move_band_change_rate_pct": 58.89,
+      "year_prevalence_pct": {
+        "2023": {
+          "Muy bajo": 19.71,
+          "Bajo": 40.87,
+          "Medio": 14.49,
+          "Alto": 7.54,
+          "Muy alto": 17.39
+        },
+        "2024": {
+          "Muy bajo": 19.71,
+          "Bajo": 40.87,
+          "Medio": 14.49,
+          "Alto": 7.54,
+          "Muy alto": 17.39
+        },
+        "2025": {
+          "Muy bajo": 19.71,
+          "Bajo": 40.87,
+          "Medio": 14.49,
+          "Alto": 7.54,
+          "Muy alto": 17.39
+        }
+      },
+      "prevalence_drift": {
+        "Muy bajo": {
+          "min_pct": 19.71,
+          "max_pct": 19.71,
+          "range_pp": 0.0
+        },
+        "Bajo": {
+          "min_pct": 40.87,
+          "max_pct": 40.87,
+          "range_pp": 0.0
+        },
+        "Medio": {
+          "min_pct": 14.49,
+          "max_pct": 14.49,
+          "range_pp": 0.0
+        },
+        "Alto": {
+          "min_pct": 7.54,
+          "max_pct": 7.54,
+          "range_pp": 0.0
+        },
+        "Muy alto": {
+          "min_pct": 17.39,
+          "max_pct": 17.39,
+          "range_pp": 0.0
+        }
+      },
+      "transitions": {
+        "2023->2024": {
+          "common_communes": 345,
+          "band_changes": 136,
+          "band_churn_pct": 39.42,
+          "small_move_changes_lt3": 4,
+          "small_move_share_of_changes_pct": 2.94,
+          "counter_direction_changes": 0,
+          "large_score_moves_ge5": 199,
+          "large_move_band_change_rate_pct": 59.8,
+          "score_correlation": 0.9037,
+          "percentile_correlation": 0.8553,
+          "median_abs_percentile_move": 8.7,
+          "p90_abs_percentile_move": 26.8,
+          "largest_band_changes": [
+            {
+              "territory_id": "CL-07303",
+              "commune_name": "Licantén",
+              "from": "Muy bajo",
+              "to": "Medio",
+              "score_from": 23.12,
+              "score_to": 47.07,
+              "score_delta": 23.95,
+              "percentile_from": 11.3,
+              "percentile_to": 63.4
+            },
+            {
+              "territory_id": "CL-07408",
+              "commune_name": "Yerbas Buenas",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 42.22,
+              "score_to": 18.6,
+              "score_delta": -23.62,
+              "percentile_from": 53.8,
+              "percentile_to": 4.1
+            },
+            {
+              "territory_id": "CL-08305",
+              "commune_name": "Mulchén",
+              "from": "Muy alto",
+              "to": "Medio",
+              "score_from": 70.1,
+              "score_to": 46.73,
+              "score_delta": -23.37,
+              "percentile_from": 83.4,
+              "percentile_to": 62.5
+            },
+            {
+              "territory_id": "CL-09117",
+              "commune_name": "Teodoro Schmidt",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 22.4,
+              "score_to": 44.2,
+              "score_delta": 21.8,
+              "percentile_from": 9.9,
+              "percentile_to": 57.8
+            },
+            {
+              "territory_id": "CL-01403",
+              "commune_name": "Colchane",
+              "from": "Alto",
+              "to": "Bajo",
+              "score_from": 60.4,
+              "score_to": 40.68,
+              "score_delta": -19.72,
+              "percentile_from": 75.3,
+              "percentile_to": 52.3
+            },
+            {
+              "territory_id": "CL-05304",
+              "commune_name": "San Esteban",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 44.0,
+              "score_to": 24.59,
+              "score_delta": -19.41,
+              "percentile_from": 57.3,
+              "percentile_to": 16.3
+            },
+            {
+              "territory_id": "CL-05704",
+              "commune_name": "Panquehue",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 44.73,
+              "score_to": 26.52,
+              "score_delta": -18.21,
+              "percentile_from": 58.1,
+              "percentile_to": 18.9
+            },
+            {
+              "territory_id": "CL-08109",
+              "commune_name": "Santa Juana",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 39.05,
+              "score_to": 20.99,
+              "score_delta": -18.06,
+              "percentile_from": 44.5,
+              "percentile_to": 9.0
+            },
+            {
+              "territory_id": "CL-14106",
+              "commune_name": "Mariquina",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 46.26,
+              "score_to": 28.27,
+              "score_delta": -17.99,
+              "percentile_from": 60.8,
+              "percentile_to": 21.8
+            },
+            {
+              "territory_id": "CL-16105",
+              "commune_name": "Pemuco",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 37.99,
+              "score_to": 20.35,
+              "score_delta": -17.64,
+              "percentile_from": 41.6,
+              "percentile_to": 7.8
+            },
+            {
+              "territory_id": "CL-13603",
+              "commune_name": "Isla de Maipo",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 35.79,
+              "score_to": 53.32,
+              "score_delta": 17.53,
+              "percentile_from": 36.0,
+              "percentile_to": 69.5
+            },
+            {
+              "territory_id": "CL-10207",
+              "commune_name": "Queilén",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 31.97,
+              "score_to": 14.8,
+              "score_delta": -17.17,
+              "percentile_from": 27.6,
+              "percentile_to": 1.2
+            },
+            {
+              "territory_id": "CL-12101",
+              "commune_name": "Punta Arenas",
+              "from": "Medio",
+              "to": "Muy alto",
+              "score_from": 51.58,
+              "score_to": 68.59,
+              "score_delta": 17.01,
+              "percentile_from": 65.7,
+              "percentile_to": 83.1
+            },
+            {
+              "territory_id": "CL-03103",
+              "commune_name": "Tierra Amarilla",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 51.0,
+              "score_to": 34.38,
+              "score_delta": -16.62,
+              "percentile_from": 65.1,
+              "percentile_to": 39.5
+            },
+            {
+              "territory_id": "CL-06306",
+              "commune_name": "Palmilla",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 33.1,
+              "score_to": 16.86,
+              "score_delta": -16.24,
+              "percentile_from": 29.7,
+              "percentile_to": 2.9
+            }
+          ]
+        },
+        "2024->2025": {
+          "common_communes": 345,
+          "band_changes": 123,
+          "band_churn_pct": 35.65,
+          "small_move_changes_lt3": 12,
+          "small_move_share_of_changes_pct": 9.76,
+          "counter_direction_changes": 2,
+          "large_score_moves_ge5": 169,
+          "large_move_band_change_rate_pct": 57.99,
+          "score_correlation": 0.9176,
+          "percentile_correlation": 0.8675,
+          "median_abs_percentile_move": 7.3,
+          "p90_abs_percentile_move": 25.8,
+          "largest_band_changes": [
+            {
+              "territory_id": "CL-08105",
+              "commune_name": "Hualqui",
+              "from": "Muy bajo",
+              "to": "Medio",
+              "score_from": 23.86,
+              "score_to": 54.22,
+              "score_delta": 30.36,
+              "percentile_from": 13.1,
+              "percentile_to": 70.6
+            },
+            {
+              "territory_id": "CL-05803",
+              "commune_name": "Olmué",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 23.2,
+              "score_to": 44.99,
+              "score_delta": 21.79,
+              "percentile_from": 11.0,
+              "percentile_to": 59.6
+            },
+            {
+              "territory_id": "CL-09107",
+              "commune_name": "Gorbea",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 24.17,
+              "score_to": 45.32,
+              "score_delta": 21.15,
+              "percentile_from": 14.5,
+              "percentile_to": 60.5
+            },
+            {
+              "territory_id": "CL-05705",
+              "commune_name": "Putaendo",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 48.85,
+              "score_to": 29.26,
+              "score_delta": -19.59,
+              "percentile_from": 65.1,
+              "percentile_to": 25.9
+            },
+            {
+              "territory_id": "CL-16108",
+              "commune_name": "San Ignacio",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 19.83,
+              "score_to": 38.99,
+              "score_delta": 19.16,
+              "percentile_from": 6.7,
+              "percentile_to": 48.8
+            },
+            {
+              "territory_id": "CL-09108",
+              "commune_name": "Lautaro",
+              "from": "Muy alto",
+              "to": "Medio",
+              "score_from": 70.77,
+              "score_to": 51.77,
+              "score_delta": -19.0,
+              "percentile_from": 85.8,
+              "percentile_to": 69.5
+            },
+            {
+              "territory_id": "CL-04305",
+              "commune_name": "Río Hurtado",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 41.32,
+              "score_to": 22.52,
+              "score_delta": -18.8,
+              "percentile_from": 53.2,
+              "percentile_to": 9.9
+            },
+            {
+              "territory_id": "CL-01405",
+              "commune_name": "Pica",
+              "from": "Muy bajo",
+              "to": "Bajo",
+              "score_from": 22.77,
+              "score_to": 40.58,
+              "score_delta": 17.81,
+              "percentile_from": 10.5,
+              "percentile_to": 52.0
+            },
+            {
+              "territory_id": "CL-15202",
+              "commune_name": "General Lagos",
+              "from": "Bajo",
+              "to": "Muy bajo",
+              "score_from": 30.83,
+              "score_to": 13.28,
+              "score_delta": -17.55,
+              "percentile_from": 28.8,
+              "percentile_to": 0.3
+            },
+            {
+              "territory_id": "CL-13402",
+              "commune_name": "Buin",
+              "from": "Medio",
+              "to": "Muy alto",
+              "score_from": 58.39,
+              "score_to": 75.85,
+              "score_delta": 17.46,
+              "percentile_from": 74.7,
+              "percentile_to": 90.1
+            },
+            {
+              "territory_id": "CL-08304",
+              "commune_name": "Laja",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 29.05,
+              "score_to": 46.38,
+              "score_delta": 17.33,
+              "percentile_from": 23.8,
+              "percentile_to": 62.8
+            },
+            {
+              "territory_id": "CL-16107",
+              "commune_name": "Quillón",
+              "from": "Medio",
+              "to": "Bajo",
+              "score_from": 51.2,
+              "score_to": 34.2,
+              "score_delta": -17.0,
+              "percentile_from": 68.0,
+              "percentile_to": 37.5
+            },
+            {
+              "territory_id": "CL-09112",
+              "commune_name": "Padre Las Casas",
+              "from": "Alto",
+              "to": "Bajo",
+              "score_from": 60.38,
+              "score_to": 43.77,
+              "score_delta": -16.61,
+              "percentile_from": 76.7,
+              "percentile_to": 57.0
+            },
+            {
+              "territory_id": "CL-05802",
+              "commune_name": "Limache",
+              "from": "Medio",
+              "to": "Alto",
+              "score_from": 53.52,
+              "score_to": 69.86,
+              "score_delta": 16.34,
+              "percentile_from": 69.8,
+              "percentile_to": 82.3
+            },
+            {
+              "territory_id": "CL-09114",
+              "commune_name": "Pitrufquén",
+              "from": "Bajo",
+              "to": "Medio",
+              "score_from": 34.26,
+              "score_to": 50.48,
+              "score_delta": 16.22,
+              "percentile_from": 39.0,
+              "percentile_to": 67.7
+            }
+          ]
+        }
+      },
+      "relative_to_other_communes": true,
+      "prevalence_fixed_to_2025": true
+    },
+    "score_plus_national_percentile": {
+      "categorical_primary_churn": 0,
+      "primary_outputs": [
+        "score_0_100",
+        "national_percentile_0_100"
+      ],
+      "secondary_output": "diagnostic_band_with_borderline_warning",
+      "percentile_transitions": {
+        "2023->2024": {
+          "communes": 345,
+          "correlation": 0.8553,
+          "median_abs_move": 8.7,
+          "p90_abs_move": 26.8,
+          "within_5_points_pct": 35.07,
+          "within_10_points_pct": 56.23
+        },
+        "2024->2025": {
+          "communes": 345,
+          "correlation": 0.8675,
+          "median_abs_move": 7.3,
+          "p90_abs_move": 25.8,
+          "within_5_points_pct": 35.65,
+          "within_10_points_pct": 60.58
+        }
+      },
+      "path_dependent": false,
+      "relative_context_explicit": true
+    }
+  },
+  "decision": "PROMOTE_SCORE_PERCENTILE_PRIMARY_KEEP_BAND_SECONDARY",
+  "decision_rationale": [
+    "El score RC1 ya está congelado y validado; no necesita suavizamiento adicional.",
+    "La histéresis reduce churn, pero introduce dependencia del estado previo y puede retrasar una reclasificación real.",
+    "Las bandas por ranking estabilizan la prevalencia, pero convierten una lectura absoluta de amenaza en una clasificación relativa y pueden cambiar aunque el score de una comuna no empeore.",
+    "Score + percentil nacional preserva magnitud continua y posición relativa sin crear una segunda fórmula ni una regla categórica primaria. La banda queda como apoyo de lectura, con alerta de frontera."
+  ],
+  "promotion_gate": {
+    "score_primary_ready": true,
+    "national_percentile_ready": true,
+    "band_secondary_ready": true,
+    "band_primary_ready": false,
+    "full_v11_replacement_recommended": true,
+    "replacement_scope": "score_and_percentile_primary_band_secondary"
+  }
+}
