@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0-rc.1",
+  "status": "release_candidate_validation",
+  "matched_communes": 345,
+  "formula_freeze": {
+    "baseline_version": "1.1.0-candidate.3",
+    "max_abs_score_difference": 0.0,
+    "provisional_level_differences": 0,
+    "score_identical_to_candidate3": true
+  },
+  "score": {
+    "score_correlation_v1": 0.9907,
+    "rank_correlation_v1": 0.9914,
+    "population_bias_v1": 0.8498,
+    "population_bias_rc1": 0.8238,
+    "population_bias_reduction": 0.0261
+  },
+  "confidence": {
+    "baseline_candidate3_corr_log_population": 0.9413,
+    "rc1_corr_log_population": -0.1025,
+    "rc1_corr_stability": 0.9998,
+    "min": 82.3,
+    "median": 87.6,
+    "mean": 87.5,
+    "max": 90.3,
+    "sd": 1.43,
+    "levels": {
+      "Baja": 57,
+      "Media": 240,
+      "Alta": 48
+    },
+    "denominator_reliability_weight": 0.0,
+    "interpretation": "El denominador sigue visible y modula el peso de la tasa, pero deja de entrar al compuesto de confianza para evitar doble penalización y efecto proxy de población."
+  },
+  "bands": {
+    "provisional_changes_vs_v1": 30,
+    "borderline_communes": 41,
+    "threshold_only_or_direction_inversion_changes": 10,
+    "direction_coherent_changes": 20,
+    "mean_historical_churn_pct": 38.12,
+    "historical_churn": {
+      "2023->2024": 41.45,
+      "2024->2025": 34.78
+    },
+    "interpretation": "La banda sigue siendo diagnóstica: un recambio anual alto y cambios producidos por recalibración de cortes impiden promoverla como clasificación oficial."
+  },
+  "gates": {
+    "score_rc_ready": true,
+    "confidence_rc_ready": true,
+    "bands_rc_ready": false,
+    "full_replacement_ready": false
+  },
+  "decision": "PROMOTE_SCORE_AND_CONFIDENCE_TO_RC1_KEEP_BANDS_DIAGNOSTIC"
+}
