@@ -57,7 +57,8 @@ jobs:
           for f in \
             cead_update_manifest.json \
             cead_annual_master_v4.jsonl \
-            cead_official_secondary_control.jsonl; do
+            cead_official_secondary_control.jsonl \
+            censo2024_population_commune.json; do
               git show "origin/radar-data:data/processed/$f" > "data/processed/$f" 2>/dev/null || rm -f "data/processed/$f"
           done
           rm -f data/processed/cead_direct_annual_cache.jsonl
