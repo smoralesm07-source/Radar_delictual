@@ -22,9 +22,10 @@ def row(commune, year, value, source_tier="mirror_of_primary"):
 
 def test_rc1_freezes_score_formula_and_removes_denominator_from_confidence():
     cfg = load_candidate_config()
-    assert cfg["version"] == "1.1.0-rc.1"
-    assert cfg["status"] == "release_candidate"
+    assert cfg["version"] == "1.1.0"
+    assert cfg["status"] == "production"
     assert cfg["rc1_policy"]["score_formula_frozen"] is True
+    assert cfg["rc1_policy"]["full_replacement_status"] == "promoted_to_production"
     assert cfg["presentation_policy"]["primary_outputs"] == ["score", "national_percentile"]
     assert cfg["presentation_policy"]["band_role"] == "secondary_context"
     assert cfg["feature_weights"] == {

@@ -1,8 +1,8 @@
 {
-  "version": "1.1.0-rc.1",
-  "status": "release_candidate",
+  "version": "1.1.0",
+  "status": "production",
   "base_score_version": "1.0.0",
-  "name": "Componente criminógeno CEAD · IGR v1.1 RC1",
+  "name": "Componente criminógeno CEAD · IGR",
   "score_range": [
     0,
     100
@@ -40,14 +40,15 @@
     "confidence_revision": "Se elimina denominator_reliability del compuesto de confianza porque ya contrae el peso de la tasa en el score y su inclusión hacía que confianza funcionara principalmente como proxy del tamaño poblacional.",
     "denominator_reliability_status": "diagnostic_only",
     "bands_status": "secondary_context",
-    "full_replacement_status": "ready_pending_explicit_promotion",
+    "full_replacement_status": "promoted_to_production",
     "band_strategy_validation": {
       "fixed_thresholds_mean_churn_pct": 38.12,
       "one_point_hysteresis_mean_churn_pct": 33.05,
       "relative_rank_bands_mean_churn_pct": 37.53,
       "decision": "PROMOTE_SCORE_PERCENTILE_PRIMARY_KEEP_BAND_SECONDARY",
       "note": "La histéresis reduce churn pero introduce dependencia del estado previo; las bandas relativas casi no reducen churn y pueden moverse en dirección opuesta al score. Se recomienda score continuo + percentil nacional como lectura primaria."
-    }
+    },
+    "promoted_at": "2026-09-09"
   },
   "level_policy": {
     "mode": "score_percentile_primary_band_secondary",
@@ -97,7 +98,7 @@
       },
       "role": "secondary_context"
     },
-    "note": "El score continuo y el percentil nacional son las salidas primarias de lectura RC1. El campo level conserva 25/45/65/80 sólo para comparar con v1.0. provisional_level usa los cortes recalibrados y queda como contexto secundario, con alerta de frontera."
+    "note": "El score continuo y el percentil nacional son las salidas primarias del IGR. La banda recalibrada queda como contexto secundario y no sustituye la lectura continua."
   },
   "source_quality": {
     "primary_direct": 1.0,
@@ -135,7 +136,7 @@
     "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). En RC1 afecta la intensidad por contracción del peso de tasa, pero se excluye del compuesto de confianza para no doble penalizar comunas pequeñas ni convertir confianza en proxy de población.",
     "methodological_coverage": "Se conserva además la cobertura metodológica comparable con v1.0, separada explícitamente de confianza.",
     "level_calibration": "La evaluación 2023-2025 comparó umbrales fijos, histéresis y bandas relativas. Ninguna alternativa categórica mejoró suficientemente la estabilidad sin introducir dependencia temporal o relatividad. Por ello el score continuo y el percentil nacional pasan a ser la lectura primaria RC1; la banda queda como apoyo secundario.",
-    "interpretation": "IGR v1.1 RC1 en validación final. El score está congelado respecto de candidate.3 y la confianza ya fue corregida. La lectura primaria recomendada es score + percentil nacional; la banda es secundaria. Aún no sustituye el IGR v1.0 vigente hasta la promoción explícita del release."
+    "interpretation": "IGR vigente. La lectura primaria combina score continuo 0-100 y percentil nacional; la confianza informa robustez de la estimación y la banda es un apoyo secundario. El IGR describe amenaza territorial comunal y no se atribuye a entidades."
   },
   "temporal_anomaly_reliability": {
     "method": "event_support_shrinkage",
@@ -144,7 +145,7 @@
     "note": "El soporte es la suma de casos observados en la historia de la comuna más el corte actual. La contracción evita que variaciones de uno o pocos casos en series escasas dominen la anomalía."
   },
   "presentation_policy": {
-    "status": "rc1_primary_reading",
+    "status": "production_primary_reading",
     "primary_outputs": [
       "score",
       "national_percentile"
