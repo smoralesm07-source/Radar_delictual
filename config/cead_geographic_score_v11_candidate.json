@@ -1,0 +1,75 @@
+{
+  "version": "1.1.0-candidate.2",
+  "status": "experimental",
+  "base_score_version": "1.0.0",
+  "name": "Componente criminógeno CEAD · candidato IGR v1.1",
+  "score_range": [0, 100],
+  "feature_weights": {
+    "intensity": 0.40,
+    "persistence": 0.25,
+    "trend": 0.20,
+    "temporal_anomaly": 0.15
+  },
+  "intensity_mix": {
+    "volume_percentile": 0.60,
+    "rate_per_100k_percentile": 0.40,
+    "rate_reliability": {
+      "method": "population_shrinkage",
+      "population_scale": 25000,
+      "formula": "r = población / (población + 25000); peso_tasa_efectivo = 0.40*r; el peso no confiable vuelve a volumen"
+    }
+  },
+  "confidence_weights": {
+    "thematic_coverage": 0.30,
+    "temporal_coverage": 0.20,
+    "source_quality": 0.20,
+    "stability": 0.20,
+    "denominator_reliability": 0.10
+  },
+  "confidence_bands": {
+    "high_min": 80,
+    "medium_min": 70,
+    "note": "Bandas experimentales de lectura; no son umbrales de riesgo ni modifican el IGR."
+  },
+  "level_policy": {
+    "mode": "legacy_thresholds_for_comparison_only",
+    "note": "Los cortes 25/45/65/80 se conservan únicamente para comparar con v1.0. Deben recalibrarse antes de cualquier promoción del candidato."
+  },
+  "source_quality": {
+    "primary_direct": 1.00,
+    "primary_direct_cached": 0.95,
+    "external_cead_data_pipeline": 0.90,
+    "mirror_of_primary": 0.85,
+    "official_secondary": 0.75,
+    "quarantined": 0.35,
+    "unknown": 0.50
+  },
+  "semantic_precision": {
+    "default_component": 1.00,
+    "predicate_family_fallback": 0.75
+  },
+  "stability": {
+    "penalty_per_sd_point": 5.0,
+    "minimum_variants": 3
+  },
+  "population": {
+    "reference_year": 2024,
+    "metric": "poblacion_censada",
+    "rate_scale": 100000,
+    "bridge_url": "https://raw.githubusercontent.com/bastianolea/censo_poblacion_consultar/master/datos/censo_2024_tidy.csv",
+    "ultimate_source": "INE Censo de Población y Vivienda 2024",
+    "bridge_note": "Puente público derivado de la base oficial del Censo 2024. Se usa solo en el candidato para construir la tasa comunal; no reemplaza la fuente CEAD."
+  },
+  "methodology": {
+    "intensity": "Combina materialidad absoluta y tasa por 100.000 habitantes. El peso máximo de tasa es 40%, pero se contrae en comunas pequeñas mediante r=población/(población+25.000); la parte no confiable vuelve al percentil de volumen. Así se reduce sesgo de tamaño sin sobrerreaccionar a denominadores pequeños.",
+    "persistence": "Proporción de años observados en que la comuna se ubica en el cuartil superior nacional de la categoría.",
+    "trend": "Cambio del último año frente al promedio de hasta tres años previos, transformado a escala 0-100 y centrado en 50 cuando no hay cambio.",
+    "temporal_anomaly": "Separación robusta del valor actual respecto de la historia de la misma comuna, usando mediana y MAD. Sustituye la anomalía transversal de v1.0 para evitar duplicar intensidad.",
+    "confidence": "La confianza candidata es distinta del score: 30% cobertura temática, 20% cobertura temporal, 20% calidad de fuente, 20% estabilidad leave-one-history-year-out y 10% confiabilidad estadística del denominador poblacional.",
+    "semantic_precision": "Cuando la capa de delito base usa la familia agregada de drogas por falta de subgrupos, la cobertura temática se penaliza a 75% en esa parte, aunque el score siga siendo calculable.",
+    "stability": "Se recalcula el IGR excluyendo sucesivamente cada año histórico previo al corte. La desviación estándar entre variantes se convierte a estabilidad con 100 - 5*DE, truncada a 0-100.",
+    "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). Afecta la confianza y también contrae el peso de tasa; no se interpreta como amenaza.",
+    "methodological_coverage": "Se conserva además la cobertura metodológica comparable con v1.0, separada explícitamente de confianza.",
+    "interpretation": "Candidato experimental para validación comparativa. No sustituye el IGR v1.0 vigente, no representa probabilidad de lavado de activos y no atribuye conducta a personas o entidades del territorio."
+  }
+}
