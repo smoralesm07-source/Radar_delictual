@@ -31,7 +31,7 @@ jobs:
           git show origin/radar-data:data/processed/censo2024_population_commune.json > data/processed/censo2024_population_commune.json
 
       - name: Ejecutar backtest 2023-2025
-        run: python scripts/backtest_igr_v11_candidate3.py
+        run: PYTHONPATH=. python scripts/backtest_igr_v11_candidate3.py
 
       - name: Guardar backtest
         shell: bash
