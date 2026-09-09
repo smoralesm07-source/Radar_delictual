@@ -1,8 +1,8 @@
 {
-  "version": "1.1.0-candidate.3",
-  "status": "experimental",
+  "version": "1.1.0-rc.1",
+  "status": "release_candidate",
   "base_score_version": "1.0.0",
-  "name": "Componente criminógeno CEAD · candidato IGR v1.1",
+  "name": "Componente criminógeno CEAD · IGR v1.1 RC1",
   "score_range": [
     0,
     100
@@ -23,16 +23,24 @@
     }
   },
   "confidence_weights": {
-    "thematic_coverage": 0.3,
-    "temporal_coverage": 0.2,
-    "source_quality": 0.2,
-    "stability": 0.2,
-    "denominator_reliability": 0.1
+    "thematic_coverage": 0.2,
+    "temporal_coverage": 0.1,
+    "source_quality": 0.1,
+    "stability": 0.6,
+    "denominator_reliability": 0.0
   },
   "confidence_bands": {
-    "high_min": 80,
-    "medium_min": 70,
-    "note": "Bandas experimentales de lectura; no son umbrales de riesgo ni modifican el IGR."
+    "high_min": 89,
+    "medium_min": 86,
+    "note": "Bandas cualitativas de robustez de la estimación RC1; no son umbrales de riesgo ni modifican el IGR."
+  },
+  "rc1_policy": {
+    "score_formula_frozen": true,
+    "score_formula_source": "1.1.0-candidate.3",
+    "confidence_revision": "Se elimina denominator_reliability del compuesto de confianza porque ya contrae el peso de la tasa en el score y su inclusión hacía que confianza funcionara principalmente como proxy del tamaño poblacional.",
+    "denominator_reliability_status": "diagnostic_only",
+    "bands_status": "diagnostic_only",
+    "full_replacement_status": "blocked_pending_band_stability_validation"
   },
   "level_policy": {
     "mode": "dual_diagnostic",
@@ -113,13 +121,13 @@
     "persistence": "Proporción de años observados en que la comuna se ubica en el cuartil superior nacional de la categoría.",
     "trend": "Cambio del último año frente al promedio de hasta tres años previos, transformado a escala 0-100 y centrado en 50 cuando no hay cambio.",
     "temporal_anomaly": "Separación robusta del valor actual respecto de la historia de la misma comuna, usando mediana y MAD. La anomalía cruda se contrae hacia 50 según soporte de eventos q=soporte/(soporte+20), para que cambios de uno o pocos casos en series escasas no generen saltos artificiales. Sustituye la anomalía transversal de v1.0 y mantiene intensidad y anomalía conceptualmente separadas.",
-    "confidence": "La confianza candidata es distinta del score: 30% cobertura temática, 20% cobertura temporal, 20% calidad de fuente, 20% estabilidad leave-one-history-year-out y 10% confiabilidad estadística del denominador poblacional.",
+    "confidence": "RC1 separa robustez de amenaza. La confianza combina 20% cobertura temática, 10% cobertura temporal, 10% calidad de fuente y 60% estabilidad leave-one-history-year-out. La confiabilidad del denominador se publica aparte y pesa 0% en confianza porque ya modula el peso de la tasa en intensidad.",
     "semantic_precision": "Cuando la capa de delito base usa la familia agregada de drogas por falta de subgrupos, la cobertura temática se penaliza a 75% en esa parte, aunque el score siga siendo calculable.",
     "stability": "Se recalcula el IGR excluyendo sucesivamente cada año histórico previo al corte. La desviación estándar entre variantes se convierte a estabilidad con 100 - 5*DE, truncada a 0-100.",
-    "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). Afecta la confianza y también contrae el peso de tasa; no se interpreta como amenaza.",
+    "denominator_reliability": "Mide cuánto respaldo poblacional tiene la tasa usada en intensidad mediante r=población/(población+25.000). En RC1 afecta la intensidad por contracción del peso de tasa, pero se excluye del compuesto de confianza para no doble penalizar comunas pequeñas ni convertir confianza en proxy de población.",
     "methodological_coverage": "Se conserva además la cobertura metodológica comparable con v1.0, separada explícitamente de confianza.",
-    "level_calibration": "Las bandas candidate.3 se calibran como lectura diagnóstica separada. El score continuo sigue siendo la salida primaria. El backtest 2023-2025 mostró recambio individual relevante, por lo que las bandas no se promueven aún como clasificación oficial.",
-    "interpretation": "Candidato experimental para validación comparativa. No sustituye el IGR v1.0 vigente, no representa probabilidad de lavado de activos y no atribuye conducta a personas o entidades del territorio."
+    "level_calibration": "Las bandas candidate.3 se mantienen como lectura diagnóstica separada. El score continuo sigue siendo la salida primaria. El backtest 2023-2025 mostró recambio individual relevante, por lo que las bandas no se promueven aún como clasificación oficial.",
+    "interpretation": "IGR v1.1 RC1 para validación final. El score está congelado respecto de candidate.3; la revisión RC1 corrige la confianza. No sustituye todavía el IGR v1.0 vigente, no representa probabilidad de lavado de activos y no atribuye conducta a personas o entidades del territorio."
   },
   "temporal_anomaly_reliability": {
     "method": "event_support_shrinkage",

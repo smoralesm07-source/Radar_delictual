@@ -1,0 +1,76 @@
+name: IGR v1.1 RC1 validation
+
+on:
+  push:
+    branches: [release/igr-v11-rc1]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release/igr-v11-rc1
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Restaurar datos y baseline candidate.3
+        shell: bash
+        run: |
+          git fetch origin radar-data
+          mkdir -p data/processed analysis
+          for f in \
+            cead_update_manifest.json \
+            cead_annual_master_v4.jsonl \
+            cead_official_secondary_control.jsonl \
+            censo2024_population_commune.json \
+            cead_geographic_score_v1.json; do
+              git show "origin/radar-data:data/processed/$f" > "data/processed/$f"
+          done
+          git show origin/radar-data:data/processed/cead_geographic_score_v11_candidate.json > /tmp/igr_candidate3.json
+
+      - name: Pruebas unitarias RC1
+        run: pytest -q
+
+      - name: Materializar RC1 sin publicar
+        run: |
+          PYTHONPATH=. python - <<'PY'
+          import json
+          from radar_delictual.geographic_score_v11_runtime import materialize_geographic_score_v11_candidate
+          result = materialize_geographic_score_v11_candidate(offline=True)
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          if not result.get('ok') or result.get('records', 0) < 300:
+              raise SystemExit('RC1 incompleto')
+          if result.get('score_version') != '1.1.0-rc.1':
+              raise SystemExit(f"Versión inesperada: {result.get('score_version')}")
+          PY
+
+      - name: Validación cerrada de score, confianza y bandas
+        run: |
+          PYTHONPATH=. python scripts/validate_igr_v11_rc1.py \
+            --baseline /tmp/igr_candidate3.json \
+            --rc1 data/processed/cead_geographic_score_v11_candidate.json \
+            --v1 data/processed/cead_geographic_score_v1.json \
+            --backtest analysis/igr_v11_candidate3_backtest_2023_2025.json \
+            --out analysis/igr_v11_rc1_validation.json
+
+      - name: Guardar informe RC1
+        shell: bash
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add analysis/igr_v11_rc1_validation.json
+          if ! git diff --cached --quiet; then
+            git commit -m "IGR v1.1 RC1: registra validación cerrada"
+            git push origin HEAD:release/igr-v11-rc1
+          fi
