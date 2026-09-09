@@ -139,7 +139,24 @@ def _component_metrics(
 
     history = [float(series[(commune, y)]) for y in years if y < latest_year]
     trend = _trend_score(current, history)
-    temporal_anomaly = _temporal_anomaly_score(history, current)
+    raw_temporal_anomaly = _temporal_anomaly_score(history, current)
+
+    # Una anomalía longitudinal puede ser matemáticamente grande con soporte
+    # mínimo (por ejemplo, pasar de 0 a 1 caso). Eso es informativo como cambio,
+    # pero no debe pesar igual que una ruptura sostenida sobre decenas de hechos.
+    # Contraemos sólo la anomalía hacia el punto neutro 50; intensidad,
+    # persistencia y tendencia permanecen intactas.
+    anomaly_cfg = candidate.get("temporal_anomaly_reliability", {})
+    support_scale = float(anomaly_cfg.get("support_scale", 20.0))
+    anomaly_support = sum(max(0.0, x) for x in history) + max(0.0, current)
+    anomaly_reliability = (
+        anomaly_support / (anomaly_support + support_scale)
+        if support_scale > 0 else 1.0
+    )
+    temporal_anomaly = round(
+        50.0 + anomaly_reliability * (raw_temporal_anomaly - 50.0),
+        2,
+    )
 
     fw = candidate["feature_weights"]
     score = round(
@@ -167,6 +184,9 @@ def _component_metrics(
         "persistence": persistence,
         "trend": trend,
         "temporal_anomaly": temporal_anomaly,
+        "temporal_anomaly_raw": raw_temporal_anomaly,
+        "temporal_anomaly_reliability": round(100.0 * anomaly_reliability, 1),
+        "temporal_anomaly_support": round(anomaly_support, 1),
         "years_observed": observed,
         "population_available": population_available,
         "source_quality": round(100.0 * source_quality_mean, 1),

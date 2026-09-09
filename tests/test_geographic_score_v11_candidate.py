@@ -116,3 +116,51 @@ def test_candidate_source_quality_is_separate_from_score():
     assert by["13101"]["score"] == by["13102"]["score"]
     assert by["13101"]["confidence_components"]["source_quality"] > by["13102"]["confidence_components"]["source_quality"]
     assert by["13101"]["confidence"] > by["13102"]["confidence"]
+
+
+def test_sparse_temporal_anomaly_is_shrunk_toward_neutral():
+    master = []
+    for year in (2020, 2021, 2022, 2023, 2024):
+        master += [
+            row("13101", year, "Delitos asociados a drogas", 0),
+            row("13102", year, "Delitos asociados a drogas", 0),
+        ]
+    master += [
+        row("13101", 2025, "Delitos asociados a drogas", 1),
+        row("13102", 2025, "Delitos asociados a drogas", 0),
+    ]
+
+    scores = build_cead_geographic_score_v11_candidate(
+        master, {"13101": 5000, "13102": 5000}
+    )
+    by = {r["commune_code"]: r for r in scores}
+    comp = by["13101"]["layers"]["predicate_direct"]["components"][0]
+
+    assert comp["temporal_anomaly_raw"] > 50.0
+    assert 50.0 < comp["temporal_anomaly"] < comp["temporal_anomaly_raw"]
+    assert comp["temporal_anomaly_reliability"] < 10.0
+    assert comp["temporal_anomaly_support"] == 1.0
+
+
+def test_temporal_anomaly_retains_signal_when_event_support_is_substantial():
+    master = []
+    for year, value in zip((2020, 2021, 2022, 2023, 2024), (30, 31, 29, 30, 30)):
+        master += [
+            row("13101", year, "Delitos asociados a drogas", value),
+            row("13102", year, "Delitos asociados a drogas", 10),
+        ]
+    master += [
+        row("13101", 2025, "Delitos asociados a drogas", 60),
+        row("13102", 2025, "Delitos asociados a drogas", 10),
+    ]
+
+    scores = build_cead_geographic_score_v11_candidate(
+        master, {"13101": 100000, "13102": 100000}
+    )
+    by = {r["commune_code"]: r for r in scores}
+    comp = by["13101"]["layers"]["predicate_direct"]["components"][0]
+
+    assert comp["temporal_anomaly_raw"] > 50.0
+    assert comp["temporal_anomaly"] > 50.0
+    assert comp["temporal_anomaly_reliability"] > 90.0
+    assert abs(comp["temporal_anomaly"] - comp["temporal_anomaly_raw"]) < 6.0
