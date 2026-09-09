@@ -1,0 +1,58 @@
+{
+  "version": "1.1.0-candidate.1",
+  "status": "experimental",
+  "base_score_version": "1.0.0",
+  "name": "Componente criminógeno CEAD · candidato IGR v1.1",
+  "score_range": [0, 100],
+  "feature_weights": {
+    "intensity": 0.40,
+    "persistence": 0.25,
+    "trend": 0.20,
+    "temporal_anomaly": 0.15
+  },
+  "intensity_mix": {
+    "volume_percentile": 0.60,
+    "rate_per_100k_percentile": 0.40
+  },
+  "confidence_weights": {
+    "thematic_coverage": 0.35,
+    "temporal_coverage": 0.20,
+    "source_quality": 0.20,
+    "stability": 0.25
+  },
+  "source_quality": {
+    "primary_direct": 1.00,
+    "primary_direct_cached": 0.95,
+    "external_cead_data_pipeline": 0.90,
+    "mirror_of_primary": 0.85,
+    "official_secondary": 0.75,
+    "quarantined": 0.35,
+    "unknown": 0.50
+  },
+  "semantic_precision": {
+    "default_component": 1.00,
+    "predicate_family_fallback": 0.75
+  },
+  "stability": {
+    "penalty_per_sd_point": 5.0,
+    "minimum_variants": 3
+  },
+  "population": {
+    "reference_year": 2024,
+    "metric": "poblacion_censada",
+    "rate_scale": 100000,
+    "bridge_url": "https://raw.githubusercontent.com/bastianolea/censo_poblacion_consultar/master/datos/censo_2024_tidy.csv",
+    "ultimate_source": "INE Censo de Población y Vivienda 2024",
+    "bridge_note": "Puente público derivado de la base oficial del Censo 2024. Se usa solo en el candidato para construir la tasa comunal; no reemplaza la fuente CEAD."
+  },
+  "methodology": {
+    "intensity": "Combina percentil de volumen absoluto (60%) y percentil de tasa por 100.000 habitantes (40%) para reducir sesgo de tamaño sin perder materialidad absoluta. Si no hay denominador poblacional, el componente usa solo volumen y la salida declara population_available=false.",
+    "persistence": "Proporción de años observados en que la comuna se ubica en el cuartil superior nacional de la categoría.",
+    "trend": "Cambio del último año frente al promedio de hasta tres años previos, transformado a escala 0-100 y centrado en 50 cuando no hay cambio.",
+    "temporal_anomaly": "Separación robusta del valor actual respecto de la historia de la misma comuna, usando mediana y MAD. Sustituye la anomalía transversal de v1.0 para evitar duplicar intensidad.",
+    "confidence": "La confianza candidata es distinta del score: 35% cobertura temática, 20% cobertura temporal, 20% calidad de fuente y 25% estabilidad del IGR ante exclusiones leave-one-history-year-out.",
+    "semantic_precision": "Cuando la capa de delito base usa la familia agregada de drogas por falta de subgrupos, la cobertura temática se penaliza a 75% en esa parte, aunque el score siga siendo calculable.",
+    "stability": "Se recalcula el IGR excluyendo sucesivamente cada año histórico previo al corte. La desviación estándar entre variantes se convierte a estabilidad con 100 - 5*DE, truncada a 0-100.",
+    "interpretation": "Candidato experimental para validación comparativa. No sustituye el IGR v1.0 vigente, no representa probabilidad de lavado de activos y no atribuye conducta a personas o entidades del territorio."
+  }
+}
