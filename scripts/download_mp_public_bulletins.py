@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import requests
@@ -35,16 +36,16 @@ FILES = [
     (2020, "q1", "mp_2020_ene_mar.xls", "https://www.fiscaliadechile.cl/sites/default/files/documentos/Boletin_institucional_enero_marzo_2020_.xls"),
 ]
 
-headers = {"User-Agent": "Mozilla/5.0 (compatible; RadarDelictual-Research/1.0; public-data research)"}
-manifest = []
-for year, period, filename, url in FILES:
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; RadarDelictual-Research/1.0; public-data research)"}
+
+def fetch(item):
+    year, period, filename, url = item
     row = {"year": year, "period": period, "filename": filename, "url": url}
     try:
-        r = requests.get(url, headers=headers, timeout=60)
+        r = requests.get(url, headers=HEADERS, timeout=25)
         row.update({"http_status": r.status_code, "content_type": r.headers.get("content-type"), "bytes": len(r.content)})
         if r.ok and len(r.content) > 1024:
-            path = OUT / filename
-            path.write_bytes(r.content)
+            (OUT / filename).write_bytes(r.content)
             row["sha256"] = hashlib.sha256(r.content).hexdigest()
             row["downloaded"] = True
         else:
@@ -52,7 +53,14 @@ for year, period, filename, url in FILES:
             row["error"] = r.text[:200] if r.text else "empty_or_small_response"
     except Exception as exc:
         row.update({"downloaded": False, "error": f"{type(exc).__name__}: {exc}"})
-    manifest.append(row)
+    return row
 
+manifest = []
+with ThreadPoolExecutor(max_workers=8) as pool:
+    futures = [pool.submit(fetch, item) for item in FILES]
+    for future in as_completed(futures):
+        manifest.append(future.result())
+
+manifest.sort(key=lambda x: (-x["year"], {"q1": 1, "h1": 2, "q3": 3, "annual": 4}.get(x["period"], 9)))
 (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 print(json.dumps({"requested": len(manifest), "downloaded": sum(1 for x in manifest if x.get('downloaded')), "failed": sum(1 for x in manifest if not x.get('downloaded'))}, ensure_ascii=False))
