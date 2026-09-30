@@ -9,18 +9,21 @@ Obtener una tabla estadística agregada del Ministerio Público para evaluar exp
 - Período: 2020-01-01 a 2025-12-31.
 - Unidad territorial: comuna de ocurrencia del delito.
 - Unidad de conteo: identificador único de delito (`ID_delito`), sin duplicar un delito por aparecer en más de una relación.
-- Período de contabilización: fecha de recepción del caso, en concordancia con la metodología pública de `Delitos ingresados`.
-- Salida agregada: una fila por año/mes, comuna y código de delito.
+- Conservar dos ejes temporales cuando estén disponibles: **fecha de recepción del caso** y **fecha de ocurrencia del delito**.
+- La fecha de recepción se usará para reconciliar con las Estadísticas Interactivas oficiales; la fecha de ocurrencia se evaluará como eje analítico potencial para amenaza territorial.
+- Salida agregada: una fila por período, comuna y código de delito.
 
 ## Campos mínimos
 
 1. `anio_recepcion`
-2. `mes_recepcion` (deseable; si no es posible, año basta para primera prueba)
-3. `codigo_delito`
-4. `nombre_delito`
-5. `codigo_comuna_ocurrencia` (CUT si está disponible)
-6. `nombre_comuna_ocurrencia`
-7. `cantidad_delitos_ingresados`
+2. `mes_recepcion` (deseable)
+3. `anio_ocurrencia` (deseable y de alta prioridad)
+4. `mes_ocurrencia` (deseable)
+5. `codigo_delito`
+6. `nombre_delito`
+7. `codigo_comuna_ocurrencia` (CUT si está disponible)
+8. `nombre_comuna_ocurrencia`
+9. `cantidad_delitos_ingresados`
 
 ## Campos opcionales de control
 
@@ -32,15 +35,7 @@ Obtener una tabla estadística agregada del Ministerio Público para evaluar exp
 
 ## Exclusiones de datos
 
-No se solicitan:
-
-- RUC;
-- ID_delito individual;
-- RUT o identificadores de imputados/víctimas;
-- nombres de personas;
-- direcciones completas;
-- coordenadas precisas;
-- relatos o antecedentes de causa.
+No se solicitan RUC, ID_delito individual, RUT, identificadores de imputados o víctimas, nombres de personas, direcciones completas, coordenadas precisas, relatos ni antecedentes de causa.
 
 ## Delitos núcleo E1
 
@@ -62,18 +57,11 @@ Solicitar además el catálogo/código vigente por año para poder detectar alta
 - No convertir ausencia de registros en cero sin comprobar cobertura.
 - 2026 debe tratarse como YTD separado hasta contar con año completo.
 - Para Ley 20.009, marcar ruptura estructural desde 2024 por modificación legal y cambios en el proceso de denuncia.
+- Si existe discrepancia entre año de recepción y año de ocurrencia, conservar ambos; no reasignar artificialmente uno al otro.
 
 ## QA de recepción
 
-Al recibir el extracto se validará:
-
-- cobertura comunal >=95% para aspirar a piloto comunal;
-- totales por año y delito contra publicaciones oficiales;
-- coherencia de CUT/nombre de comuna;
-- duplicados en clave `periodo + comuna + codigo_delito`;
-- códigos no vigentes o recodificados;
-- porcentaje de `sin_comuna` por año y delito;
-- saltos estructurales por cambio normativo o de clasificación.
+Al recibir el extracto se validará cobertura comunal >=95% para aspirar a piloto comunal, totales por año y delito contra publicaciones oficiales, coherencia CUT/nombre de comuna, duplicados en clave territorial-temporal, códigos no vigentes o recodificados, porcentaje `sin_comuna`, diferencias entre fecha de recepción y fecha de ocurrencia, y saltos estructurales por cambio normativo o de clasificación.
 
 ## Salida esperada del laboratorio
 
