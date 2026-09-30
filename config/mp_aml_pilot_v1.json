@@ -1,10 +1,14 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "status": "research_only",
   "source": "Ministerio Publico de Chile - SAF / Estadisticas Interactivas",
   "production_impact": "none",
   "unit_of_count": "unique_offense_id",
-  "period_basis": "case_reception_date",
+  "period_basis": {
+    "validation": "case_reception_date",
+    "analytical_candidate": "offense_occurrence_date",
+    "rule": "Conservar ambos ejes cuando SAF los permita; reconciliar publicaciones oficiales por recepcion y evaluar amenaza territorial por ocurrencia."
+  },
   "territorial_rule": {
     "preferred": "commune_of_offense_occurrence",
     "acceptable_for_communal_pilot": ["commune_of_offense_occurrence"],
@@ -24,6 +28,8 @@
   ],
   "optional_fields": [
     "month",
+    "occurrence_year",
+    "occurrence_month",
     "fiscal_region",
     "local_prosecution_office",
     "known_offender_status"
