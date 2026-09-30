@@ -1,0 +1,83 @@
+{
+  "version": "0.1.1",
+  "status": "research_only",
+  "source": "Ministerio Publico de Chile - SAF / Estadisticas Interactivas",
+  "production_impact": "none",
+  "unit_of_count": "unique_offense_id",
+  "period_basis": {
+    "validation": "case_reception_date",
+    "analytical_candidate": "offense_occurrence_date",
+    "rule": "Conservar ambos ejes cuando SAF los permita; reconciliar publicaciones oficiales por recepcion y evaluar amenaza territorial por ocurrencia."
+  },
+  "territorial_rule": {
+    "preferred": "commune_of_offense_occurrence",
+    "acceptable_for_communal_pilot": ["commune_of_offense_occurrence"],
+    "regional_only": ["fiscal_region", "regional_prosecution_office"],
+    "forbidden_commune_proxies": ["local_prosecution_office", "fiscal_region"],
+    "note": "La fiscalia o region que tramita el caso no se interpreta como comuna de ocurrencia."
+  },
+  "minimum_fields": [
+    "year",
+    "offense_code",
+    "offense_name",
+    "offense_count"
+  ],
+  "communal_fields": [
+    "occurrence_commune_code",
+    "occurrence_commune_name"
+  ],
+  "optional_fields": [
+    "month",
+    "occurrence_year",
+    "occurrence_month",
+    "fiscal_region",
+    "local_prosecution_office",
+    "known_offender_status"
+  ],
+  "families": {
+    "fraud_financial": {
+      "priority": "high",
+      "candidate_offenses": [
+        {"code": "816", "name": "Estafas y otras defraudaciones contra particulares"},
+        {"code": "856", "name": "Apropiacion indebida"},
+        {"code": "863", "name": "Administracion desleal de persona natural"},
+        {"code": "865", "name": "Administracion desleal de persona juridica"},
+        {"code": "866", "name": "Apropiacion indebida por persona juridica"},
+        {"code": "845", "name": "Fraude de subvenciones"}
+      ],
+      "special_series": [
+        {
+          "name": "Uso malicioso de tarjeta, clave o dispositivo financiero",
+          "law": "Ley 20.009",
+          "structural_break": 2024,
+          "reason": "Cambio normativo de Ley 21.673 altera comparabilidad de ingresos y requiere tratamiento separado de tendencia."
+        }
+      ]
+    },
+    "corruption": {
+      "priority": "medium",
+      "candidate_offenses": [
+        {"code": "406", "name": "Malversacion de caudales publicos"},
+        {"code": "410", "name": "Cohecho cometido por empleado publico"},
+        {"code": "411", "name": "Cohecho o soborno cometido por particular"},
+        {"code": "415", "name": "Negociacion incompatible"},
+        {"code": "416", "name": "Trafico de influencias"},
+        {"code": "418", "name": "Enriquecimiento ilicito"},
+        {"code": "419", "name": "Fraudes al Fisco y organismos del Estado"},
+        {"code": "422", "name": "Soborno de funcionario publico extranjero - persona natural"},
+        {"code": "423", "name": "Soborno - persona juridica"},
+        {"code": "424", "name": "Soborno de funcionario publico extranjero - persona juridica"}
+      ]
+    }
+  },
+  "promotion_rules": {
+    "require_occurrence_commune": true,
+    "min_years": 4,
+    "missing_never_zero": true,
+    "require_catalog_traceability": true,
+    "require_structural_break_flags": true,
+    "require_backtest_before_igr": true,
+    "modify_igr": false,
+    "atlas_dependency": false
+  }
+}

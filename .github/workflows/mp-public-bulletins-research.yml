@@ -1,0 +1,32 @@
+name: MP public bulletins research
+
+on:
+  push:
+    branches:
+      - research/igr-experimental-sources
+    paths:
+      - scripts/download_mp_public_bulletins.py
+      - .github/workflows/mp-public-bulletins-research.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch-public-bulletins:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Download public SAF bulletins
+        run: python scripts/download_mp_public_bulletins.py
+      - name: Upload research artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mp-public-bulletins-2020-2025
+          path: artifacts/mp_public_bulletins
+          if-no-files-found: error
+          retention-days: 14
