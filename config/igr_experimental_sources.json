@@ -1,40 +1,67 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "research_only",
   "production_impact": "none",
   "rules": {
     "promote_only_after_backtest": true,
     "missing_never_zero": true,
     "atlas_dependency": false,
-    "modify_igr_weights": false
+    "modify_igr_weights": false,
+    "require_occurrence_territory": true,
+    "do_not_use_prosecutorial_region_as_commune_proxy": true
   },
   "layers": {
     "fraud_economic_financial": {
       "priority": "high",
       "primary_source": "Ministerio Público de Chile",
       "source_url": "https://www.fiscaliadechile.cl/estadisticas-interactivas",
+      "source_system": "SAF",
+      "public_interface": "Power BI Estadísticas Interactivas",
+      "public_refresh": "daily",
+      "verified_public_territorial_level": "region_fiscalia",
+      "communal_level_verified": false,
+      "pilot_status": "source_semantics_valid_territorial_granularity_pending",
       "candidate_variables": [
-        "estafas y otras defraudaciones contra particulares",
-        "uso malicioso de tarjeta, clave o dispositivo financiero",
-        "apropiacion indebida",
-        "administracion desleal",
-        "delitos economicos y tributarios seleccionados"
+        {"code":"816","label":"Estafas y otras defraudaciones contra particulares","status":"vigente","pilot_tier":"core"},
+        {"label":"Uso malicioso de tarjeta, clave o dispositivo financiero art. 7 Ley 20.009","status":"vigente_en_estadisticas_2025_2026","pilot_tier":"core","structural_break_warning":"Ley 21.673 elevó denuncias desde 2024; no comparar tendencia bruta sin control"},
+        {"code":"856","label":"Apropiación indebida art. 470 N°1","status":"vigente","pilot_tier":"secondary"},
+        {"code":"863","label":"Administración desleal de persona natural art. 470 N°11","status":"vigente","pilot_tier":"secondary"},
+        {"code":"865","label":"Administración desleal de persona jurídica art. 470 N°11","status":"vigente","pilot_tier":"secondary"},
+        {"code":"866","label":"Apropiación indebida cometida por persona jurídica art. 470 N°1","status":"vigente","pilot_tier":"secondary"},
+        {"code":"845","label":"Fraude de subvenciones art. 470 N°8","status":"vigente","pilot_tier":"secondary"},
+        {"code":"5001","label":"Delitos que contempla el Código Tributario arts. 97 al 114","status":"vigente","pilot_tier":"research"}
       ],
-      "next_validation": "confirmar descarga reproducible, granularidad territorial y serie historica comparable"
+      "preferred_measure": "delitos_ingresados_unique_offense_id",
+      "preferred_period": "fecha_recepcion_caso",
+      "required_dimensions": ["anio","codigo_delito","nombre_delito","territorio_ocurrencia_o_comuna"],
+      "optional_dimensions": ["tipo_imputado_conocido_desconocido","termino_aplicado"],
+      "known_limitations": [
+        "La metodología pública documenta cobertura por regiones seleccionadas, no confirma comuna como dimensión descargable.",
+        "Región Fiscalía o Fiscalía Local representa gestión/persecución y no debe asumirse como territorio de ocurrencia.",
+        "Un caso puede contener más de un delito; para amenaza delictual se debe usar el ámbito Delitos, no RUC/casos.",
+        "El incremento 2025 de fraude de medios de pago está afectado por cambio legal de Ley 21.673 y requiere ruptura estructural o serie separada."
+      ],
+      "next_validation": "probar descarga Excel del Power BI y confirmar si contiene comuna/lugar de ocurrencia; si solo existe Región Fiscalía, usar como laboratorio regional y no promover al IGR comunal"
     },
     "corruption": {
-      "priority": "medium",
+      "priority": "medium_high",
       "primary_source": "Ministerio Público de Chile",
       "source_url": "https://www.fiscaliadechile.cl/estadisticas-interactivas",
+      "pilot_status": "taxonomy_verified_territorial_granularity_pending",
       "candidate_variables": [
-        "cohecho",
-        "soborno",
-        "malversacion de caudales publicos",
-        "fraude al fisco",
-        "negociacion incompatible",
-        "delitos funcionarios seleccionados"
+        {"code":"406","label":"Malversación de caudales públicos","status":"vigente"},
+        {"code":"410","label":"Cohecho cometido por empleado público","status":"vigente"},
+        {"code":"411","label":"Cohecho o soborno cometido por particular","status":"vigente"},
+        {"code":"415","label":"Negociación incompatible art. 240 N°1","status":"vigente"},
+        {"code":"416","label":"Tráfico de influencias art. 240 bis","status":"vigente"},
+        {"code":"418","label":"Enriquecimiento ilícito art. 241 bis","status":"vigente"},
+        {"code":"419","label":"Fraudes al Fisco y organismos del Estado art. 239","status":"vigente"},
+        {"code":"422","label":"Soborno de funcionario público extranjero por persona natural","status":"vigente"},
+        {"code":"423","label":"Soborno art. 250 por persona jurídica","status":"vigente"},
+        {"code":"424","label":"Soborno de funcionario público extranjero por persona jurídica","status":"vigente"}
       ],
-      "next_validation": "probar estabilidad plurianual y granularidad; no usar conteo anual simple"
+      "methodological_rule": "no usar conteo anual simple; evaluar ventana móvil plurianual y estabilización por baja frecuencia",
+      "next_validation": "confirmar territorio de ocurrencia y volumen suficiente por unidad espacial antes de diseñar señal"
     },
     "contraband_illicit_markets": {
       "priority": "medium_high",
